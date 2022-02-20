@@ -46,7 +46,7 @@ export default {
 </script>
 
 <template>
-  <div class="container mx-auto">
+  <div class="mx-auto w-screen">
     <div class="flex flex-row flex-wrap justify-around">
       <div class="text-2xl basis-1/3 content-start">      
         <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in purpSquares()">🟪</li></ul>
@@ -60,8 +60,8 @@ export default {
         <ul class="flex flex-row flex-nowrap leading-none">🟨&nbsp;Fair</ul>
         <ul class="flex flex-row flex-nowrap leading-none">🟥&nbsp;Average</ul>
       </div>
-      <div class="basis-1/3">
-        <div class="mx-auto flex flex-row flex-nowrap items-center text-4xl">
+      <div class="basis-1/3 content-start items-start text-left">
+        <div class="mx-auto flex flex-row flex-nowrap text-4xl">
           {{ remainingPoints }} /&nbsp;
           <input 
             type="number"
@@ -79,7 +79,7 @@ export default {
           v-for="skill in skills" 
           :key="skill.name"
           :value="skill.value"
-          class="rounded-lg bg-slate-200 m-4 p-3 max-w-[100px] h-[115px] content-center"
+          class="rounded-lg bg-slate-200 m-4 p-3 max-w-[100px] h-[115px]"
         >
           <div><input type="text" readonly :min="0" :max="4" class="text-xl font-bold w-8 bg-slate-50 rounded text-center rounded-full" v-model="skill.value" /> </div>
           <button 
@@ -87,7 +87,7 @@ export default {
             @click="skill.value--;" 
             class="
               text-xs font-bold bg-blue-dark hover:bg-blue-400 transition-colors 
-              rounded-full px-[12px] py-[5px] m-[1px] text-white focus:ring-2 ring-blue-500
+              rounded-full px-[12px] py-[7px] m-[1px] text-white focus:ring-2 ring-blue-500
             "
           >
               -
@@ -97,7 +97,7 @@ export default {
             @click="skill.value++;" 
             class="
               text-xs font-bold bg-blue-dark hover:bg-blue-400 transition-colors 
-              rounded-full px-[12px] py-[5px] m-[1px] text-white focus:ring-2 ring-blue-500
+              rounded-full px-[12px] py-[7px] m-[1px] text-white focus:ring-2 ring-blue-500
             "
           >
                +
