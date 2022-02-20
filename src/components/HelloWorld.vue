@@ -4,7 +4,6 @@ export default {
   data() {
     return { 
       total: 20,
-      remaining: 20,
       skills: [
         {"name": "Physique / Resist", "value": 0 },
         {"name": "Willpower", "value": 0 },
@@ -41,7 +40,7 @@ export default {
     console.log() 
   },
   computed: {
-
+    remainingPoints() { return this.total - ( (this.redSquares()*1) + (this.yellowSquares()*2) +(this.greenSquares()*3) + (this.purpSquares()*4) ) }
   }
 };
 </script>
@@ -62,15 +61,14 @@ export default {
         <ul class="flex flex-row flex-nowrap leading-none">🟥&nbsp;Average</ul>
       </div>
       <div class="basis-1/3">
-        <div class="mx-auto flex flex-row flex-nowrap items-center text-6xl">
-          {{ remaining }} /
-          <!-- input 
+        <div class="mx-auto flex flex-row flex-nowrap items-center text-4xl">
+          {{ remainingPoints }} /&nbsp;
+          <input 
             type="number"
             v-model="total" 
-            class="w-36" 
+            class="w-16" 
             :min="0"
-          / -->
-          {{ total }}
+          />
         </div>
         <p class="text-md">Remaining / Total</p>
       </div>
@@ -83,10 +81,28 @@ export default {
           :value="skill.value"
           class="rounded-lg bg-slate-200 m-4 p-3 max-w-[100px] h-[115px] content-center"
         >
-          <div><input type="text" :min="0" :max="4" class="text-xl w-8 bg-slate-50 rounded" v-model="skill.value" /> </div>
-          <button @click="remaining++; skill.value--;" class="text-xs bg-blue-500 hover:bg-blue-400 transition-colors rounded-full px-[12px] py-[5px] m-[1px] text-white focus:ring-2 ring-blue-500">-</button>
-          <button @click="remaining--; skill.value++;" class="text-xs bg-blue-500 hover:bg-blue-400 transition-colors rounded-full px-[12px] py-[5px] m-[1px] text-white focus:ring-2 ring-blue-500">+</button>
-          <p class="text-sm">
+          <div><input type="text" readonly :min="0" :max="4" class="text-xl font-bold w-8 bg-slate-50 rounded text-center rounded-full" v-model="skill.value" /> </div>
+          <button 
+            :disabled="skill.value < 1"
+            @click="skill.value--;" 
+            class="
+              text-xs font-bold bg-blue-dark hover:bg-blue-400 transition-colors 
+              rounded-full px-[12px] py-[5px] m-[1px] text-white focus:ring-2 ring-blue-500
+            "
+          >
+              -
+          </button>
+          <button 
+            :disabled="skill.value > 3"
+            @click="skill.value++;" 
+            class="
+              text-xs font-bold bg-blue-dark hover:bg-blue-400 transition-colors 
+              rounded-full px-[12px] py-[5px] m-[1px] text-white focus:ring-2 ring-blue-500
+            "
+          >
+               +
+          </button>
+          <p class="text-sm font-bold text-blue-dark">
             {{ skill.name }}
           </p>
         </li>
