@@ -93,7 +93,7 @@ export default {
               -
           </button>
           <button 
-            :disabled="skill.value > 3"
+            :disabled="((skill.value > 3) || remainingPoints == 0)"
             @click="skill.value++;" 
             class="
               text-xs font-bold bg-blue-dark hover:bg-blue-400 transition-colors 
