@@ -48,9 +48,9 @@ export default {
 </script>
 
 <template>
-  <div class="max-w-md my-0 py-0 mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-    <div class="flex flex-row flex-wrap justify-between">
-      <div class="text-md md:text-xl content-start bg-slate-100 grow">      
+  <div class="max-w-md my-0 py-0 mx-auto bg-white rounded-xl shadow-md md:max-w-2xl">
+    <div class="flex flex-row flex-wrap justify-between item">
+      <div class="text-xl md:text-xl self-stretch bg-slate-100 grow">      
         <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in purpSquares()">🟪</li></ul>
         <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in greenSquares()">🟩</li></ul>
         <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in yellowSquares()">🟨</li></ul>
@@ -77,7 +77,9 @@ export default {
       <ul class="flex flex-wrap justify-around">
         <li 
           v-for="skill in skills" :key="skill.name" :value="skill.value"
-          class="w-1/3 rounded-sm bg-slate-200 m-1 p-2 max-w-[120px] h-[125px] border-4 border-dotted border-transparent overflow-hidden"
+          class="
+            w-1/3 rounded-sm bg-slate-200 m-1 p-2 max-w-[120px] h-[125px] border-4 border-dotted overflow-hidden 
+            border-transparent"
         >
           <div>
             <input 
