@@ -40,28 +40,30 @@ export default {
     console.log() 
   },
   computed: {
-    remainingPoints() { return this.total - ( (this.redSquares()*1) + (this.yellowSquares()*2) +(this.greenSquares()*3) + (this.purpSquares()*4) ) }
+    remainingPoints() { 
+      return this.total - ( (this.redSquares()*1) + (this.yellowSquares()*2) +(this.greenSquares()*3) + (this.purpSquares()*4) ) 
+    }
   }
 };
 </script>
 
 <template>
-  <div class="mx-auto w-screen">
-    <div class="flex flex-row flex-wrap justify-around">
-      <div class="text-2xl basis-1/3 content-start">      
+  <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+    <div class="flex flex-row flex-wrap justify-between">
+      <div class="text-xl content-start bg-slate-100 grow">      
         <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in purpSquares()">🟪</li></ul>
         <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in greenSquares()">🟩</li></ul>
         <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in yellowSquares()">🟨</li></ul>
         <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in redSquares()">🟥</li></ul>     
       </div>  
-      <div class="text-2xl basis-1/3">
-        <ul class="flex flex-row flex-nowrap leading-none">🟪&nbsp;Great</ul>
-        <ul class="flex flex-row flex-nowrap leading-none">🟩&nbsp;Good</ul>
-        <ul class="flex flex-row flex-nowrap leading-none">🟨&nbsp;Fair</ul>
-        <ul class="flex flex-row flex-nowrap leading-none">🟥&nbsp;Average</ul>
+      <div class="text-xl bg-slate-200 pr-12">
+        <ul class="flex flex-row flex-nowrap leading-none">🟪&nbsp;<span class="text-sm">Great</span></ul>
+        <ul class="flex flex-row flex-nowrap leading-none">🟩&nbsp;<span class="text-sm">Good</span></ul>
+        <ul class="flex flex-row flex-nowrap leading-none">🟨&nbsp;<span class="text-sm">Fair</span></ul>
+        <ul class="flex flex-row flex-nowrap leading-none">🟥&nbsp;<span class="text-sm">Average</span></ul>
       </div>
-      <div class="basis-1/3 content-start items-start text-left">
-        <div class="mx-auto flex flex-row flex-nowrap text-4xl">
+      <div class="bg-slate-100 basis-1/4 justify-self-end">
+        <div class="text-4xl">
           {{ remainingPoints }} /&nbsp;
           <input 
             type="number"
@@ -70,18 +72,27 @@ export default {
             :min="0"
           />
         </div>
-        <p class="text-md">Remaining / Total</p>
+        <p class="text-sm">Remaining / Total</p>
       </div>
-   </div>
-    <div class="">  
-      <ul class="flex flex-wrap">
+    </div>
+    <div class="md:flex">  
+      <ul class="flex flex-wrap justify-around">
         <li 
           v-for="skill in skills" 
           :key="skill.name"
           :value="skill.value"
-          class="rounded-lg bg-slate-200 m-4 p-3 max-w-[100px] h-[115px]"
+          class="rounded-lg bg-slate-200 m-1 p-2 max-w-[100px] h-[115px]"
         >
-          <div><input type="text" readonly :min="0" :max="4" class="text-xl font-bold w-8 bg-slate-50 rounded text-center rounded-full" v-model="skill.value" /> </div>
+          <div>
+            <input 
+              type="text" 
+              readonly 
+              :min="0" 
+              :max="4" 
+              class="text-xl font-bold w-8 bg-slate-50 rounded text-center rounded-full" 
+              v-model="skill.value" 
+            /> 
+          </div>
           <button 
             :disabled="skill.value < 1"
             @click="skill.value--;" 
