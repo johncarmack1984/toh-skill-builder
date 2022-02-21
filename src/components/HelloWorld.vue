@@ -66,36 +66,27 @@ export default {
         <div class="text-[16px] md:text-4xl">
           {{ remainingPoints }} /&nbsp;
           <input 
-            type="number"
-            v-model="total" 
+            type="number" v-model="total" :min="0"
             class="w-8 md:w-16" 
-            :min="0"
           />
         </div>
-        <p class="text-sm">Remaining / Total</p>
+        <p class="text-xs md:text-sm">Remaining / Total</p>
       </div>
     </div>
     <div class="md:flex">  
       <ul class="flex flex-wrap justify-around">
         <li 
-          v-for="skill in skills" 
-          :key="skill.name"
-          :value="skill.value"
+          v-for="skill in skills" :key="skill.name" :value="skill.value"
           class="w-1/3 rounded-sm bg-slate-200 m-1 p-2 max-w-[120px] h-[125px] border-4 border-dotted border-transparent overflow-hidden"
         >
           <div>
             <input 
-              type="text" 
-              readonly 
-              :min="0" 
-              :max="4" 
+              type="text" readonly :min="0" :max="4" v-model="skill.value" 
               class="text-[16px] font-bold w-8 bg-slate-50 rounded text-center rounded-full" 
-              v-model="skill.value" 
             /> 
           </div>
           <button 
-            :disabled="skill.value < 1"
-            @click="skill.value--;" 
+            @click="skill.value--;" :disabled="skill.value < 1" 
             class="
               text-[16px] font-bold bg-blue-dark hover:bg-blue-400 transition-colors 
               rounded-full px-[16px] py-[8px] m-[2px] text-white focus:ring-2 ring-blue-500
@@ -104,8 +95,7 @@ export default {
               -
           </button>
           <button 
-            :disabled="((skill.value > 3) || remainingPoints == 0)"
-            @click="skill.value++;" 
+            @click="skill.value++;" :disabled="((skill.value > 3) || remainingPoints == 0)" 
             class="
               text-[16px] font-bold bg-blue-dark hover:bg-blue-400 transition-colors 
               rounded-full px-[16px] py-[8px] m-[2px] text-white focus:ring-2 ring-blue-500
