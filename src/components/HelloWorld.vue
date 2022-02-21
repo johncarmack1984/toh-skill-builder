@@ -81,7 +81,7 @@ export default {
           v-for="skill in skills" 
           :key="skill.name"
           :value="skill.value"
-          class="rounded-lg bg-slate-200 m-1 p-2 max-w-[120px] h-[115px]"
+          class="w-1/3 rounded-lg bg-slate-200 m-1 p-2 max-w-[120px] h-[120px]"
         >
           <div>
             <input 
@@ -89,7 +89,7 @@ export default {
               readonly 
               :min="0" 
               :max="4" 
-              class="text-xl font-bold w-8 bg-slate-50 rounded text-center rounded-full" 
+              class="text-[16px] font-bold w-8 bg-slate-50 rounded text-center rounded-full" 
               v-model="skill.value" 
             /> 
           </div>
