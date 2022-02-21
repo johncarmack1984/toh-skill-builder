@@ -82,7 +82,7 @@ export default {
         <li 
           v-for="skill in skills" :key="skill.name" :value="skill.value"
           class="
-            w-1/3 rounded-sm bg-slate-200 m-1 p-2 max-w-[120px] h-[125px] border-[3px] border-dashed overflow-hidden "
+            w-1/3 rounded-sm bg-slate-200 m-1 p-2 max-w-[120px] h-[125px] border-[3px] border- overflow-hidden "
           :class="[
             skill.value == 1 ? averageClass: '',
             skill.value == 2 ? fairClass: '',
