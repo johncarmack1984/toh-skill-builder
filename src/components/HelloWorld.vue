@@ -53,8 +53,8 @@ export default {
 
 <template>
   <div class="max-w-md my-0 py-0 mx-auto bg-white rounded-xl shadow-md md:max-w-2xl">
-    <div class="flex flex-row flex-wrap justify-between item pt-0 mt-[-3rem]">
-      <div class="text-xl md:text-xl self-stretch bg-slate-100 grow">      
+    <div class="flex flex-row flex-wrap justify-between pt-0 mt-[-3rem]">
+      <div class="text-xl md:text-xl bg-slate-100 grow">      
         <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in purpSquares()">🟪</li></ul>
         <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in greenSquares()">🟩</li></ul>
         <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in yellowSquares()">🟨</li></ul>
@@ -77,7 +77,7 @@ export default {
         <p class="text-xs md:text-sm">Remaining / Total</p>
       </div>
     </div>
-    <div class="md:flex">  
+    <div class="md:flex pt-2">  
       <ul class="flex flex-wrap justify-around">
         <li 
           v-for="skill in skills" :key="skill.name" :value="skill.value"
