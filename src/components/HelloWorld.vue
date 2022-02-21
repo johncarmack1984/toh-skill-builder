@@ -49,7 +49,7 @@ export default {
 
 <template>
   <div class="max-w-md my-0 py-0 mx-auto bg-white rounded-xl shadow-md md:max-w-2xl">
-    <div class="flex flex-row flex-wrap justify-between item">
+    <div class="flex flex-row flex-wrap justify-between item pt-0 mt-[-3rem]">
       <div class="text-xl md:text-xl self-stretch bg-slate-100 grow">      
         <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in purpSquares()">🟪</li></ul>
         <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in greenSquares()">🟩</li></ul>
