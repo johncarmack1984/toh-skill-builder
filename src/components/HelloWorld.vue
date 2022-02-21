@@ -57,10 +57,10 @@ export default {
         <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in redSquares()">🟥</li></ul>     
       </div>  
       <div class="text-xl bg-slate-200 pr-12">
-        <ul class="flex flex-row flex-nowrap leading-none">🟪&nbsp;<span class="text-sm">Great</span></ul>
-        <ul class="flex flex-row flex-nowrap leading-none">🟩&nbsp;<span class="text-sm">Good</span></ul>
-        <ul class="flex flex-row flex-nowrap leading-none">🟨&nbsp;<span class="text-sm">Fair</span></ul>
-        <ul class="flex flex-row flex-nowrap leading-none">🟥&nbsp;<span class="text-sm">Average</span></ul>
+        <ul class="flex flex-row flex-nowrap leading-none font-bold">&nbsp;{{ purpSquares() }}&nbsp;🟪&nbsp;<span class="text-sm">Great</span></ul>
+        <ul class="flex flex-row flex-nowrap leading-none font-bold">&nbsp;{{ greenSquares() }}&nbsp;🟩&nbsp;<span class="text-sm">Good</span></ul>
+        <ul class="flex flex-row flex-nowrap leading-none font-bold">&nbsp;{{ yellowSquares() }}&nbsp;🟨&nbsp;<span class="text-sm">Fair</span></ul>
+        <ul class="flex flex-row flex-nowrap leading-none font-bold">&nbsp;{{ redSquares() }}&nbsp;🟥&nbsp;<span class="text-sm">Average</span></ul>
       </div>
       <div class="bg-slate-100 basis-1/4 justify-self-end">
         <div class="text-4xl">
