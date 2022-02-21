@@ -48,7 +48,7 @@ export default {
 </script>
 
 <template>
-  <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+  <div class="max-w-md my-0 py-0 mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
     <div class="flex flex-row flex-wrap justify-between">
       <div class="text-md md:text-xl content-start bg-slate-100 grow">      
         <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in purpSquares()">🟪</li></ul>
@@ -97,8 +97,8 @@ export default {
             :disabled="skill.value < 1"
             @click="skill.value--;" 
             class="
-              text-xs font-bold bg-blue-dark hover:bg-blue-400 transition-colors 
-              rounded-full px-[18px] py-[13px] m-[1px] text-white focus:ring-2 ring-blue-500
+              text-[16px] font-bold bg-blue-dark hover:bg-blue-400 transition-colors 
+              rounded-full px-[16px] py-[8px] m-[2px] text-white focus:ring-2 ring-blue-500
             "
           >
               -
@@ -107,8 +107,8 @@ export default {
             :disabled="((skill.value > 3) || remainingPoints == 0)"
             @click="skill.value++;" 
             class="
-              text-xs font-bold bg-blue-dark hover:bg-blue-400 transition-colors 
-              rounded-full px-[18px] py-[13px] m-[1px] text-white focus:ring-2 ring-blue-500
+              text-[16px] font-bold bg-blue-dark hover:bg-blue-400 transition-colors 
+              rounded-full px-[16px] py-[8px] m-[2px] text-white focus:ring-2 ring-blue-500
             "
           >
                +
