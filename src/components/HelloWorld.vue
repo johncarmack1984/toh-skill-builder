@@ -27,7 +27,11 @@ export default {
         {"name": "Contacts", "value": 0 },
         {"name": "Nature", "value": 0 },
         {"name": "Medicine", "value": 0 },
-      ]
+      ],
+      averageClass: 'border-red',
+      fairClass: 'border-yellow',
+      goodClass: 'border-green',
+      greatClass: 'border-purple'
     };
   },
   methods: {
@@ -78,8 +82,14 @@ export default {
         <li 
           v-for="skill in skills" :key="skill.name" :value="skill.value"
           class="
-            w-1/3 rounded-sm bg-slate-200 m-1 p-2 max-w-[120px] h-[125px] border-4 border-dotted overflow-hidden 
+            w-1/3 rounded-sm bg-slate-200 m-1 p-2 max-w-[120px] h-[125px] border-[3px] border-dashed overflow-hidden 
             border-transparent"
+          :class="[
+            skill.value == 1 ? averageClass: '',
+            skill.value == 2 ? fairClass: '',
+            skill.value == 3 ? goodClass: '',
+            skill.value == 4 ? greatClass: '',
+          ]"
         >
           <div>
             <input 
