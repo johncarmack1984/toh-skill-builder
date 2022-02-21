@@ -81,7 +81,7 @@ export default {
           v-for="skill in skills" 
           :key="skill.name"
           :value="skill.value"
-          class="rounded-lg bg-slate-200 m-1 p-2 max-w-[100px] h-[115px]"
+          class="rounded-lg bg-slate-200 m-1 p-2 max-w-[120px] h-[115px]"
         >
           <div>
             <input 
@@ -98,7 +98,7 @@ export default {
             @click="skill.value--;" 
             class="
               text-xs font-bold bg-blue-dark hover:bg-blue-400 transition-colors 
-              rounded-full px-[12px] py-[7px] m-[1px] text-white focus:ring-2 ring-blue-500
+              rounded-full px-[18px] py-[13px] m-[1px] text-white focus:ring-2 ring-blue-500
             "
           >
               -
@@ -108,7 +108,7 @@ export default {
             @click="skill.value++;" 
             class="
               text-xs font-bold bg-blue-dark hover:bg-blue-400 transition-colors 
-              rounded-full px-[12px] py-[7px] m-[1px] text-white focus:ring-2 ring-blue-500
+              rounded-full px-[18px] py-[13px] m-[1px] text-white focus:ring-2 ring-blue-500
             "
           >
                +
