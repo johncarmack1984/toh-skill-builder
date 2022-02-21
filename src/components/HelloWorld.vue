@@ -81,7 +81,7 @@ export default {
           v-for="skill in skills" 
           :key="skill.name"
           :value="skill.value"
-          class="w-1/3 rounded-sm bg-slate-200 m-1 p-2 max-w-[120px] h-[125px] border-4 border-dotted border-purple overflow-hidden"
+          class="w-1/3 rounded-sm bg-slate-200 m-1 p-2 max-w-[120px] h-[125px] border-4 border-dotted border-transparent overflow-hidden"
         >
           <div>
             <input 
