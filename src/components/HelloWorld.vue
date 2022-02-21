@@ -50,25 +50,25 @@ export default {
 <template>
   <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
     <div class="flex flex-row flex-wrap justify-between">
-      <div class="text-xl content-start bg-slate-100 grow">      
+      <div class="text-md md:text-xl content-start bg-slate-100 grow">      
         <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in purpSquares()">🟪</li></ul>
         <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in greenSquares()">🟩</li></ul>
         <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in yellowSquares()">🟨</li></ul>
         <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in redSquares()">🟥</li></ul>     
       </div>  
-      <div class="text-xl bg-slate-200 pr-12">
+      <div class="text-md md:text-xl bg-slate-200 pr-12">
         <ul class="flex flex-row flex-nowrap leading-none font-bold">&nbsp;{{ purpSquares() }}&nbsp;🟪&nbsp;<span class="text-sm">Great</span></ul>
         <ul class="flex flex-row flex-nowrap leading-none font-bold">&nbsp;{{ greenSquares() }}&nbsp;🟩&nbsp;<span class="text-sm">Good</span></ul>
         <ul class="flex flex-row flex-nowrap leading-none font-bold">&nbsp;{{ yellowSquares() }}&nbsp;🟨&nbsp;<span class="text-sm">Fair</span></ul>
         <ul class="flex flex-row flex-nowrap leading-none font-bold">&nbsp;{{ redSquares() }}&nbsp;🟥&nbsp;<span class="text-sm">Average</span></ul>
       </div>
       <div class="bg-slate-100 basis-1/4 justify-self-end">
-        <div class="text-4xl">
+        <div class="text-[16px] md:text-4xl">
           {{ remainingPoints }} /&nbsp;
           <input 
             type="number"
             v-model="total" 
-            class="w-16" 
+            class="w-8 md:w-16" 
             :min="0"
           />
         </div>
@@ -81,7 +81,7 @@ export default {
           v-for="skill in skills" 
           :key="skill.name"
           :value="skill.value"
-          class="w-1/3 rounded-lg bg-slate-200 m-1 p-2 max-w-[120px] h-[120px]"
+          class="w-1/3 rounded-sm bg-slate-200 m-1 p-2 max-w-[120px] h-[125px] border-4 border-dotted border-purple overflow-hidden"
         >
           <div>
             <input 
@@ -113,7 +113,7 @@ export default {
           >
                +
           </button>
-          <p class="text-sm font-bold text-blue-dark">
+          <p class="text-sm font-bold text-blue-dark bg-slate-50 mt-1 rounded leading-4">
             {{ skill.name }}
           </p>
         </li>
@@ -121,3 +121,4 @@ export default {
     </div>
   </div>
 </template>
+
