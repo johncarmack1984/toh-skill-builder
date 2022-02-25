@@ -62,6 +62,9 @@ export default {
       handler: function (after) {
         console.log("skills updated")
         localStorage.setItem("skills", JSON.stringify(after));
+
+      },
+      /* localStorage.setItem("skills", JSON.stringify(newValue)); */
     },
   },
   computed: {
