@@ -57,11 +57,8 @@ export default {
     "skills": {
       deep: true,
       handler: function (after) {
-        console.log("skills updated")
-        console.log(this.total)
         localStorage.setItem("skills", JSON.stringify(after));
       },
-      /* localStorage.setItem("skills", JSON.stringify(newValue)); */
     },
     "total": { 
       handler: function (after) {
