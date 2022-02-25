@@ -28,7 +28,6 @@ export default {
         {"name": "Nature", "value": 0 },
         {"name": "Medicine", "value": 0 },
       ],
-      oldSkills: [],
       averageClass: 'border-red',
       fairClass: 'border-yellow',
       goodClass: 'border-green',
