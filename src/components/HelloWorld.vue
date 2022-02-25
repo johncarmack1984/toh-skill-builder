@@ -129,7 +129,7 @@ export default {
           :key="index" 
           :value="skill.value"
           class="
-            w-1/3 rounded-sm bg-slate-200 m-1 p-2 max-w-[120px] h-[125px] border-[3px] border- overflow-hidden
+            z-0 w-1/3 rounded-sm bg-slate-200 m-1 p-2 max-w-[120px] h-[125px] border-[3px] border- overflow-hidden
           "
           :class="[
             skill.value == 1 ? averageClass: '',
@@ -142,7 +142,7 @@ export default {
             <input 
               type="text" disabled :min="0" :max="4" v-model="skill.value" 
               class="
-                z-10 text-[16px] py-[.7rem] my-[-5px] font-extrabold w-12 text-blue-dark
+                z-10 opacity-100 text-[16px] py-[.7rem] my-[-5px] font-extrabold w-12 text-blue-dark
                 bg-white rounded-full text-center rounded-full
                 focus:outline-none focus:ring-2 focus:ring-blue-dark
               " 
