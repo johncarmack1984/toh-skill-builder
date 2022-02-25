@@ -28,6 +28,7 @@ export default {
         {"name": "Nature", "value": 0 },
         {"name": "Medicine", "value": 0 },
       ],
+      oldSkills: [],
       averageClass: 'border-red',
       fairClass: 'border-yellow',
       goodClass: 'border-green',
@@ -39,15 +40,59 @@ export default {
     greenSquares() { return this.skills.filter(function (skill) {return skill.value == 3}).length },
     yellowSquares() { return this.skills.filter(function (skill) {return skill.value == 2}).length },
     redSquares() { return this.skills.filter(function (skill) {return skill.value == 1}).length },
-    resetAll () { Object.assign(this.$data, this.$options.data()) },
+    setSkillsValue() { 
+      this.oldSkills = JSON.parse(JSON.stringify(this.skills)) 
+      /* commit to localstorage */
+    },
     resetNames () { this.$data.skills.forEach( (skill,index) => skill.name = this.$options.data().skills[index].name) },
     resetScores () { this.$data.skills.forEach( (skill,index) => skill.value = 0) },
+    resetAll () { 
+      /*Object.assign(this.$data, this.$options.data()) */
+      this.resetScores()
+      this.resetNames()
+      this.total = 20
+    },    
   },
   mounted() {
-
+    this.skills = JSON.parse(localStorage.getItem("skills")) || this.skills
   },
   watch: {
-    skills() {},
+    "skills": {
+      deep: true,
+      handler: function (after) {
+        console.log("skills updated")
+        localStorage.setItem("skills", JSON.stringify(after));
+        /*
+        var vm = this;
+        let isChanged = false;
+        for (let index = 0; index < after.length; index++) {          
+          const item = after[index]
+          const props = Object.keys(item)
+          isChanged = props.some(function(prop) {
+            if (prop === "name") {
+              const oldValue = vm.$data.oldSkills[index][prop]   
+              const newValue = item[prop]
+              return JSON.stringify(newValue) !== JSON.stringify(oldValue); 
+            }
+            if (prop === "value") {
+              const oldValue = vm.$data.oldSkills[index][prop]   
+              const newValue = item[prop]              
+              console.log(oldValue !== newValue)                   
+              return JSON.stringify(newValue) !== JSON.stringify(oldValue);         
+            }            
+            return false
+            
+          })       
+        }
+        if (isChanged) {
+          console.log("CHANGED!")
+        }          
+
+        vm.setSkillsValue();
+        console.log("isChanged = ", isChanged) */
+      },
+      /* localStorage.setItem("skills", JSON.stringify(newValue)); */
+    },
   },
   computed: {
     remainingPoints() { 
@@ -59,6 +104,8 @@ export default {
 
 <template>
   <div class="max-w-md my-0 py-0 mx-auto bg-white rounded-xl shadow-md md:max-w-2xl">
+
+    <!-- Top Bar -->     
     <div class="flex flex-row flex-wrap justify-between pt-0 mt-[-3rem]">
 
       <!-- Squares -->
@@ -126,7 +173,7 @@ export default {
       <ul class="flex flex-wrap justify-around">
         <li 
           v-for="(skill, index) in skills" 
-          :key="index" 
+          :key="skill" 
           :value="skill.value"
           class="
             z-0 w-1/3 rounded-sm bg-slate-200 m-1 p-2 max-w-[120px] h-[125px] border-[3px] border- overflow-hidden
@@ -142,7 +189,7 @@ export default {
             <input 
               type="text" disabled :min="0" :max="4" v-model="skill.value" 
               class="
-                z-10 opacity-100 text-[16px] py-[.7rem] my-[-5px] font-extrabold w-12 text-blue-dark
+                z-10 opacity-100 text-[16px] py-[.7rem] my-[-5px] font-extrabold text-blue-dark w-12
                 bg-white rounded-full text-center rounded-full
                 focus:outline-none focus:ring-2 focus:ring-blue-dark
               " 
@@ -153,7 +200,7 @@ export default {
             class="
               z-20 text-[16px] font-bold bg-blue-dark hover:bg-blue-light transition-colors 
               rounded-full px-[16px] py-[8px] mx-[2px] mb-[2px] mt-[-12px] text-white 
-              focus:ring-2 ring-blue-500
+              focus:ring-2 ring-blue-light disabled:bg-slate-600
             "
           >
               -
@@ -162,7 +209,8 @@ export default {
             @click="skill.value++;" :disabled="((skill.value > 3) || remainingPoints == 0)" 
             class="
               z-20 text-[16px] font-bold bg-blue-dark hover:bg-blue-light transition-colors 
-              rounded-full px-[16px] py-[8px] mx-[2px] mb-[2px] mt-[-12px] text-white focus:ring-2 ring-blue-500
+              rounded-full px-[16px] py-[8px] mx-[2px] mb-[2px] mt-[-12px] text-white 
+              focus:ring-2 ring-blue-light disabled:bg-slate-600
             "
           >
                +
@@ -170,7 +218,7 @@ export default {
           <textarea
             v-model="skill.name"
             class="
-              text-[16px] w-full text-center break-words resize-none mt-[-2px]
+              z-10 text-[16px] w-full text-center break-words resize-none mt-[-2px]
               font-bold text-blue-dark bg-slate-50 rounded leading-5 pt-[1px]" 
           ></textarea>
         </li>
