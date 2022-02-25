@@ -39,9 +39,15 @@ export default {
     greenSquares() { return this.skills.filter(function (skill) {return skill.value == 3}).length },
     yellowSquares() { return this.skills.filter(function (skill) {return skill.value == 2}).length },
     redSquares() { return this.skills.filter(function (skill) {return skill.value == 1}).length },
+    resetAll () { Object.assign(this.$data, this.$options.data()) },
+    resetNames () { this.$data.skills.forEach( (skill,index) => skill.name = this.$options.data().skills[index].name) },
+    resetScores () { this.$data.skills.forEach( (skill,index) => skill.value = 0) },
   },
   mounted() {
-    console.log() 
+
+  },
+  watch: {
+
   },
   computed: {
     remainingPoints() { 
@@ -54,18 +60,27 @@ export default {
 <template>
   <div class="max-w-md my-0 py-0 mx-auto bg-white rounded-xl shadow-md md:max-w-2xl">
     <div class="flex flex-row flex-wrap justify-between pt-0 mt-[-3rem]">
+
+      <!-- Squares -->
+
       <div class="text-xl md:text-xl bg-slate-100 grow">      
         <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in purpSquares()">🟪</li></ul>
         <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in greenSquares()">🟩</li></ul>
         <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in yellowSquares()">🟨</li></ul>
         <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in redSquares()">🟥</li></ul>     
       </div>  
+
+      <!-- Legend -->
+
       <div class="text-md md:text-xl bg-slate-200 pr-12">
         <ul class="flex flex-row flex-nowrap leading-none font-bold">&nbsp;{{ purpSquares() }}&nbsp;🟪&nbsp;<span class="text-sm">Great</span></ul>
         <ul class="flex flex-row flex-nowrap leading-none font-bold">&nbsp;{{ greenSquares() }}&nbsp;🟩&nbsp;<span class="text-sm">Good</span></ul>
         <ul class="flex flex-row flex-nowrap leading-none font-bold">&nbsp;{{ yellowSquares() }}&nbsp;🟨&nbsp;<span class="text-sm">Fair</span></ul>
         <ul class="flex flex-row flex-nowrap leading-none font-bold">&nbsp;{{ redSquares() }}&nbsp;🟥&nbsp;<span class="text-sm">Average</span></ul>
       </div>
+      
+      <!-- Total / Remaining -->
+
       <div class="bg-slate-100 basis-1/4 justify-self-end">
         <div class="text-[16px] md:text-4xl">
           {{ remainingPoints }} /&nbsp;
@@ -77,12 +92,45 @@ export default {
         <p class="text-xs md:text-sm">Remaining / Total</p>
       </div>
     </div>
-    <div class="md:flex pt-2">  
+
+    <!-- Reset Button --> 
+
+    <div class="text-right pt-2">
+      reset 
+      <button 
+        @click="resetScores"
+        class="
+          text-[16px] font-bold bg-blue-dark hover:bg-blue-light transition-colors 
+          rounded-full px-[16px] py-[4px] m-[2px] text-white focus:ring-2 ring-blue-500
+        "  
+      >scores</button>
+      <button 
+        @click="resetNames"
+        class="
+          text-[16px] font-bold bg-blue-dark hover:bg-blue-light transition-colors 
+          rounded-full px-[16px] py-[4px] m-[2px] text-white focus:ring-2 ring-blue-500
+        "  
+      >names</button>            
+      <button 
+        @click="resetAll"
+        class="
+          text-[16px] font-bold bg-blue-dark hover:bg-blue-light transition-colors 
+          rounded-full px-[16px] py-[4px] m-[2px] text-white focus:ring-2 ring-blue-500
+        "  
+      >all</button>
+    </div>
+
+    <!-- Skills --> 
+
+    <div class="md:flex pt-2"> 
       <ul class="flex flex-wrap justify-around">
         <li 
-          v-for="skill in skills" :key="skill.name" :value="skill.value"
+          v-for="(skill, index) in skills" 
+          :key="index" 
+          :value="skill.value"
           class="
-            w-1/3 rounded-sm bg-slate-200 m-1 p-2 max-w-[120px] h-[125px] border-[3px] border- overflow-hidden "
+            w-1/3 rounded-sm bg-slate-200 m-1 p-2 max-w-[120px] h-[125px] border-[3px] border- overflow-hidden
+          "
           :class="[
             skill.value == 1 ? averageClass: '',
             skill.value == 2 ? fairClass: '',
@@ -92,15 +140,20 @@ export default {
         >
           <div>
             <input 
-              type="text" readonly :min="0" :max="4" v-model="skill.value" 
-              class="text-[16px] font-bold w-8 bg-slate-50 rounded text-center rounded-full" 
+              type="text" disabled :min="0" :max="4" v-model="skill.value" 
+              class="
+                z-0 text-[16px] py-[.7rem] my-[-5px] font-extrabold w-12 text-blue-dark
+                bg-white rounded-full text-center rounded-full
+                focus:outline-none focus:ring-2 focus:ring-blue-dark
+              " 
             /> 
           </div>
           <button 
             @click="skill.value--;" :disabled="skill.value < 1" 
             class="
-              text-[16px] font-bold bg-blue-dark hover:bg-blue-400 transition-colors 
-              rounded-full px-[16px] py-[8px] m-[2px] text-white focus:ring-2 ring-blue-500
+              z-20 text-[16px] font-bold bg-blue-dark hover:bg-blue-light transition-colors 
+              rounded-full px-[16px] py-[8px] mx-[2px] mb-[2px] mt-[-12px] text-white 
+              focus:ring-2 ring-blue-500
             "
           >
               -
@@ -108,15 +161,18 @@ export default {
           <button 
             @click="skill.value++;" :disabled="((skill.value > 3) || remainingPoints == 0)" 
             class="
-              text-[16px] font-bold bg-blue-dark hover:bg-blue-400 transition-colors 
-              rounded-full px-[16px] py-[8px] m-[2px] text-white focus:ring-2 ring-blue-500
+              z-20 text-[16px] font-bold bg-blue-dark hover:bg-blue-light transition-colors 
+              rounded-full px-[16px] py-[8px] mx-[2px] mb-[2px] mt-[-12px] text-white focus:ring-2 ring-blue-500
             "
           >
                +
           </button>
-          <p class="text-sm font-bold text-blue-dark bg-slate-50 mt-1 rounded leading-4">
-            {{ skill.name }}
-          </p>
+          <textarea
+            v-model="skill.name"
+            class="
+              text-[16px] w-full text-center break-words resize-none mt-[-2px]
+              font-bold text-blue-dark bg-slate-50 rounded leading-5 pt-[1px]" 
+          ></textarea>
         </li>
       </ul>  
     </div>
