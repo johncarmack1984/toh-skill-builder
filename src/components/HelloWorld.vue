@@ -148,7 +148,7 @@ export default {
           :key="skill" 
           :value="skill.value"
           class="
-            z-0 w-1/3 rounded-sm bg-slate-200 m-1 p-2 max-w-[120px] h-[125px] border-[3px] border- overflow-hidden
+            z-0 w-1/3 rounded-sm bg-slate-200 m-1 p-[7px] max-w-[120px] h-[125px] border-[3px] border- overflow-hidden
           "
           :class="[
             skill.value == 1 ? averageClass: '',
@@ -170,8 +170,8 @@ export default {
           <button 
             @click="skill.value--;" :disabled="skill.value < 1" 
             class="
-              z-20 text-[16px] font-bold bg-blue-dark hover:bg-blue-light transition-colors 
-              rounded-full px-[16px] py-[8px] mx-[2px] mb-[2px] mt-[-12px] text-white 
+              z-20 text-[16px] font-black bg-blue-dark hover:bg-blue-light transition-colors 
+              rounded-full px-[11px] md:px-[16px] py-[3px] md:py-[8px] mx-[4px] md:mx-[2px] mb-[2px] mt-[-12px] text-white 
               focus:ring-2 ring-blue-light disabled:bg-slate-600
             "
           >
@@ -180,8 +180,8 @@ export default {
           <button 
             @click="skill.value++;" :disabled="((skill.value > 3) || remainingPoints == 0)" 
             class="
-              z-20 text-[16px] font-bold bg-blue-dark hover:bg-blue-light transition-colors 
-              rounded-full px-[16px] py-[8px] mx-[2px] mb-[2px] mt-[-12px] text-white 
+              z-20 text-[16px] font-black bg-blue-dark hover:bg-blue-light transition-colors 
+              rounded-full px-[11px] md:px-[16px] py-[3px] md:py-[8px] mx-[4px] md:mx-[2px] mb-[2px] mt-[-12px] text-white 
               focus:ring-2 ring-blue-light disabled:bg-slate-600
             "
           >
