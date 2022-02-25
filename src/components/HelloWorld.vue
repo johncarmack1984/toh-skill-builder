@@ -40,14 +40,9 @@ export default {
     greenSquares() { return this.skills.filter(function (skill) {return skill.value == 3}).length },
     yellowSquares() { return this.skills.filter(function (skill) {return skill.value == 2}).length },
     redSquares() { return this.skills.filter(function (skill) {return skill.value == 1}).length },
-    setSkillsValue() { 
-      this.oldSkills = JSON.parse(JSON.stringify(this.skills)) 
-      /* commit to localstorage */
-    },
     resetNames () { this.$data.skills.forEach( (skill,index) => skill.name = this.$options.data().skills[index].name) },
     resetScores () { this.$data.skills.forEach( (skill,index) => skill.value = 0) },
     resetAll () { 
-      /*Object.assign(this.$data, this.$options.data()) */
       this.resetScores()
       this.resetNames()
       this.total = 20
@@ -55,16 +50,23 @@ export default {
   },
   mounted() {
     this.skills = JSON.parse(localStorage.getItem("skills")) || this.skills
+    this.total = JSON.parse(localStorage.getItem("total")) || this.total
+    
   },
   watch: {
     "skills": {
       deep: true,
       handler: function (after) {
         console.log("skills updated")
+        console.log(this.total)
         localStorage.setItem("skills", JSON.stringify(after));
-
       },
       /* localStorage.setItem("skills", JSON.stringify(newValue)); */
+    },
+    "total": { 
+      handler: function (after) {
+        localStorage.setItem("total", JSON.stringify(after)); 
+      },
     },
   },
   computed: {
