@@ -47,7 +47,7 @@ export default {
 
   },
   watch: {
-
+    skills() {},
   },
   computed: {
     remainingPoints() { 
@@ -93,7 +93,7 @@ export default {
       </div>
     </div>
 
-    <!-- Reset Button --> 
+    <!-- Reset Buttons --> 
 
     <div class="text-right pt-2">
       reset 
@@ -142,7 +142,7 @@ export default {
             <input 
               type="text" disabled :min="0" :max="4" v-model="skill.value" 
               class="
-                z-0 text-[16px] py-[.7rem] my-[-5px] font-extrabold w-12 text-blue-dark
+                z-10 text-[16px] py-[.7rem] my-[-5px] font-extrabold w-12 text-blue-dark
                 bg-white rounded-full text-center rounded-full
                 focus:outline-none focus:ring-2 focus:ring-blue-dark
               " 
