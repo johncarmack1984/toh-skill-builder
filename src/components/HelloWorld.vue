@@ -62,36 +62,6 @@ export default {
       handler: function (after) {
         console.log("skills updated")
         localStorage.setItem("skills", JSON.stringify(after));
-        /*
-        var vm = this;
-        let isChanged = false;
-        for (let index = 0; index < after.length; index++) {          
-          const item = after[index]
-          const props = Object.keys(item)
-          isChanged = props.some(function(prop) {
-            if (prop === "name") {
-              const oldValue = vm.$data.oldSkills[index][prop]   
-              const newValue = item[prop]
-              return JSON.stringify(newValue) !== JSON.stringify(oldValue); 
-            }
-            if (prop === "value") {
-              const oldValue = vm.$data.oldSkills[index][prop]   
-              const newValue = item[prop]              
-              console.log(oldValue !== newValue)                   
-              return JSON.stringify(newValue) !== JSON.stringify(oldValue);         
-            }            
-            return false
-            
-          })       
-        }
-        if (isChanged) {
-          console.log("CHANGED!")
-        }          
-
-        vm.setSkillsValue();
-        console.log("isChanged = ", isChanged) */
-      },
-      /* localStorage.setItem("skills", JSON.stringify(newValue)); */
     },
   },
   computed: {
