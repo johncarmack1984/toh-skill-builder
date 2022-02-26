@@ -132,7 +132,7 @@ export default {
             <input 
               type="text" disabled :min="0" :max="4" v-model="skill.value" 
               class="
-                z-10 opacity-100 text-[16px] py-[.7rem] my-[-5px] font-extrabold text-blue-dark w-12
+                z-20 opacity-100 text-[16px] py-[.7rem] my-[-5px] font-black text-blue-dark w-12
                 bg-white rounded-full text-center rounded-full
                 focus:outline-none focus:ring-2 focus:ring-blue-dark
               " 
@@ -141,7 +141,7 @@ export default {
           <button 
             @click="skill.value--;" :disabled="skill.value < 1" 
             class="
-              z-20 text-[16px] font-black bg-blue-dark hover:bg-blue-light transition-colors 
+              z-30 text-[16px] font-black bg-blue-dark hover:bg-blue-light transition-colors 
               rounded-full px-[16px] sm:px-[16px] py-[8px] sm:py-[8px] mx-[2px] sm:mx-[2px] mb-[2px] mt-[-12px] text-white 
               focus:ring-2 ring-blue-light disabled:bg-slate-600
             "
@@ -151,7 +151,7 @@ export default {
           <button 
             @click="skill.value++;" :disabled="((skill.value > 3) || remainingPoints == 0)" 
             class="
-              z-20 text-[16px] font-black bg-blue-dark hover:bg-blue-light transition-colors 
+              z-30 text-[16px] font-black bg-blue-dark hover:bg-blue-light transition-colors 
               rounded-full px-[16px] sm:px-[16px] py-[8px] sm:py-[8px] mx-[2px] sm:mx-[2px] mb-[2px] mt-[-12px] text-white 
               focus:ring-2 ring-blue-light disabled:bg-slate-600
             "
