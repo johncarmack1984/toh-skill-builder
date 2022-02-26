@@ -74,26 +74,26 @@ export default {
 </script>
 
 <template>
-  <div class="max-w-md my-0 py-0 mx-auto bg-white rounded-xl shadow-md md:max-w-2xl">
+  <div class="max-w-md md:my-0 md:py-0 mx-auto bg-white rounded-xl shadow-md md:max-w-2xl">
     <!-- Top Bar -->     
     <div class="z-40 sticky top-0 md:static flex md:flex-row flex-wrap justify-between md:pt-0 mt-[-3rem]">
 
       <!-- Squares -->
 
       <div class="z-50 text-xl md:text-xl bg-slate-100 grow">      
-        <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in purpSquares()">🟪</li></ul>
-        <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in greenSquares()">🟩</li></ul>
-        <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in yellowSquares()">🟨</li></ul>
-        <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in redSquares()">🟥</li></ul>     
+        <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in purpSquares()">🟪</li></ul>
+        <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in greenSquares()">🟩</li></ul>
+        <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in yellowSquares()">🟨</li></ul>
+        <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in redSquares()">🟥</li></ul>     
       </div>  
 
       <!-- Legend -->
 
-      <div class="z-50 text-md md:text-xl bg-slate-200 md:pr-12">
-        <ul class="flex flex-row flex-nowrap leading-none font-bold">&nbsp;{{ purpSquares() }}&nbsp;🟪&nbsp;<span class="text-sm">Great</span></ul>
-        <ul class="flex flex-row flex-nowrap leading-none font-bold">&nbsp;{{ greenSquares() }}&nbsp;🟩&nbsp;<span class="text-sm">Good</span></ul>
-        <ul class="flex flex-row flex-nowrap leading-none font-bold">&nbsp;{{ yellowSquares() }}&nbsp;🟨&nbsp;<span class="text-sm">Fair</span></ul>
-        <ul class="flex flex-row flex-nowrap leading-none font-bold">&nbsp;{{ redSquares() }}&nbsp;🟥&nbsp;<span class="text-sm">Average</span></ul>
+      <div class="z-50 text-md md:text-xl bg-slate-200 md:pr-12 overflow-clip">
+        <ul class="flex flex-row flex-nowrap leading-none font-bold items-baseline">&nbsp;{{ purpSquares() }}&nbsp;🟪&nbsp;<span class="text-sm">Great</span></ul>
+        <ul class="flex flex-row flex-nowrap leading-none font-bold items-baseline">&nbsp;{{ greenSquares() }}&nbsp;🟩&nbsp;<span class="text-sm">Good</span></ul>
+        <ul class="flex flex-row flex-nowrap leading-none font-bold items-baseline">&nbsp;{{ yellowSquares() }}&nbsp;🟨&nbsp;<span class="text-sm">Fair</span></ul>
+        <ul class="flex flex-row flex-nowrap leading-none font-bold items-baseline">&nbsp;{{ redSquares() }}&nbsp;🟥&nbsp;<span class="text-sm">Average</span></ul>
       </div>
       
       <!-- Total / Remaining -->
