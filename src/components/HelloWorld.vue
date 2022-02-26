@@ -74,13 +74,13 @@ export default {
 </script>
 
 <template>
-  <div class="max-w-md md:my-0 md:py-0 mx-auto bg-white rounded-xl shadow-md md:max-w-2xl">
+  <div class="max-w-md md:my-0 md:py-0 mx-auto bg-white rounded-xl shadow-md md:max-w-2xl mt-[-55px]">
     <!-- Top Bar -->     
-    <div class="z-40 sticky top-0 md:static flex md:flex-row flex-wrap justify-between md:pt-0 mt-[-3rem]">
+    <div class="z-40 sticky top-0 flex md:flex-row flex-wrap justify-between">
 
       <!-- Squares -->
 
-      <div class="z-50 text-xl md:text-xl bg-slate-100 grow">      
+      <div class="z-50 text-xl md:text-xl bg-slate-100 grow items-baseline">      
         <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in purpSquares()">🟪</li></ul>
         <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in greenSquares()">🟩</li></ul>
         <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in yellowSquares()">🟨</li></ul>
@@ -89,11 +89,11 @@ export default {
 
       <!-- Legend -->
 
-      <div class="z-50 text-md md:text-xl bg-slate-200 md:pr-12 overflow-clip">
-        <ul class="flex flex-row flex-nowrap leading-none font-bold items-baseline">&nbsp;{{ purpSquares() }}&nbsp;🟪&nbsp;<span class="text-sm">Great</span></ul>
-        <ul class="flex flex-row flex-nowrap leading-none font-bold items-baseline">&nbsp;{{ greenSquares() }}&nbsp;🟩&nbsp;<span class="text-sm">Good</span></ul>
-        <ul class="flex flex-row flex-nowrap leading-none font-bold items-baseline">&nbsp;{{ yellowSquares() }}&nbsp;🟨&nbsp;<span class="text-sm">Fair</span></ul>
-        <ul class="flex flex-row flex-nowrap leading-none font-bold items-baseline">&nbsp;{{ redSquares() }}&nbsp;🟥&nbsp;<span class="text-sm">Average</span></ul>
+      <div class="z-50 text-md md:text-xl bg-slate-200 md:pr-12 items-baseline overflow-clip">
+        <ul class="flex flex-row flex-nowrap leading-none font-bold self-baseline items-baseline">&nbsp;{{ purpSquares() }}&nbsp;🟪&nbsp;<span class="text-sm">Great</span></ul>
+        <ul class="flex flex-row flex-nowrap leading-none font-bold self-baseline items-baseline">&nbsp;{{ greenSquares() }}&nbsp;🟩&nbsp;<span class="text-sm">Good</span></ul>
+        <ul class="flex flex-row flex-nowrap leading-none font-bold self-baseline items-baseline">&nbsp;{{ yellowSquares() }}&nbsp;🟨&nbsp;<span class="text-sm">Fair</span></ul>
+        <ul class="flex flex-row flex-nowrap leading-none font-bold self-baseline items-baseline">&nbsp;{{ redSquares() }}&nbsp;🟥&nbsp;<span class="text-sm">Average</span></ul>
       </div>
       
       <!-- Total / Remaining -->
@@ -108,33 +108,6 @@ export default {
         </div>
         <p class="text-xs md:text-sm">Remaining / Total</p>
       </div>
-    </div>
-        
-    <!-- Reset Buttons --> 
-
-    <div class="z-0 text-right pt-2">
-      reset 
-      <button 
-        @click="resetScores"
-        class="
-          text-[16px] font-bold bg-blue-dark hover:bg-blue-light transition-colors 
-          rounded-full px-[16px] py-[4px] m-[2px] text-white focus:ring-2 ring-blue-500
-        "  
-      >scores</button>
-      <button 
-        @click="resetNames"
-        class="
-          text-[16px] font-bold bg-blue-dark hover:bg-blue-light transition-colors 
-          rounded-full px-[16px] py-[4px] m-[2px] text-white focus:ring-2 ring-blue-500
-        "  
-      >names</button>            
-      <button 
-        @click="resetAll"
-        class="
-          text-[16px] font-bold bg-blue-dark hover:bg-blue-light transition-colors 
-          rounded-full px-[16px] py-[4px] m-[2px] text-white focus:ring-2 ring-blue-500
-        "  
-      >all</button>
     </div>
 
     <!-- Skills --> 
@@ -194,6 +167,34 @@ export default {
         </li>
       </ul>  
     </div>
+
+    <!-- Reset Buttons --> 
+
+    <div class="z-0 text-left pl-[2.5rem] mt-16 pt-2">
+      reset 
+      <button 
+        @click="resetScores"
+        class="
+          text-[16px] font-bold bg-blue-dark hover:bg-blue-light transition-colors 
+          rounded-full px-[16px] py-[4px] m-[2px] text-white focus:ring-2 ring-blue-500
+        "  
+      >scores</button>
+      <button 
+        @click="resetNames"
+        class="
+          text-[16px] font-bold bg-blue-dark hover:bg-blue-light transition-colors 
+          rounded-full px-[16px] py-[4px] m-[2px] text-white focus:ring-2 ring-blue-500
+        "  
+      >names</button>            
+      <button 
+        @click="resetAll"
+        class="
+          text-[16px] font-bold bg-blue-dark hover:bg-blue-light transition-colors 
+          rounded-full px-[16px] py-[4px] m-[2px] text-white focus:ring-2 ring-blue-500
+        "  
+      >all</button>
+    </div>
+
   </div>
 </template>
 
