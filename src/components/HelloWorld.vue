@@ -196,10 +196,9 @@ export default {
       >all</button>
     </div>
   </div>
-  <footer class="pb-4">
-    <a class="underline" target="new" href="https://github.com/johncarmack1984">TOH Skill Builder</a> 
-    by 
-    <a class="underline" target="new" href="https://johncarmack.com/">John Carmack</a>
-  </footer>
+  <div class="pb-4">
+    <a class="underline" target="new" href="https://github.com/johncarmack1984/toh-skill-builder">TOH Skill Builder</a> 
+    by <a class="underline" href="mailto:johncarmack@me.com">John Carmack</a>
+  </div>
 </template>
 
