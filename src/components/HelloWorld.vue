@@ -74,7 +74,7 @@ export default {
 </script>
 
 <template>
-  <div class="max-w-md md:my-0 md:py-0 mx-auto bg-white rounded-xl shadow-md md:max-w-2xl mt-[-55px]">
+  <div class="max-w-md mb-4 pb-4 mx-auto bg-white rounded-xl shadow-md md:max-w-2xl mt-[-55px]">
     <!-- Top Bar -->     
     <div class="z-40 sticky top-0 flex md:flex-row flex-wrap justify-between">
 
@@ -170,7 +170,7 @@ export default {
 
     <!-- Reset Buttons --> 
 
-    <div class="z-0 text-left pl-[2.5rem] mt-16 pt-2">
+    <div class="z-0 text-left pl-[2.5rem] mt-16 pt-2 pb-1">
       reset 
       <button 
         @click="resetScores"
