@@ -75,13 +75,12 @@ export default {
 
 <template>
   <div class="max-w-md my-0 py-0 mx-auto bg-white rounded-xl shadow-md md:max-w-2xl">
-
     <!-- Top Bar -->     
-    <div class="flex flex-row flex-wrap justify-between pt-0 mt-[-3rem]">
+    <div class="z-40 sticky top-0 md:static flex md:flex-row flex-wrap justify-between md:pt-0 mt-[-3rem]">
 
       <!-- Squares -->
 
-      <div class="text-xl md:text-xl bg-slate-100 grow">      
+      <div class="z-50 text-xl md:text-xl bg-slate-100 grow">      
         <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in purpSquares()">🟪</li></ul>
         <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in greenSquares()">🟩</li></ul>
         <ul class="flex flex-row flex-nowrap leading-none">&nbsp;<li v-for="n in yellowSquares()">🟨</li></ul>
@@ -90,7 +89,7 @@ export default {
 
       <!-- Legend -->
 
-      <div class="text-md md:text-xl bg-slate-200 pr-12">
+      <div class="z-50 text-md md:text-xl bg-slate-200 md:pr-12">
         <ul class="flex flex-row flex-nowrap leading-none font-bold">&nbsp;{{ purpSquares() }}&nbsp;🟪&nbsp;<span class="text-sm">Great</span></ul>
         <ul class="flex flex-row flex-nowrap leading-none font-bold">&nbsp;{{ greenSquares() }}&nbsp;🟩&nbsp;<span class="text-sm">Good</span></ul>
         <ul class="flex flex-row flex-nowrap leading-none font-bold">&nbsp;{{ yellowSquares() }}&nbsp;🟨&nbsp;<span class="text-sm">Fair</span></ul>
@@ -99,7 +98,7 @@ export default {
       
       <!-- Total / Remaining -->
 
-      <div class="bg-slate-100 basis-1/4 justify-self-end">
+      <div class="z-50 bg-slate-100 md:basis-1/4 justify-self-end">
         <div class="text-[16px] md:text-4xl">
           {{ remainingPoints }} /&nbsp;
           <input 
@@ -110,10 +109,10 @@ export default {
         <p class="text-xs md:text-sm">Remaining / Total</p>
       </div>
     </div>
-
+        
     <!-- Reset Buttons --> 
 
-    <div class="text-right pt-2">
+    <div class="z-0 text-right pt-2">
       reset 
       <button 
         @click="resetScores"
@@ -140,8 +139,8 @@ export default {
 
     <!-- Skills --> 
 
-    <div class="md:flex pt-2"> 
-      <ul class="flex flex-wrap justify-around">
+    <div class="z-0 md:flex pt-2"> 
+      <ul class="z-0 flex flex-wrap justify-around">
         <li 
           v-for="(skill, index) in skills" 
           :key="skill" 
