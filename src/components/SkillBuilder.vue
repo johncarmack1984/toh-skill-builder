@@ -1,4 +1,5 @@
 <script>
+/**import SkillBox from './SkillBox.vue'*/
 
 const clickOutside = {
     mounted: (el, binding, vnode) => {
@@ -121,6 +122,9 @@ export default {
     remainingPoints() { 
       return this.total - ( (this.redSquares()*1) + (this.yellowSquares()*2) +(this.greenSquares()*3) + (this.purpSquares()*4) ) 
     }
+  },
+  components: {
+    /**SkillBox*/
   }
 };
 </script>
@@ -236,51 +240,60 @@ export default {
         </transition>
       </div>     
     </div>
-
-    <!-- Character Name -->
-
+    
+    <!-- Top Bar --> 
     <div class="z-40 sticky top-[-2px]">
-      <input 
-        type="text" 
-        placeholder="Character name..." 
-        v-model="character.name"
-        class="min-w-full text-3xl px-2 py-1 border-y-[1px] border-slate-400 rounded-sm"
-      />
+      <div class="flex md:flex-row flex-wrap justify-between">
+      <!-- Character Name -->
+        <div class=" grow">
+          <input 
+            type="text" 
+            placeholder="Character name..." 
+            v-model="character.name"
+            class="text-center min-w-full text-2xl md:text-3xl px-2 py-1 border-[1px] border-slate-400 rounded-sm"
+          />
+        </div>  
+
+        <!-- Total / Remaining -->
+
+        <div class="z-50 bg-slate-50 basis-1/4 justify-self-end relative">
+          <div class="text-2xl md:text-3xl">
+            {{ remainingPoints }} /&nbsp;
+            <input 
+              type="number" v-model="total" :min="total-remainingPoints"
+              class="w-12 md:w-16 pl-1 py-1 border-[1px] border-slate-400 rounded" 
+            />
+          </div>
+          <!-- Legend -->   
+          <div class="text-xs md:text-sm absolute top-11 md:top-12 right-3 md:right-10">Remaining / Total</div>  
+        </div>
+      </div>
     </div>
 
-    <!-- Top Bar -->     
-    <div class="z-30 sticky top-11 flex md:flex-row flex-wrap justify-between border-b-[2px] border-dotted border-slate-500">
+    <!-- Skill Pyramid -->
+
+    <div class="z-30 sticky bg-slate-50 top-10 md:top-11 flex md:flex-row flex-wrap justify-between border-b-[3px] border-dotted border-slate-500">
+
+      <!-- Legend -->
+
+      <div class="z-50 pt-1 text-xl md:text-xl bg-slate-100 grow-0 md:grow-0 pr-2 pl-8 text-right items-baseline overflow-clip">
+        <ul class="flex flex-row flex-nowrap justify-end leading-none font-bold items-center"><span class="text-sm leading-none">Great</span>&nbsp;🟪&nbsp;<span class="w-4">{{ purpSquares() }}</span></ul>
+        <ul class="flex flex-row flex-nowrap justify-end leading-none font-bold items-center"><span class="text-sm leading-none">Good</span>&nbsp;🟩&nbsp;<span class="w-4">{{ greenSquares() }}</span></ul>
+        <ul class="flex flex-row flex-nowrap justify-end leading-none font-bold items-center"><span class="text-sm leading-none">Fair</span>&nbsp;🟨&nbsp;<span class="w-4">{{ yellowSquares() }}</span></ul>
+        <ul class="flex flex-row flex-nowrap justify-end leading-none font-bold items-center"><span class="text-sm leading-none">Average</span>&nbsp;🟥&nbsp;<span class="w-4">{{ redSquares() }}</span></ul>
+      </div>
 
       <!-- Squares -->
 
-      <div class="z-50 pt-1 text-xl md:text-xl bg-slate-100 grow items-baseline">      
+      <div class="z-50 pt-1 text-xl md:text-xl bg-slate-200 grow items-baseline">      
         <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in purpSquares()">🟪</li></ul>
         <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in greenSquares()">🟩</li></ul>
         <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in yellowSquares()">🟨</li></ul>
         <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in redSquares()">🟥</li></ul>     
       </div>  
 
-      <!-- Legend -->
 
-      <div class="z-50 pt-1 text-xl md:text-xl bg-slate-200 pr-2 md:pr-12 items-baseline overflow-clip">
-        <ul class="flex flex-row flex-nowrap leading-none font-bold self-baseline items-baseline">&nbsp;{{ purpSquares() }}&nbsp;🟪&nbsp;<span class="text-sm leading-none">Great</span></ul>
-        <ul class="flex flex-row flex-nowrap leading-none font-bold self-baseline items-baseline">&nbsp;{{ greenSquares() }}&nbsp;🟩&nbsp;<span class="text-sm leading-none">Good</span></ul>
-        <ul class="flex flex-row flex-nowrap leading-none font-bold self-baseline items-baseline">&nbsp;{{ yellowSquares() }}&nbsp;🟨&nbsp;<span class="text-sm leading-none">Fair</span></ul>
-        <ul class="flex flex-row flex-nowrap leading-none font-bold self-baseline items-baseline">&nbsp;{{ redSquares() }}&nbsp;🟥&nbsp;<span class="text-sm leading-none">Average</span></ul>
-      </div>
-      
-      <!-- Total / Remaining -->
 
-      <div class="z-50 pt-1 bg-slate-100 md:basis-1/4 justify-self-end">
-        <div class="text-base md:text-4xl">
-          {{ remainingPoints }} /&nbsp;
-          <input 
-            type="number" v-model="total" :min="0"
-            class="w-8 md:w-16" 
-          />
-        </div>
-        <p class="text-xs md:text-sm">Remaining / Total</p>
-      </div>
       
     </div>
 
@@ -288,12 +301,26 @@ export default {
 
     <div class="z-0 md:flex pt-2"> 
       <ul class="z-0 flex flex-wrap justify-around">
+        <!--SkillBox
+          v-for="(skill, index) in character.skills" 
+          :key="skill"
+          :skill="skill"
+          class="
+            z-0 w-1/3 rounded-sm bg-slate-200 m-1 p-[7px] max-w-[120px] h-[125px] border-[3px] overflow-hidden transition-colors duration-[43] ease-in-out
+          "
+          :class="[
+            skill.value == 1 ? averageClass: '',
+            skill.value == 2 ? fairClass: '',
+            skill.value == 3 ? goodClass: '',
+            skill.value == 4 ? greatClass: '',
+          ]"
+        /-->
         <li 
           v-for="(skill, index) in character.skills" 
           :key="skill" 
-          :value="skill.value"
           class="
-            z-0 w-1/3 rounded-sm bg-slate-200 m-1 p-[7px] max-w-[120px] h-[125px] border-[3px] overflow-hidden transition-colors duration-[43] ease-in-out
+            z-0 w-1/3 rounded-sm bg-slate-200 m-1 p-[7px] max-w-[120px] h-[125px] border-[3px] 
+            overflow-hidden
           "
           :class="[
             skill.value == 1 ? averageClass: '',
