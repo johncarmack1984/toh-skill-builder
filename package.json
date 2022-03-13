@@ -8,6 +8,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vueuse/components": "^8.0.0",
+    "@vueuse/core": "^8.0.0",
+    "v-click-outside": "^3.1.2",
     "vue": "^3.2.25"
   },
   "devDependencies": {
