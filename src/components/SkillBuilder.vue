@@ -261,7 +261,7 @@ export default {
             <div class="text-2xl md:text-3xl whitespace-nowrap">
               {{ remainingPoints }} /&nbsp;
               <input 
-                type="number" v-model="total" :min="total-remainingPoints"
+                type="number" v-model="total" :min="total-remainingPoints" pattern="[0-9]*"
                 class="w-12 md:w-16 pl-1 py-1 border-[1px] border-slate-400 rounded" 
               />
             </div>
