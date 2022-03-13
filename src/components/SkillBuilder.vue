@@ -133,7 +133,7 @@ export default {
   <div class="max-w-md mb-4 pb-4 mx-auto bg-white rounded-xl shadow-md md:max-w-2xl">
 
     <!-- App Menus --> 
-    <div class="z-50 text-left pb-1 relative flex flex-row ">
+    <div class="z-50 text-left pb-1 relative flex flex-row">
       <!--
       <div class="z-50 text-left relative" v-clickOutside="hideFileMenu">
         <button 
@@ -242,59 +242,61 @@ export default {
     </div>
     
     <!-- Top Bar --> 
-    <div class="z-40 sticky top-[-2px]">
-      <div class="flex md:flex-row flex-wrap justify-between">
-      <!-- Character Name -->
-        <div class=" grow">
-          <input 
-            type="text" 
-            placeholder="Character name..." 
-            v-model="character.name"
-            class="text-left min-w-full text-2xl md:text-3xl px-2 py-1 border-[1px] border-slate-400 rounded-sm"
-          />
-        </div>  
-
-        <!-- Total / Remaining -->
-
-        <div class="z-50 bg-slate-50 basis-1/4 justify-self-end relative">
-          <div class="text-2xl md:text-3xl">
-            {{ remainingPoints }} /&nbsp;
+    <div class="z-40 sticky top-[-2px] bg-slate-50 border-b-[3px] border-dotted border-slate-500">
+      <div class="">
+        <div class="flex flex-row flex-nowrap justify-between">
+        <!-- Character Name -->
+          <div class="grow">
             <input 
-              type="number" v-model="total" :min="total-remainingPoints"
-              class="w-12 md:w-16 pl-1 py-1 border-[1px] border-slate-400 rounded" 
+              type="text" 
+              placeholder="Character name..." 
+              v-model="character.name"
+              class="text-left w-full text-2xl md:text-3xl px-1 sm:px-2 py-1 border-[1px] border-slate-400 rounded-sm"
             />
+          </div>  
+
+          <!-- Total / Remaining -->
+
+          <div class="z-50 relative pl-2">
+            <div class="text-2xl md:text-3xl whitespace-nowrap">
+              {{ remainingPoints }} /&nbsp;
+              <input 
+                type="number" v-model="total" :min="total-remainingPoints"
+                class="w-12 md:w-16 pl-1 py-1 border-[1px] border-slate-400 rounded" 
+              />
+            </div>
+            <!-- Legend -->   
+            <div class="text-xs md:text-sm absolute top-11 md:top-12 right-[0.75rem] md:right-[1.15rem]">Remaining / Total</div>  
           </div>
-          <!-- Legend -->   
-          <div class="text-xs md:text-sm absolute top-11 md:top-12 right-3 md:right-10">Remaining / Total</div>  
         </div>
       </div>
-    </div>
 
-    <!-- Skill Pyramid -->
+      <!-- Skill Pyramid -->
 
-    <div class="z-30 sticky bg-slate-50 top-10 md:top-11 flex md:flex-row flex-wrap justify-between border-b-[3px] border-dotted border-slate-500">
+      <div class="flex md:flex-row flex-wrap justify-between">
 
-      <!-- Legend -->
+        <!-- Legend -->
 
-      <div class="z-50 pt-1 text-xl md:text-xl bg-slate-100 grow-0 md:grow-0 pr-2 pl-8 text-right items-baseline overflow-clip">
-        <ul class="flex flex-row flex-nowrap justify-end leading-none font-bold items-center"><span class="text-sm leading-none">Great</span>&nbsp;🟪&nbsp;<span class="w-4">{{ purpSquares() }}</span></ul>
-        <ul class="flex flex-row flex-nowrap justify-end leading-none font-bold items-center"><span class="text-sm leading-none">Good</span>&nbsp;🟩&nbsp;<span class="w-4">{{ greenSquares() }}</span></ul>
-        <ul class="flex flex-row flex-nowrap justify-end leading-none font-bold items-center"><span class="text-sm leading-none">Fair</span>&nbsp;🟨&nbsp;<span class="w-4">{{ yellowSquares() }}</span></ul>
-        <ul class="flex flex-row flex-nowrap justify-end leading-none font-bold items-center"><span class="text-sm leading-none">Average</span>&nbsp;🟥&nbsp;<span class="w-4">{{ redSquares() }}</span></ul>
+        <div class="z-50 pt-1 text-xl md:text-xl pr-2 pl-8 text-right items-baseline overflow-clip">
+          <ul class="flex flex-row flex-nowrap justify-end leading-none font-bold items-center"><span class="text-sm leading-none">Great</span>&nbsp;🟪&nbsp;<span class="w-4">{{ purpSquares() }}</span></ul>
+          <ul class="flex flex-row flex-nowrap justify-end leading-none font-bold items-center"><span class="text-sm leading-none">Good</span>&nbsp;🟩&nbsp;<span class="w-4">{{ greenSquares() }}</span></ul>
+          <ul class="flex flex-row flex-nowrap justify-end leading-none font-bold items-center"><span class="text-sm leading-none">Fair</span>&nbsp;🟨&nbsp;<span class="w-4">{{ yellowSquares() }}</span></ul>
+          <ul class="flex flex-row flex-nowrap justify-end leading-none font-bold items-center"><span class="text-sm leading-none">Average</span>&nbsp;🟥&nbsp;<span class="w-4">{{ redSquares() }}</span></ul>
+        </div>
+
+        <!-- Squares -->
+
+        <div class="z-50 pt-1 text-xl md:text-xl grow items-baseline">      
+          <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in purpSquares()">🟪</li></ul>
+          <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in greenSquares()">🟩</li></ul>
+          <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in yellowSquares()">🟨</li></ul>
+          <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in redSquares()">🟥</li></ul>     
+        </div>  
+
+
+
+        
       </div>
-
-      <!-- Squares -->
-
-      <div class="z-50 pt-1 text-xl md:text-xl bg-slate-200 grow items-baseline">      
-        <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in purpSquares()">🟪</li></ul>
-        <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in greenSquares()">🟩</li></ul>
-        <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in yellowSquares()">🟨</li></ul>
-        <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in redSquares()">🟥</li></ul>     
-      </div>  
-
-
-
-      
     </div>
 
     <!-- Skills --> 
