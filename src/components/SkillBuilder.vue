@@ -72,25 +72,43 @@ export default {
     isDefaultCharacter () { return JSON.stringify(this.$data.character) === JSON.stringify(this.$options.data().character) },
     saveCharacter () { 
         if (this.character.name === "") { 
-          console.log("setting character unnamed name")
-          var unnamedIndex = this.savedCharacters.filter(function (character) {return character.name.includes("Unnamed ")}).length
-          console.log("unnamed index is " + unnamedIndex)
+
+          console.log("character unnamed")
+          
+          var unnamedArray = this.savedCharacters.filter(function (character) { return character.name.includes("Unnamed ")}).slice()
+          console.log("attempted to find max unnamed file...")
+          //const getMax = (a, b) => Math.max(a,b)
+          //const stripName 
+          //unnamedArray.map( (character) => character.name = character.name.replace(/\D/g,''))
+          //console.log(JSON.stringify(unnamedArray.filter( (character) { return character.name.replace(/\D/g,'') } ))
+          //var unnamedFileIndex = unnamedArray2.reduce(getMax) 
+          //console.log(JSON.stringify(unnamedFileIndex)
+          console.log("the function completed,?")
+
+
+          var unnamedIndex = unnamedArray.length
+          
+          
+          
+          console.log("unnamed index is " + JSON.stringify(unnamedIndex))
           this.character.name = "Unnamed " + unnamedIndex
         }
         console.log(this.character.name + " saving")
         if (this.$data.character.id === "" || typeof this.$data.character.id === 'undefined' || this.$data.character.id === null) {
-          console.log("id is " + this.character.id + " and tested undefined")
+          console.log("id undefined")
           this.character.id = Math.random().toString(36).slice(2);
-          console.log("id generated was " + this.character.id)
+          console.log("id generated " + this.character.id)
           this.savedCharacters.push(this.character);
+          console.log(this.character.name + " added to saved characters")
           //console.log("pushed character " + JSON.stringify(savedCharacters[-1]))
         } 
         else {
           console.log("id is " + this.character.id + " and tested valid")
           var savedIndex = this.savedCharacters.findIndex(obj => { return obj.id === this.character.id } ) 
           if (savedIndex === -1) { 
-            console.log("create" + savedIndex)
+            console.log("create ")
             this.savedCharacters.push(this.character) 
+            console.log("character " + this.character.name + " added to savedCharacters")
           }
           else { 
             console.log("update")
@@ -104,7 +122,7 @@ export default {
       // if the character in state has changed from default, save character
       if (!this.isDefaultCharacter()) { this.saveCharacter() }
       this.character = this.$options.data().character
-      console.log("new character set")
+      console.log("new character")
     },
     openCharacter (id) { 
       // if the character in state has changed from default, save character
