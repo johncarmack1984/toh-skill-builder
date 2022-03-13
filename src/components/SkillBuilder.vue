@@ -212,7 +212,7 @@ export default {
         >     
           <ul 
             class="flex flex-col absolute top-11 left-2
-            border-2 p-2 bg-slate-200 rounded-sm min-w-fit"
+            border-2 p-2 bg-slate-200 rounded-sm w-fit"
             v-if="showFileMenu"
           >
             <li>
@@ -240,6 +240,7 @@ export default {
             </div>
             <li
               v-for="character in savedCharacters"
+              class="flex flex-nowrap items-stretch justify-end"
             >
               <button 
                 @click="openCharacter(character.id); hideFileMenu();"
@@ -251,6 +252,7 @@ export default {
               >{{ character.name }}</button>
               <button
                 @click="deleteCharacter(character.id);"
+                class="text-white font-bold px-[0.6rem] h-8 self-end bg-red border-[2px] border-red rounded-full"
               >x</button>
 
             </li>
