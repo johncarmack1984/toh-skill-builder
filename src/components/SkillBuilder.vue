@@ -347,7 +347,7 @@ export default {
             class="
               z-30 text-[16px] font-black bg-blue-dark hover:bg-blue-light transition-colors 
               rounded-full px-[16px] sm:px-[16px] py-[8px] sm:py-[8px] mx-[2px] sm:mx-[2px] mb-[2px] mt-[-12px] text-white 
-              focus:ring-2 ring-blue-light disabled:bg-slate-900
+              focus:ring-2 ring-blue-light disabled:bg-slate-200
             "
           >
               -
@@ -357,7 +357,7 @@ export default {
             class="
               z-30 text-[16px] font-black bg-blue-dark hover:bg-blue-light transition-colors 
               rounded-full px-[16px] sm:px-[16px] py-[8px] sm:py-[8px] mx-[2px] sm:mx-[2px] mb-[2px] mt-[-12px] text-white 
-              focus:ring-2 ring-blue-light disabled:bg-slate-800
+              focus:ring-2 ring-blue-light disabled:bg-slate-200
             "
           >
                +
