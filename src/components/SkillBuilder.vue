@@ -23,6 +23,7 @@ export default {
     return { 
       total: 20,
       character: {
+        "id": '',
         "name": "",
         "skills": [
           {"name": "Physique / Resist", "value": 0 },
@@ -49,7 +50,9 @@ export default {
           {"name": "Medicine", "value": 0 },
         ],
       },
-      savedCharacters: [],
+      savedCharacters: [
+        
+      ],
       menus: [],
       averageClass: 'border-red',
       fairClass: 'border-yellow',
@@ -66,7 +69,21 @@ export default {
     greenSquares() { return this.character.skills.filter(function (skill) {return skill.value == 3}).length },
     yellowSquares() { return this.character.skills.filter(function (skill) {return skill.value == 2}).length },
     redSquares() { return this.character.skills.filter(function (skill) {return skill.value == 1}).length },
-    fileSave () { console.log("fileSave") },
+    saveCharacter () { 
+        if (this.character.id === '') {
+          var id = { id: Math.random().toString(36).slice(2) };
+          this.savedCharacters.push({...id, ...this.character});
+        } 
+        else {
+          var savedIndex = this.savedCharacters.findIndex(obj => { return obj.id === this.character.id } ) 
+          this.savedCharacters[savedIndex] = this.character
+        }
+      },
+    newCharacter () {
+      this.saveCharacter()
+      this.character = this.$options.data().character
+    },
+    openCharacter (id) { this.character = this.savedCharacters.find(obj => { return obj.id === id } )},
     resetCharacterName () { this.$data.character.name = "" },
     resetSkillNames () { this.$data.character.skills.forEach( (skill,index) => skill.name = this.$options.data().character.skills[index].name) },
     resetScores () { this.$data.character.skills.forEach( (skill,index) => skill.value = 0) },
@@ -112,6 +129,12 @@ export default {
         localStorage.setItem("character", JSON.stringify(after));
       },
     },
+     "savedCharacters": {
+      deep: true,
+      handler: function (after) {
+        localStorage.setItem("savedCharacters", JSON.stringify(after));
+      },
+    }, 
     "total": { 
       handler: function (after) {
         localStorage.setItem("total", JSON.stringify(after)); 
@@ -134,7 +157,6 @@ export default {
 
     <!-- App Menus --> 
     <div class="z-50 text-left pb-1 relative flex flex-row">
-      <!--
       <div class="z-50 text-left relative" v-clickOutside="hideFileMenu">
         <button 
           @click="showFileMenu = !showFileMenu"
@@ -158,11 +180,47 @@ export default {
             border-2 p-2 bg-slate-200 rounded-sm min-w-fit"
             v-if="showFileMenu"
           >
-            <li>Save</li>
+            <li>
+              <button 
+                @click="newCharacter(); hideFileMenu();"
+                class="
+                  text-[16px] font-bold bg-blue-dark hover:bg-blue-light transition-colors 
+                  rounded-full px-[16px] py-[4px] m-[2px] text-white focus:ring-2 ring-blue-500
+                  whitespace-nowrap
+                "  
+              >New Character</button>
+            </li>
+            <li>
+              <button 
+                @click="saveCharacter(); hideFileMenu();"
+                class="
+                  text-[16px] font-bold bg-blue-dark hover:bg-blue-light transition-colors 
+                  rounded-full px-[16px] py-[4px] m-[2px] text-white focus:ring-2 ring-blue-500
+                  whitespace-nowrap
+                "  
+              >Save Character</button>
+            </li>
+            <div class="relative flex py-3 items-center">
+                <span class="text-xs flex-shrink mx-4 text-gray-400">Saved Characters...</span>
+            </div>
+            <li
+              v-for="character in savedCharacters"
+            >
+              <button 
+                @click="openCharacter(character.id); hideFileMenu();"
+                class="
+                  text-[16px] font-bold bg-blue-dark hover:bg-blue-light transition-colors 
+                  rounded-full px-[16px] py-[4px] m-[2px] text-white focus:ring-2 ring-blue-500
+                  whitespace-nowrap
+                " 
+              >{{ character.name }}</button>
+
+            </li>
           </ul>
         </transition>
       </div>
-      -->
+
+      <!-- Reset Menu -->
       <div class="z-50 text-left relative" v-clickOutside="hideResetMenu">
         <button 
           @click="showResetMenu = !showResetMenu"
