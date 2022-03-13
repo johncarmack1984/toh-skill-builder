@@ -23,7 +23,7 @@ export default {
     return { 
       total: 20,
       character: {
-        "id": '',
+        "id": "",
         "name": "",
         "skills": [
           {"name": "Physique / Resist", "value": 0 },
@@ -69,21 +69,56 @@ export default {
     greenSquares() { return this.character.skills.filter(function (skill) {return skill.value == 3}).length },
     yellowSquares() { return this.character.skills.filter(function (skill) {return skill.value == 2}).length },
     redSquares() { return this.character.skills.filter(function (skill) {return skill.value == 1}).length },
+    isDefaultCharacter () { return JSON.stringify(this.$data.character) === JSON.stringify(this.$options.data().character) },
     saveCharacter () { 
-        if (this.character.id === '') {
-          var id = { id: Math.random().toString(36).slice(2) };
-          this.savedCharacters.push({...id, ...this.character});
+        if (this.character.name === "") { 
+          console.log("setting character unnamed name")
+          var unnamedIndex = this.savedCharacters.filter(function (character) {return character.name.includes("Unnamed ")}).length
+          console.log("unnamed index is " + unnamedIndex)
+          this.character.name = "Unnamed " + unnamedIndex
+        }
+        console.log(this.character.name + " saving")
+        if (this.$data.character.id === "" || typeof this.$data.character.id === 'undefined' || this.$data.character.id === null) {
+          console.log("id is " + this.character.id + " and tested undefined")
+          this.character.id = Math.random().toString(36).slice(2);
+          console.log("id generated was " + this.character.id)
+          this.savedCharacters.push(this.character);
+          //console.log("pushed character " + JSON.stringify(savedCharacters[-1]))
         } 
         else {
+          console.log("id is " + this.character.id + " and tested valid")
           var savedIndex = this.savedCharacters.findIndex(obj => { return obj.id === this.character.id } ) 
-          this.savedCharacters[savedIndex] = this.character
+          if (savedIndex === -1) { 
+            console.log("create" + savedIndex)
+            this.savedCharacters.push(this.character) 
+          }
+          else { 
+            console.log("update")
+            this.savedCharacters[savedIndex] = this.character 
+          }
         }
+        console.log("saved")
       },
     newCharacter () {
-      this.saveCharacter()
+      console.log("is default? " + JSON.stringify(this.isDefaultCharacter()))
+      // if the character in state has changed from default, save character
+      if (!this.isDefaultCharacter()) { this.saveCharacter() }
       this.character = this.$options.data().character
+      console.log("new character set")
     },
-    openCharacter (id) { this.character = this.savedCharacters.find(obj => { return obj.id === id } )},
+    openCharacter (id) { 
+      // if the character in state has changed from default, save character
+      if (!this.isDefaultCharacter()) { this.saveCharacter() }
+      // open character from saved array by character id
+      this.character = this.savedCharacters.find(obj => { return obj.id === id } )
+      console.log("character opened")
+    },
+    deleteCharacter (id) {
+      var deleteIndex = this.savedCharacters.findIndex(obj => { return obj.id === id } )
+      console.log("deleting character " + id + " at index " + deleteIndex)
+      if (this.character.id === this.savedCharacters[deleteIndex].id) { this.resetAll() }
+      this.savedCharacters.splice(deleteIndex, 1) 
+    },
     resetCharacterName () { this.$data.character.name = "" },
     resetSkillNames () { this.$data.character.skills.forEach( (skill,index) => skill.name = this.$options.data().character.skills[index].name) },
     resetScores () { this.$data.character.skills.forEach( (skill,index) => skill.value = 0) },
@@ -214,6 +249,9 @@ export default {
                   whitespace-nowrap
                 " 
               >{{ character.name }}</button>
+              <button
+                @click="deleteCharacter(character.id);"
+              >x</button>
 
             </li>
           </ul>
