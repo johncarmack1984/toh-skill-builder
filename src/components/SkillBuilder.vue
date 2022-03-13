@@ -250,7 +250,7 @@ export default {
             type="text" 
             placeholder="Character name..." 
             v-model="character.name"
-            class="text-center min-w-full text-2xl md:text-3xl px-2 py-1 border-[1px] border-slate-400 rounded-sm"
+            class="text-left min-w-full text-2xl md:text-3xl px-2 py-1 border-[1px] border-slate-400 rounded-sm"
           />
         </div>  
 
