@@ -242,7 +242,7 @@ export default {
     </div>
     
     <!-- Top Bar --> 
-    <div class="z-40 sticky top-[-2px] bg-slate-50 border-b-[3px] border-dotted border-slate-500">
+    <div class="z-40 sticky top-[-2px] bg-slate-100 border-b-[3px] border-dotted border-slate-500">
       <div class="">
         <div class="flex flex-row flex-nowrap justify-between">
         <!-- Character Name -->
