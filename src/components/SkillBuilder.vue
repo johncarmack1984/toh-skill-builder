@@ -188,7 +188,7 @@ export default {
           >
             <li>
               <button 
-                @click="resetScores"
+                @click="resetScores(); hideResetMenu();"
                 class="
                   text-[16px] font-bold bg-blue-dark hover:bg-blue-light transition-colors 
                   rounded-full px-[16px] py-[4px] m-[2px] text-white focus:ring-2 ring-blue-500
@@ -198,7 +198,7 @@ export default {
             </li>
             <li>
               <button 
-                @click="resetTotal"
+                @click="resetTotal(); hideResetMenu();"
                 class="
                   text-[16px] font-bold bg-blue-dark hover:bg-blue-light transition-colors 
                   rounded-full px-[16px] py-[4px] m-[2px] text-white focus:ring-2 ring-blue-500
@@ -208,7 +208,7 @@ export default {
             </li>
             <li>
               <button 
-                @click="resetCharacterName"
+                @click="resetCharacterName(); hideResetMenu();"
                 class="
                   text-[16px] font-bold bg-blue-dark hover:bg-blue-light transition-colors 
                   rounded-full px-[16px] py-[4px] m-[2px] text-white focus:ring-2 ring-blue-500
@@ -218,7 +218,7 @@ export default {
             </li>
             <li>
               <button 
-                @click="resetSkillNames"
+                @click="resetSkillNames(); hideResetMenu();"
                 class="
                   text-[16px] font-bold bg-blue-dark hover:bg-blue-light transition-colors 
                   rounded-full px-[16px] py-[4px] m-[2px] text-white focus:ring-2 ring-blue-500
@@ -228,7 +228,7 @@ export default {
             </li>
             <li>
               <button 
-                @click="resetAll"
+                @click="resetAll(); hideResetMenu();"
                 class="
                   text-[16px] font-bold bg-blue-dark hover:bg-blue-light transition-colors 
                   rounded-full px-[16px] py-[4px] m-[2px] text-white focus:ring-2 ring-blue-500
