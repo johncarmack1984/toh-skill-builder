@@ -336,7 +336,7 @@ export default {
               type="text" disabled :min="0" :max="4" v-model="skill.value" 
               class="
                 z-20 opacity-100 text-[17px] py-[.6rem] my-[-5px] font-black 
-                text-slate-900 disabled:text-black w-12
+                text-slate-900 disabled:text-slate-900 w-12
                 bg-white rounded-full text-center rounded-full
                 focus:outline-none focus:ring-2 focus:ring-blue-dark
               " 
@@ -347,7 +347,7 @@ export default {
             class="
               z-30 text-[16px] font-black bg-blue-dark hover:bg-blue-light transition-colors 
               rounded-full px-[16px] sm:px-[16px] py-[8px] sm:py-[8px] mx-[2px] sm:mx-[2px] mb-[2px] mt-[-12px] text-white 
-              focus:ring-2 ring-blue-light disabled:bg-slate-600
+              focus:ring-2 ring-blue-light disabled:bg-slate-900
             "
           >
               -
@@ -357,7 +357,7 @@ export default {
             class="
               z-30 text-[16px] font-black bg-blue-dark hover:bg-blue-light transition-colors 
               rounded-full px-[16px] sm:px-[16px] py-[8px] sm:py-[8px] mx-[2px] sm:mx-[2px] mb-[2px] mt-[-12px] text-white 
-              focus:ring-2 ring-blue-light disabled:bg-slate-600
+              focus:ring-2 ring-blue-light disabled:bg-slate-900
             "
           >
                +
@@ -366,7 +366,7 @@ export default {
             v-model="skill.name"
             class="
               z-10 text-[16px] w-full text-center break-words resize-none mt-[-2px]
-              font-bold text-blue-dark bg-slate-50 rounded leading-5 pt-[1px]" 
+              font-bold text-slate-900 bg-slate-50 rounded leading-5 pt-[1px]" 
           ></textarea>
         </li>
       </ul>  
