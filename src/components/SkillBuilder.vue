@@ -257,7 +257,7 @@ export default {
 
           <!-- Total / Remaining -->
 
-          <div class="z-50 relative pl-2">
+          <div class="z-50 relative pl-2 mr-3 sm:mr-0">
             <div class="text-2xl md:text-3xl whitespace-nowrap">
               {{ remainingPoints }} /&nbsp;
               <input 
