@@ -336,7 +336,7 @@ export default {
               type="text" disabled :min="0" :max="4" v-model="skill.value" 
               class="
                 z-20 opacity-100 text-[17px] py-[.6rem] my-[-5px] font-black 
-                text-blue-dark disabled:text-blue-dark w-12
+                text-slate-900 disabled:text-black w-12
                 bg-white rounded-full text-center rounded-full
                 focus:outline-none focus:ring-2 focus:ring-blue-dark
               " 
