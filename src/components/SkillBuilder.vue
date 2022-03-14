@@ -96,8 +96,8 @@ export default {
         console.log(this.character.name + " saving")
         
         // set totalPoints if unset
-        if (this.isVariableUnset(this.character.totalPoints)) { this.character.totalPoints = this.totalUsedPoints }
-        // if character doesn't have an identifier, genereate one and add it to definition
+        //if (this.isVariableUnset(this.character.totalPoints)) { this.character.totalPoints = this.totalUsedPoints }
+        // if character doesn't have an identifier, generate one and add it to definition
         if (this.isVariableUnset(this.character.id)) {
           this.character.id = Math.random().toString(36).slice(2);
           console.log("id generated " + this.character.id)
@@ -109,7 +109,6 @@ export default {
           if (savedIndex === -1) { 
             console.log("...but character did not exist in savedCharacters. \n create ")
             this.createCharacter(this.character) 
-
           }
           else { 
             console.log("update")
@@ -126,7 +125,7 @@ export default {
       console.log("new character")
     },
     openCharacter (id) { 
-      // if the character in state has changed from default, save character
+      // if the current character is diff from default, save open character
       if (!this.isDefaultCharacter()) { this.saveCharacter() }
       // open character from saved array by character id
       this.character = this.savedCharacters.find(obj => { return obj.id === id } )
@@ -151,10 +150,12 @@ export default {
   },
   mounted() {
     /** remove old skills & replace with new character.skills */
-    if (this.character.skills = JSON.parse(localStorage.getItem("skills"))) { localStorage.removeItem("skills") } 
+    //if (this.character.skills = JSON.parse(localStorage.getItem("skills"))) { localStorage.removeItem("skills") } 
     /** if exists, sync browser with localStorage */
-    if (this.character.totalPoints = JSON.parse(localStorage.getItem("total"))) { localStorage.removeItem("total") }
+    //if (this.character.totalPoints = JSON.parse(localStorage.getItem("total"))) { localStorage.removeItem("total") }
+    //if this.isVariableUnset(this.character.totalPoints))
     this.character = JSON.parse(localStorage.getItem("character")) || this.character
+    this.character.totalPoints = this.character.totalPoints || this.totalUsedPoints()
     this.savedCharacters = JSON.parse(localStorage.getItem("savedCharacters")) || this.savedCharacters
 /**  menus object
  *      this.menus = [
