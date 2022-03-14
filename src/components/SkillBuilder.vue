@@ -25,6 +25,7 @@ export default {
       character: {
         "id": "",
         "name": "",
+        "total": 20,
         "skills": [
           {"name": "Physique / Resist", "value": 0 },
           {"name": "Willpower", "value": 0 },
@@ -394,10 +395,10 @@ export default {
         <!-- Legend -->
 
         <div class="z-50 pt-1 text-xl md:text-xl pr-2 pl-8 text-right items-baseline overflow-clip">
-          <ul class="flex flex-row flex-nowrap justify-end leading-none font-bold items-center"><span class="text-sm leading-none">Great</span>&nbsp;🟪&nbsp;<span class="w-4">{{ purpSquares() }}</span></ul>
-          <ul class="flex flex-row flex-nowrap justify-end leading-none font-bold items-center"><span class="text-sm leading-none">Good</span>&nbsp;🟩&nbsp;<span class="w-4">{{ greenSquares() }}</span></ul>
-          <ul class="flex flex-row flex-nowrap justify-end leading-none font-bold items-center"><span class="text-sm leading-none">Fair</span>&nbsp;🟨&nbsp;<span class="w-4">{{ yellowSquares() }}</span></ul>
-          <ul class="flex flex-row flex-nowrap justify-end leading-none font-bold items-center"><span class="text-sm leading-none">Average</span>&nbsp;🟥&nbsp;<span class="w-4">{{ redSquares() }}</span></ul>
+          <ul class="flex flex-row flex-nowrap justify-end leading-none font-bold items-center"><span class="text-sm leading-none">Great (+4)</span>&nbsp;🟪&nbsp;<span class="w-4">{{ purpSquares() }}</span></ul>
+          <ul class="flex flex-row flex-nowrap justify-end leading-none font-bold items-center"><span class="text-sm leading-none">Good (+3)</span>&nbsp;🟩&nbsp;<span class="w-4">{{ greenSquares() }}</span></ul>
+          <ul class="flex flex-row flex-nowrap justify-end leading-none font-bold items-center"><span class="text-sm leading-none">Fair (+2)</span>&nbsp;🟨&nbsp;<span class="w-4">{{ yellowSquares() }}</span></ul>
+          <ul class="flex flex-row flex-nowrap justify-end leading-none font-bold items-center"><span class="text-sm leading-none">Average (+1)</span>&nbsp;🟥&nbsp;<span class="w-4">{{ redSquares() }}</span></ul>
         </div>
 
         <!-- Squares -->
