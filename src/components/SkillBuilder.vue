@@ -155,7 +155,6 @@ export default {
     //if (this.character.totalPoints = JSON.parse(localStorage.getItem("total"))) { localStorage.removeItem("total") }
     //if this.isVariableUnset(this.character.totalPoints))
     this.character = JSON.parse(localStorage.getItem("character")) || this.character
-    this.character.totalPoints = this.character.totalPoints || this.totalUsedPoints()
     this.savedCharacters = JSON.parse(localStorage.getItem("savedCharacters")) || this.savedCharacters
 /**  menus object
  *      this.menus = [
