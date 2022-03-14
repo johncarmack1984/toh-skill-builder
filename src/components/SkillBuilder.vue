@@ -21,11 +21,10 @@ export default {
   },
   data() {
     return { 
-      total: 20,
       character: {
         "id": "",
         "name": "",
-        "total": 20,
+        "totalPoints": 20,
         "skills": [
           {"name": "Physique / Resist", "value": 0 },
           {"name": "Willpower", "value": 0 },
@@ -71,49 +70,50 @@ export default {
     yellowSquares() { return this.character.skills.filter(function (skill) {return skill.value == 2}).length },
     redSquares() { return this.character.skills.filter(function (skill) {return skill.value == 1}).length },
     isDefaultCharacter () { return JSON.stringify(this.$data.character) === JSON.stringify(this.$options.data().character) },
+    isVariableUnset (variable) { return ( variable === "" || typeof variable === 'undefined' || variable === null ) },
+    createCharacter(character) { this.savedCharacters.push(character); console.log("character " + this.character.name + " added to savedCharacters") },
+    updateCharacter(characterIndex) { this.savedCharacters[characterIndex] = this.character },
     saveCharacter () { 
-        if (this.character.name === "") { 
-
-          console.log("character unnamed")
+        // if character is unnamed, give name "Unnamed (x)"
+        if (this.isVariableUnset(this.character.name)) { 
+          var unnamedArray = this.savedCharacters.filter(function (character) { return character.name.includes("Unnamed ")})
           
-          var unnamedArray = this.savedCharacters.filter(function (character) { return character.name.includes("Unnamed ")}).slice()
+          /**getMax number {
           console.log("attempted to find max unnamed file...")
-          //const getMax = (a, b) => Math.max(a,b)
-          //const stripName 
-          //unnamedArray.map( (character) => character.name = character.name.replace(/\D/g,''))
-          //console.log(JSON.stringify(unnamedArray.filter( (character) { return character.name.replace(/\D/g,'') } ))
-          //var unnamedFileIndex = unnamedArray2.reduce(getMax) 
-          //console.log(JSON.stringify(unnamedFileIndex)
+          const getMax = (a, b) => Math.max(a,b)
+          const stripName 
+          unnamedArray.map( (character) => character.name = character.name.replace(/\D/g,''))
+          console.log(JSON.stringify(unnamedArray.filter( (character) { return character.name.replace(/\D/g,'') } ))
+          var unnamedFileIndex = unnamedArray2.reduce(getMax) 
+          console.log(JSON.stringify(unnamedFileIndex)
           console.log("the function completed,?")
-
+          }*/
 
           var unnamedIndex = unnamedArray.length
-          
-          
-          
-          console.log("unnamed index is " + JSON.stringify(unnamedIndex))
           this.character.name = "Unnamed " + unnamedIndex
         }
+
         console.log(this.character.name + " saving")
-        if (this.$data.character.id === "" || typeof this.$data.character.id === 'undefined' || this.$data.character.id === null) {
-          console.log("id undefined")
+        
+        // set totalPoints if unset
+        if (this.isVariableUnset(this.character.totalPoints)) { this.character.totalPoints = this.totalUsedPoints }
+        // if character doesn't have an identifier, genereate one and add it to definition
+        if (this.isVariableUnset(this.character.id)) {
           this.character.id = Math.random().toString(36).slice(2);
           console.log("id generated " + this.character.id)
-          this.savedCharacters.push(this.character);
-          console.log(this.character.name + " added to saved characters")
-          //console.log("pushed character " + JSON.stringify(savedCharacters[-1]))
+          this.createCharacter(this.character);
         } 
         else {
           console.log("id is " + this.character.id + " and tested valid")
           var savedIndex = this.savedCharacters.findIndex(obj => { return obj.id === this.character.id } ) 
           if (savedIndex === -1) { 
-            console.log("create ")
-            this.savedCharacters.push(this.character) 
-            console.log("character " + this.character.name + " added to savedCharacters")
+            console.log("...but character did not exist in savedCharacters. \n create ")
+            this.createCharacter(this.character) 
+
           }
           else { 
             console.log("update")
-            this.savedCharacters[savedIndex] = this.character 
+            this.updateCharacter(savedIndex)
           }
         }
         console.log("saved")
@@ -141,7 +141,7 @@ export default {
     resetCharacterName () { this.$data.character.name = "" },
     resetSkillNames () { this.$data.character.skills.forEach( (skill,index) => skill.name = this.$options.data().character.skills[index].name) },
     resetScores () { this.$data.character.skills.forEach( (skill,index) => skill.value = 0) },
-    resetTotal() { this.total = this.$options.data().total },
+    resetTotal() { this.character.totalPoints = this.$options.data().character.totalPoints },
     resetAll () { 
       this.resetScores()
       this.resetCharacterName()
@@ -153,10 +153,11 @@ export default {
     /** remove old skills & replace with new character.skills */
     if (this.character.skills = JSON.parse(localStorage.getItem("skills"))) { localStorage.removeItem("skills") } 
     /** if exists, sync browser with localStorage */
-    this.total = JSON.parse(localStorage.getItem("total")) || this.total
+    if (this.character.totalPoints = JSON.parse(localStorage.getItem("total"))) { localStorage.removeItem("total") }
     this.character = JSON.parse(localStorage.getItem("character")) || this.character
     this.savedCharacters = JSON.parse(localStorage.getItem("savedCharacters")) || this.savedCharacters
-/**     this.menus = [
+/**  menus object
+ *      this.menus = [
         {
           "name": "file...",
           "show": false,
@@ -189,15 +190,13 @@ export default {
         localStorage.setItem("savedCharacters", JSON.stringify(after));
       },
     }, 
-    "total": { 
-      handler: function (after) {
-        localStorage.setItem("total", JSON.stringify(after)); 
-      },
-    },
   },
   computed: {
+    totalUsedPoints() {
+      return ( (this.redSquares()*1) + (this.yellowSquares()*2) +(this.greenSquares()*3) + (this.purpSquares()*4) ) 
+    },
     remainingPoints() { 
-      return this.total - ( (this.redSquares()*1) + (this.yellowSquares()*2) +(this.greenSquares()*3) + (this.purpSquares()*4) ) 
+      return this.character.totalPoints - this.totalUsedPoints
     }
   },
   components: {
@@ -359,7 +358,9 @@ export default {
     </div>
     
     <!-- Top Bar --> 
+
     <div class="z-40 sticky top-[-2px] bg-slate-100 border-b-[3px] border-dotted border-slate-500">
+      <!-- Menus -->
       <div class="">
         <div class="flex flex-row flex-nowrap justify-between">
         <!-- Character Name -->
@@ -378,7 +379,7 @@ export default {
             <div class="text-2xl md:text-3xl whitespace-nowrap">
               {{ remainingPoints }} /&nbsp;
               <input 
-                type="number" v-model="total" :min="total-remainingPoints" pattern="[0-9]*" inputmode="numeric"
+                type="number" v-model="character.totalPoints" :min="character.totalPoints-remainingPoints" pattern="[0-9]*" inputmode="numeric"
                 class="w-12 md:w-16 pl-1 py-1 border-[1px] border-slate-400 rounded" 
               />
             </div>
@@ -394,7 +395,7 @@ export default {
 
         <!-- Legend -->
 
-        <div class="z-50 pt-1 text-xl md:text-xl pr-2 pl-8 text-right items-baseline overflow-clip">
+        <div class="z-50 pt-1 text-xl md:text-xl pr-2 pl-2 sm:pl-6 md:pl-8 text-right items-baseline overflow-clip">
           <ul class="flex flex-row flex-nowrap justify-end leading-none font-bold items-center"><span class="text-sm leading-none">Great (+4)</span>&nbsp;🟪&nbsp;<span class="w-4">{{ purpSquares() }}</span></ul>
           <ul class="flex flex-row flex-nowrap justify-end leading-none font-bold items-center"><span class="text-sm leading-none">Good (+3)</span>&nbsp;🟩&nbsp;<span class="w-4">{{ greenSquares() }}</span></ul>
           <ul class="flex flex-row flex-nowrap justify-end leading-none font-bold items-center"><span class="text-sm leading-none">Fair (+2)</span>&nbsp;🟨&nbsp;<span class="w-4">{{ yellowSquares() }}</span></ul>
