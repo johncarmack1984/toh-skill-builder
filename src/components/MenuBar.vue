@@ -1,6 +1,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import Menu from './Menu.vue';
+import type { Menu, MenuBank } from './Menu.vue';
 /* import { RouterLink } from "vue-router"; */
 
 export default defineComponent({
@@ -9,21 +10,30 @@ export default defineComponent({
         /* RouterLink, */
     },
     setup() {
-
+        const menus: MenuBank = [ 
+            { 
+                'label': 'file',
+                'items': [
+                    { 'label': 'new', 'action': "" },
+                ],
+            },
+            {
+                'label': 'reset',
+                'items': [
+                    { 'label': 'all', 'action': "" },
+                ],
+            },
+        ]
+        return {
+            menus,
+        }
     }
 })
 </script>
 
 <template>
-  <header>
-
-
-    <div class="wrapper">
-      <nav>
-          <Menu menu="file" />
-          <!--RouterLink "share character, URL will contain character values which will auto-save to localStorage"-->
-      </nav>
+    <div class="z-50 text-left pb-1 relative flex flex-row">
+          <Menu v-for="menu in menus" :menu="menu" />
+          <!--RouterLink "share character, URL will contain character values which will auto-save to localStorage"-->    
     </div>
-  </header>    
-    
 </template>

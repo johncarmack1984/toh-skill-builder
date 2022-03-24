@@ -1,10 +1,18 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-import MenuButton from './MenuButton.vue'
+import MenuBarButton from './MenuBarButton.vue'
+
+export interface MenuObjec {
+    [key: string]: any;
+}
+
+export interface MenuBank {
+    [key: string]: MenuObject;
+}
 
 const clickOutside = {
-    mounted: (el: { clickOutsideEvent: { (event: any): void; (this: HTMLElement, ev: MouseEvent): any; }; contains: (arg0: any) => any; }, binding: { value: (arg0: any, arg1: any) => void; }, vnode: any) => {
-        el.clickOutsideEvent = function(event) {
+    mounted: (el: any, binding: any, vnode: any) => {
+        el.clickOutsideEvent = function(event: any) {
             if (!(el === event.target || el.contains(event.target))) {
                 binding.value(event, el);
             }
@@ -21,47 +29,56 @@ export default defineComponent({
     directives: {
         clickOutside,
     },
+    data() {
+        return {
+            showMenuValue: false,
+        }
+    },
     components: {
-        MenuButton,
+        MenuBarButton,
     },
     setup() {
-        const showMenu: Boolean = false
         const MenuOptions: Array<String> = ['new character','save character']
         return {
-            showMenu,
             MenuOptions
         }
     },      
     methods: {
-        toggleShow () { this.showMenu = !this.showMenu; console.log(this.showMenu); },
-        hideMenu() { this.showMenu = false; console.log(this.showMenu) },
-    }
+        toggleShowMenu() { this.showMenuValue = !this.showMenuValue; },
+        hideMenu() {  this.showMenuValue = false; },
+    },
+    mounted() {
+        console.log(this.menu.items)
+    },
 })
 </script>
 
 <template>   
-    <div class="z-50 text-left pb-1 relative flex flex-row">
-      <div class="z-50 text-left relative" v-clickOutside="toggleShow"></div>
-        <MenuButton label="file" @button-event="showMenu = !showMenu" />
-        
+
+    <div class="z-50 text-left relative" v-clickOutside="hideMenu">
+
+
+        <menu-bar-button :label="menu.label" @button-event="toggleShowMenu()"></menu-bar-button>
+    
+
         <transition
-          enter-active-class="duration-100 ease-out"
-          enter-from-class="transform opacity-0 -translate-y-6"
-          enter-to-class="opacity-100"
-          leave-active-class="duration-75 ease-in"
-          leave-from-class="opacity-100"
-          leave-to-class="transform opacity-0 -translate-y-6"
+        enter-active-class="duration-100 ease-out"
+        enter-from-class="transform opacity-0 -translate-y-6"
+        enter-to-class="opacity-100"
+        leave-active-class="duration-75 ease-in"
+        leave-from-class="opacity-100"
+        leave-to-class="transform opacity-0 -translate-y-6"
         >     
-          <ul 
+        <ul 
             class="flex flex-col absolute top-11 left-2
             border-[1px] p-2 bg-slate-50 rounded-sm min-w-fit"
-            v-if="(showMenu == true)"
-          >
-            <li>hello</li>
-          </ul>
+            v-if="showMenuValue"
+        >
+            <li v-for="item in menu.items">{{item.label}}</li>
+        </ul>
         
         </transition>
 
+    </div>
 
-    </div>    
 </template>
