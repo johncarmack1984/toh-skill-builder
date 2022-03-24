@@ -1,18 +1,27 @@
-<script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import SkillBuilder from './components/SkillBuilder.vue'
+<script lang="ts">
+import { RouterView } from "vue-router";
+import MenuBar from './components/MenuBar.vue';
+
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  components: {
+    MenuBar,
+    RouterView
+  },
+  setup() {
+
+  }
+})
 </script>
 
 <template>
-  <SkillBuilder />
+  <div class="max-w-md mb-4 pb-4 mx-auto bg-white rounded-xl shadow-md md:max-w-2xl">
+    <MenuBar />
+    <RouterView />
+  </div>
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-}
+
 </style>
