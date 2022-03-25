@@ -50,7 +50,17 @@ export const useCharacterStore = defineStore({
     ]
   }) as unknown as Character,
   getters: {
-
+    /*
+    totalUsedPoints(state) {
+      const getSum = (a, b) => a + b;
+      var sum = this.state.skill.reduce() 
+      console.log(sum)
+      this.character.skills.filter(function (skill) {return skill.value == 4});
+    },
+    remainingPoints(state) { 
+      return this.character.totalPoints - this.totalUsedPoints
+    }
+    */
   },
   actions: {
 
