@@ -494,7 +494,7 @@ export default {
   </div>
   <div class="pb-4">
     <a class="underline" target="new" href="https://github.com/johncarmack1984/toh-skill-builder">TOH Skill Builder</a> 
-    by <a class="underline" href="mailto:johncarmack@me.com">John Carmack</a>
+    by <a class="underline" href="https://github.com/johncarmack1984">John Carmack</a>
   </div>
 </template>
 
