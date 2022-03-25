@@ -1,13 +1,15 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import SkillCharacterData from '../components/SkillCharacterData.vue';
 import SkillBox from '../components/SkillBox.vue';
 import SkillPyramid from '../components/SkillPyramid.vue';
 import { useCharacterStore } from '../stores/character';
 import Footer from '../components/Footer.vue'
+const remainingPoints = ref(0)
 const character = useCharacterStore()
 character.characterName = "Billibar of Southduke"
 character.totalPoints = 20
-let remainingPoints = 3
+console.log(character.skills.filter(function (skill) {return skill.skillLevel > 0}) )
 </script>
 
 <template>

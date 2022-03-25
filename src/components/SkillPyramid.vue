@@ -14,11 +14,8 @@ export default defineComponent({
     },
 })
 </script>
-
-
 <template>
       <div class="flex md:flex-row flex-wrap justify-between">
-
         <!-- Legend -->
 
         <div class="z-50 pt-1 text-xl md:text-xl pr-2 pl-2 sm:pl-6 md:pl-8 text-right items-baseline overflow-clip">
@@ -36,9 +33,6 @@ export default defineComponent({
           <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in yellowSquares()">🟨</li></ul>
           <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in redSquares()">🟥</li></ul>     
         </div>  
-
-
-
         
       </div></template>
 
