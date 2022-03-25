@@ -10,25 +10,10 @@ export interface MenuBank {
     [key: string]: MenuObject;
 }
 
-const clickOutside = {
-    mounted: (el: any, binding: any, vnode: any) => {
-        el.clickOutsideEvent = function(event: any) {
-            if (!(el === event.target || el.contains(event.target))) {
-                binding.value(event, el);
-            }
-        };
-        document.body.addEventListener('click', el.clickOutsideEvent);
-    },
-    unmounted(el: { clickOutsideEvent: (this: HTMLElement, ev: MouseEvent) => any; }) {
-        document.body.removeEventListener('click', el.clickOutsideEvent);
-    }
-};
+
 
 export default defineComponent({
     props: ['menu'],
-    directives: {
-        clickOutside,
-    },
     data() {
         return {
             showMenuValue: false,
@@ -48,7 +33,6 @@ export default defineComponent({
         hideMenu() {  this.showMenuValue = false; },
     },
     mounted() {
-        console.log(this.menu.items)
     },
 })
 </script>
@@ -74,7 +58,7 @@ export default defineComponent({
             border-[1px] p-2 bg-slate-50 rounded-sm min-w-fit"
             v-if="showMenuValue"
         >
-            <li v-for="item in menu.items">{{item.label}}</li>
+            <li v-for="(item, index) in menu.items" :key="index">{{item.label}}</li>
         </ul>
         
         </transition>

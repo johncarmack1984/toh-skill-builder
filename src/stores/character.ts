@@ -1,40 +1,58 @@
 import { defineStore } from "pinia";
 
+export interface Skill {
+  id: Number,
+  skillName: String,
+  skillLevel: Number  
+}
+
+export interface SkillTree {
+  [index: Number]: Skill;
+}
+
+interface Character {
+  id: Number,
+  characterName: String,
+  totalPoints: Number,
+  skills: SkillTree
+}
+
+
 export const useCharacterStore = defineStore({
   id: "character",
   state: () => ({
-    name: 0,
+    id: Number,
+    characterName: String,
+    totalPoints: Number,
     skills: [
-      {"name": "Physique / Resist", "value": 0 },
-      {"name": "Willpower", "value": 0 },
-      {"name": "Fight", "value": 0 },
-      {"name": "Shoot", "value": 0 },
-      {"name": "Strength", "value": 0 },
-      {"name": "Acrobatics / Dodge", "value": 0 },
-      {"name": "Flying", "value": 0 },
-      {"name": "Bile / Demonics", "value": 0 },
-      {"name": "Craft", "value": 0 },
-      {"name": "Stealth", "value": 0 },
-      {"name": "Notice / Perception", "value": 0 },
-      {"name": "Persuasion", "value": 0 },
-      {"name": "Deception", "value": 0 },
-      {"name": "Intimidation", "value": 0 },
-      {"name": "Performance", "value": 0 },
-      {"name": "Empathy", "value": 0 },
-      {"name": "Intelligence", "value": 0 },
-      {"name": "Lore", "value": 0 },
-      {"name": "Resources", "value": 0 },
-      {"name": "Contacts", "value": 0 },
-      {"name": "Nature", "value": 0 },
-      {"name": "Medicine", "value": 0 },      
+      {"id": 1, "skillName": "Physique / Resist", "skillLevel": 0 },
+      {"id": 2, "skillName": "Willpower", "skillLevel": 0 },
+      {"id": 3, "skillName": "Fight", "skillLevel": 0 },
+      {"id": 4, "skillName": "Shoot", "skillLevel": 0 },
+      {"id": 5, "skillName": "Strength", "skillLevel": 0 },
+      {"id": 6, "skillName": "Acrobatics / Dodge", "skillLevel": 0 },
+      {"id": 7, "skillName": "Flying", "skillLevel": 0 },
+      {"id": 8, "skillName": "Bile / Demonics", "skillLevel": 0 },
+      {"id": 9, "skillName": "Craft", "skillLevel": 0 },
+      {"id": 10, "skillName": "Stealth", "skillLevel": 0 },
+      {"id": 11, "skillName": "Notice / Perception", "skillLevel": 0 },
+      {"id": 12, "skillName": "Persuasion", "skillLevel": 0 },
+      {"id": 13, "skillName": "Deception", "skillLevel": 0 },
+      {"id": 14, "skillName": "Intimidation", "skillLevel": 0 },
+      {"id": 15, "skillName": "Performance", "skillLevel": 0 },
+      {"id": 16, "skillName": "Empathy", "skillLevel": 0 },
+      {"id": 17, "skillName": "Intelligence", "skillLevel": 0 },
+      {"id": 18, "skillName": "Lore", "skillLevel": 0 },
+      {"id": 19, "skillName": "Resources", "skillLevel": 0 },
+      {"id": 20, "skillName": "Contacts", "skillLevel": 0 },
+      {"id": 21, "skillName": "Nature", "skillLevel": 0 },
+      {"id": 21, "skillName": "Medicine", "skillLevel": 0 },
     ]
-  }),
+  }) as unknown as Character,
   getters: {
-    doubleCount: (state) => state.counter * 2,
+
   },
   actions: {
-    increment() {
-      this.counter++;
-    },
+
   },
 });

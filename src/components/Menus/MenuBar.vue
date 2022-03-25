@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-import Menu from './Menu.vue';
-import type { Menu, MenuBank } from './Menu.vue';
+import Menu from './MenuActual.vue';
+import type { Menu, MenuBank } from './MenuActual.vue';
 /* import { RouterLink } from "vue-router"; */
 
 export default defineComponent({
@@ -33,7 +33,7 @@ export default defineComponent({
 
 <template>
     <div class="z-50 text-left pb-1 relative flex flex-row">
-          <Menu v-for="menu in menus" :menu="menu" />
+          <Menu v-for="(menu, index) in menus" :key="index" :menu="menu" />
           <!--RouterLink "share character, URL will contain character values which will auto-save to localStorage"-->    
     </div>
 </template>
