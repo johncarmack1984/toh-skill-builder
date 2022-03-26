@@ -2,15 +2,13 @@
 import { defineComponent } from "vue";
 import MenuBarButton from './MenuBarButton.vue'
 
-export interface MenuObjec {
+export interface MenuObject {
     [key: string]: any;
 }
 
 export interface MenuBank {
     [key: string]: MenuObject;
 }
-
-
 
 export default defineComponent({
     props: ['menu'],
@@ -52,7 +50,7 @@ export default defineComponent({
         leave-active-class="duration-75 ease-in"
         leave-from-class="opacity-100"
         leave-to-class="transform opacity-0 -translate-y-6"
-        >     
+        >
         <ul 
             class="flex flex-col absolute top-11 left-2
             border-[1px] p-2 bg-slate-50 rounded-sm min-w-fit"

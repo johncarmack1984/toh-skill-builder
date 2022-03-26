@@ -3,13 +3,15 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
     props: [
-        'characterName',
-        'totalPoints',
-        'remainingPoints'
+        'character'
     ],
-    setup(props) {
-        return { props }
+    setup() {
     },
+    data() {
+      return {
+
+      }
+    }
 });
 </script>
 
@@ -22,7 +24,7 @@ export default defineComponent({
               placeholder="Character name..." 
 
 
-              v-model="characterName"
+              v-model="character.characterName"
 
 
               class="text-left w-full text-2xl md:text-3xl px-1 sm:px-2 py-1 border-[1px] border-slate-400 rounded-sm"
@@ -32,16 +34,16 @@ export default defineComponent({
             <div class="text-2xl md:text-3xl whitespace-nowrap">
 
 
-              {{ remainingPoints }} /&nbsp;
+              {{ character.remainingPoints }} /&nbsp;
 
               <input 
                 type="number" 
                 
 
-                v-model="totalPoints" 
+                v-model="character.totalPoints" 
 
                 
-                :min="totalPoints-remainingPoints" pattern="[0-9]*" inputmode="numeric"
+                :min="character.totalPoints-character.remainingPoints" pattern="[0-9]*" inputmode="numeric"
                 class="w-12 md:w-16 pl-1 py-1 border-[1px] border-slate-400 rounded" 
               />
             </div> 

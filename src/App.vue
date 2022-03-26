@@ -1,29 +1,35 @@
 <script lang="ts">
 import { RouterView } from "vue-router";
 import MenuBar from './components/Menus/MenuBar.vue';
-
+import Footer from './components/Footer.vue';
 import { defineComponent } from "vue";
+import { useUserStore } from './stores/user';
 
 export default defineComponent({
   setup() {
-    return {  }
+      const user = useUserStore();
+      //console.log(user.getLocalStorageSize);
+    return { user }
   },
   components: {
     MenuBar,
-    RouterView
+    RouterView,
+    Footer
   },
+  mounted() {
+    this.user.setLocalStorageSize();
+
+    //users.createCharacter()
+  }
 })
 </script>
 
 <template>
   <div class="max-w-md mb-4 pb-4 mx-auto bg-white rounded-xl shadow-md md:max-w-2xl">
-    <MenuBar />
+    <MenuBar :props="user" />
     <RouterView />
   </div>
-  <div class="pb-4">
-    <a class="underline" target="new" href="https://github.com/johncarmack1984/toh-skill-builder">TOH Skill Builder</a> 
-    by <a class="underline" href="https://github.com/johncarmack1984">John Carmack</a>
-  </div>
+  <Footer />
 </template>
 
 <style>

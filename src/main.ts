@@ -22,11 +22,22 @@ app.directive('clickOutside', {
 });
 
 
+
+
 app.use(createPinia());
+// clear console on hot refresh
+if (import.meta.hot) {
+    import.meta.hot.on(
+      "vite:beforeUpdate",
+      () => console.clear()
+    );
+  } 
+
 app.use(router);
 /*
 router.beforeEach((to) => {
     const character = useCharacterStore(pinia)
 })
 */
-app.mount("#app");
+app.mount("#app"); 
+

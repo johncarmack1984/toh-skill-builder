@@ -5,6 +5,7 @@ import type { Menu, MenuBank } from './MenuActual.vue';
 /* import { RouterLink } from "vue-router"; */
 
 export default defineComponent({
+    props: ['user'],
     components: {
         Menu,
         /* RouterLink, */

@@ -1,4 +1,4 @@
-import { defineStore } from "pinia";
+import { defineStore, acceptHMRUpdate } from "pinia";
 
 export interface Skill {
   id: Number,
@@ -7,13 +7,14 @@ export interface Skill {
 }
 
 export interface SkillTree {
-  [index: Number]: Skill;
+  [index: number]: Skill;
 }
 
 interface Character {
   id: Number,
   characterName: String,
   totalPoints: Number,
+  remainingPoints: Number,
   skills: SkillTree
 }
 
@@ -50,19 +51,19 @@ export const useCharacterStore = defineStore({
     ]
   }) as unknown as Character,
   getters: {
-    /*
     totalUsedPoints(state) {
-      const getSum = (a, b) => a + b;
-      var sum = this.state.skill.reduce() 
-      console.log(sum)
-      this.character.skills.filter(function (skill) {return skill.value == 4});
+      return state
+      .skills
+      .filter(skill => skill.skillLevel > 0 )
+      .reduce((prev, cur) => prev + cur.skillLevel,0)
     },
-    remainingPoints(state) { 
-      return this.character.totalPoints - this.totalUsedPoints
-    }
-    */
+    remainingPoints(state) { return state.totalPoints - this.totalUsedPoints }
   },
   actions: {
 
   },
 });
+
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate( useCharacterStore, import.meta.hot))
+}
