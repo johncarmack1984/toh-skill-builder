@@ -62,7 +62,10 @@ export const useCharacterStore = defineStore({
       return state.totalPoints - totalUsedPoints }
   },
   actions: {
-
+    isDefaultCharacter(character: Character) {
+      console.log('isDefaultCharacter?')
+      /* return JSON.stringify(this.$data.character) === JSON.stringify(this.$options.data().character) */
+    }
   },
 });
 

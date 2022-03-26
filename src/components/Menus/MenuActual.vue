@@ -49,7 +49,7 @@ export default defineComponent({
             v-if="showMenuValue"
         >
             <li v-for="(item, index) in menu.items" :key="index">
-                <MenuActualButton :item="item" />
+                <MenuActualButton :item="item" @hide-menu="hideMenu" />
             </li>
         </ul>
         

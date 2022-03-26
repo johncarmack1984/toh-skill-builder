@@ -8,6 +8,7 @@ import { useUserStore } from './stores/user';
 export default defineComponent({
   setup() {
       const user = useUserStore();
+      //user.$subscribe()
     return { user }
   },
   components: {
@@ -15,6 +16,21 @@ export default defineComponent({
     RouterView,
     Footer
   },
+  watch: {
+    /*
+    "character": {
+      deep: true,
+      handler: function (after) {
+        localStorage.setItem("character", JSON.stringify(after));
+      },
+    },
+     "savedCharacters": {
+      deep: true,
+      handler: function (after) {
+        localStorage.setItem("savedCharacters", JSON.stringify(after));
+      },
+    }, */ 
+  },  
   mounted() {
   }
 })
@@ -36,3 +52,7 @@ export default defineComponent({
   text-align: center;
 }
 </style>
+
+function mutation(mutation: any, state: any) {
+  throw new Error("Function not implemented.");
+}

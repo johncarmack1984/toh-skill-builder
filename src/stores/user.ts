@@ -42,6 +42,17 @@ export const useUserStore = defineStore({
 
   },
   actions: {
+    getUser() {
+      /** remove old skills & replace with new character.skills */
+      //if (this.character.skills = JSON.parse(localStorage.getItem("skills"))) { localStorage.removeItem("skills") } 
+      /** if exists, sync browser with localStorage */
+      //if (this.character.totalPoints = JSON.parse(localStorage.getItem("total"))) { localStorage.removeItem("total") }
+      //if this.isVariableUnset(this.character.totalPoints))
+      /* below: original uncommented toh-skill-builder code for mounted() {}:
+      this.character = JSON.parse(localStorage.getItem("character")) || this.character
+      this.savedCharacters = JSON.parse(localStorage.getItem("savedCharacters")) || this.savedCharacters
+      */
+    },
 
     deleteAllMyStuff() {
 
