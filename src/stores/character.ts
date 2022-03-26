@@ -1,20 +1,21 @@
-import { defineStore, acceptHMRUpdate } from "pinia";
+import { defineStore, acceptHMRUpdate, type StateTree } from "pinia";
 
 export interface Skill {
-  id: Number,
-  skillName: String,
-  skillLevel: Number  
+  id: number,
+  skillName: string,
+  skillLevel: number  
 }
 
 export interface SkillTree {
-  [index: number]: Skill;
+  [index: number]: Skill,
+  filter(a: any): [Skill]
 }
 
-interface Character {
-  id: Number,
-  characterName: String,
-  totalPoints: Number,
-  remainingPoints: Number,
+export interface Character {
+  id: number,
+  characterName: string,
+  totalPoints: number,
+  remainingPoints: number,
   skills: SkillTree
 }
 
@@ -49,15 +50,16 @@ export const useCharacterStore = defineStore({
       {"id": 21, "skillName": "Nature", "skillLevel": 0 },
       {"id": 21, "skillName": "Medicine", "skillLevel": 0 },
     ]
-  }) as unknown as Character,
+  }) as StateTree,
   getters: {
     totalUsedPoints(state) {
-      return state
-      .skills
-      .filter(skill => skill.skillLevel > 0 )
-      .reduce((prev, cur) => prev + cur.skillLevel,0)
+      const skills: SkillTree = state.skills
+      return skills.filter((skill: { skillLevel: number; }) => skill.skillLevel > 0 )
+      .reduce((prev: number, cur: { skillLevel: number; }) => prev + cur.skillLevel,0)
     },
-    remainingPoints(state) { return state.totalPoints - this.totalUsedPoints }
+    remainingPoints(state) { 
+      var totalUsedPoints: number = this.totalUsedPoints
+      return state.totalPoints - totalUsedPoints }
   },
   actions: {
 

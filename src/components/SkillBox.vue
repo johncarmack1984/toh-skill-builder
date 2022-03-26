@@ -15,7 +15,6 @@ export default defineComponent({
         }
     },
     mounted() {
-      //console.log(this.props.remainingPoints)
     }
 })
 </script>
@@ -39,7 +38,7 @@ export default defineComponent({
               class="
                 z-20 opacity-100 text-[17px] py-[.6rem] my-[-5px] font-black 
                 text-blue-dark disabled:text-blue-dark w-12
-                bg-white rounded-full text-center rounded-full
+                bg-white text-center rounded-full
                 focus:outline-none focus:ring-2 focus:ring-blue-dark
               " 
             /> 

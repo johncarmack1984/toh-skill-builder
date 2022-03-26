@@ -8,7 +8,6 @@ import { useUserStore } from './stores/user';
 export default defineComponent({
   setup() {
       const user = useUserStore();
-      //console.log(user.getLocalStorageSize);
     return { user }
   },
   components: {
@@ -17,16 +16,13 @@ export default defineComponent({
     Footer
   },
   mounted() {
-    this.user.setLocalStorageSize();
-
-    //users.createCharacter()
   }
 })
 </script>
 
 <template>
   <div class="max-w-md mb-4 pb-4 mx-auto bg-white rounded-xl shadow-md md:max-w-2xl">
-    <MenuBar :props="user" />
+    <MenuBar :user="user" />
     <RouterView />
   </div>
   <Footer />

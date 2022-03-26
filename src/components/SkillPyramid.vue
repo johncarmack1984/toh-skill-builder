@@ -1,13 +1,14 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
+import type { Skill } from '../stores/character';
 
 export default defineComponent({
     props: ['skills'],
     methods: {
-        purpSquares() { return this.skills.filter(function (skill) {return skill.skillLevel == 4}).length },
-        greenSquares() { return this.skills.filter(function (skill) {return skill.skillLevel == 3}).length },
-        yellowSquares() { return this.skills.filter(function (skill) {return skill.skillLevel == 2}).length },
-        redSquares() { return this.skills.filter(function (skill) {return skill.skillLevel == 1}).length },    
+        purpSquares() { return this.skills.filter(function (skill: Skill) {return skill.skillLevel == 4}).length },
+        greenSquares() { return this.skills.filter(function (skill: Skill) {return skill.skillLevel == 3}).length },
+        yellowSquares() { return this.skills.filter(function (skill: Skill) {return skill.skillLevel == 2}).length },
+        redSquares() { return this.skills.filter(function (skill: Skill) {return skill.skillLevel == 1}).length },    
     },
     setup() {
         
@@ -28,10 +29,10 @@ export default defineComponent({
         <!-- Squares -->
 
         <div class="z-50 pt-1 text-xl md:text-xl grow items-baseline">      
-          <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in purpSquares()">🟪</li></ul>
-          <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in greenSquares()">🟩</li></ul>
-          <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in yellowSquares()">🟨</li></ul>
-          <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in redSquares()">🟥</li></ul>     
+          <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in purpSquares()" :key="n">🟪</li></ul>
+          <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in greenSquares()" :key="n">🟩</li></ul>
+          <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in yellowSquares()" :key="n">🟨</li></ul>
+          <ul class="flex flex-row flex-nowrap leading-none items-baseline">&nbsp;<li v-for="n in redSquares()" :key="n">🟥</li></ul>
         </div>  
         
       </div></template>

@@ -1,40 +1,32 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-import Menu from './MenuActual.vue';
-import type { Menu, MenuBank } from './MenuActual.vue';
+import { useMenuStore } from '../../stores/menu'
+import MenuActual from './MenuActual.vue';
 /* import { RouterLink } from "vue-router"; */
+
 
 export default defineComponent({
     props: ['user'],
     components: {
-        Menu,
+        MenuActual
         /* RouterLink, */
     },
-    setup() {
-        const menus: MenuBank = [ 
-            { 
-                'label': 'file',
-                'items': [
-                    { 'label': 'new', 'action': "" },
-                ],
-            },
-            {
-                'label': 'reset',
-                'items': [
-                    { 'label': 'all', 'action': "" },
-                ],
-            },
-        ]
+    setup(props) {
+        const menus = useMenuStore()              
         return {
             menus,
+            props,
         }
+    },
+    mounted() {
+        //console.log(this.menus.$state);
     }
 })
 </script>
 
 <template>
     <div class="z-50 text-left pb-1 relative flex flex-row">
-          <Menu v-for="(menu, index) in menus" :key="index" :menu="menu" />
+          <MenuActual v-for="(menu, index) in menus.$state" :key="index" :menu="menu" />
           <!--RouterLink "share character, URL will contain character values which will auto-save to localStorage"-->    
     </div>
 </template>
