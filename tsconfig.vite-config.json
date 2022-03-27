@@ -5,7 +5,6 @@
     "composite": true,
     "types": [
       "node", 
-      "@pinia/nuxt",
       "vitest"
     ]
   }

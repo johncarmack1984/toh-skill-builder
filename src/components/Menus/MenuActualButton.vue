@@ -12,7 +12,7 @@ export default defineComponent({
 
 <template>
     <button 
-        v-if="item.action != null"
+        v-if="item.action != undefined"
         @click="item.action(); $emit('hideMenu')"
         class="
             text-[16px] font-bold bg-blue-dark hover:bg-blue-light transition-colors 
@@ -25,7 +25,7 @@ export default defineComponent({
 
     </button>
     <div v-else class="relative flex py-3 items-center">
-        <span class="text-xs flex-shrink mx-4 text-gray-400">
+        <span class="text-xs flex-shrink mx-4 text-gray-600">
             
             {{ item.label }}...
         

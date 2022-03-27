@@ -6,12 +6,8 @@ import SkillPyramid from '../components/SkillPyramid.vue';
 import { useCharacterStore } from '../stores/character';
 import Footer from '../components/Footer.vue'
 const character = useCharacterStore()
-//character.$subscribe()
-//const emit = defineEmits(['character'])
-//this.user.createCharacter();
 character.characterName = "Billibar of Southduke"
 character.totalPoints = 20
-//const props = defineProps({''})
 
 
 </script>
