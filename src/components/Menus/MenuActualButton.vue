@@ -7,6 +7,11 @@ export default defineComponent({
     setup() {
         
     },
+    data() {
+        return {
+            characterButtonStyle: 'align-self-end'
+        }
+    }
 })
 </script>
 
@@ -19,6 +24,7 @@ export default defineComponent({
             rounded-full px-[16px] py-[4px] m-[2px] text-white focus:ring-2 ring-blue-500
             whitespace-nowrap
         "  
+        :class="item.type == 'character' ? characterButtonStyle: ''"
     >
             
         {{ item.label }}

@@ -17,10 +17,11 @@ app.use(router);
 app.mount("#app"); 
 
 // clear console on hot refresh
+/*
 if (import.meta.hot) {
     import.meta.hot.on(
       "vite:beforeUpdate",
       () => console.clear()
     );
   } 
-
+*/

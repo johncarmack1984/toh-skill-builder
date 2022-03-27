@@ -1,11 +1,14 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, reactive } from "vue";
 //import { Menus } from '../../directives/menu'
 import MenuActual from './MenuActual.vue';
+import { getActivePinia } from "pinia";
 /* import { RouterLink } from "vue-router"; */
+import { reactive, computed } from 'vue'
 
 export interface MenuAction {
     label: string,
+    type?: string,
     action?: Function
 }
 
@@ -16,7 +19,7 @@ export interface Menu {
 
 export interface MenuBank {
     label: string,
-    items: Array<Menu>;
+    items: Array<Menu>; 
 }
 
 
@@ -24,16 +27,42 @@ export default defineComponent({
     props: ['user'],
     components: {
         MenuActual
-        /* RouterLink, */
+        /* RouterLink, <-- you're leaving this here to remind you to implement character sharing */
     },
     setup(props) {
-        const newCharacterMenuAction: MenuAction = { 'label': 'New Character', 'action': function() {console.log('newCharacter')} }        
-        const saveCharacterMenuAction: MenuAction = { 'label': 'Save Character', 'action': function() { console.log('saveCharacter') } }
+        const pinia = getActivePinia()
+        const newCharacterMenuAction: MenuAction = { 'label': 'New Character', 'action': function() { }   }     
+        /* this one works FYI */
+        const saveCharacterMenuAction: MenuAction = { 
+            'label': 'Save Character', 'action': function() { 
+                pinia?.state.value.user.savedCharacters.push(pinia?.state.value.user.openCharacter) 
+                /*pinia?.state.value.user.savedCharacters.forEach(character => { console.log(character.characterName) });*/
+            } 
+        } 
+        /*const saveCharacterMenuAction: MenuAction = { 'label': 'Save Character', 'action': function() { pinia?.state.value.user.$patch((state) => { state.value.user.savedCharacters.push(state.value.user.openCharacter) } ) } } */
         const savedCharactersSubMenuHeading: MenuAction = { 'label': 'Saved characters...', 'action': undefined  }
-        const fileMenu: Menu = {
-            label: 'file',
-            items: [ newCharacterMenuAction, saveCharacterMenuAction, savedCharactersSubMenuHeading, ],
-        };
+        /*const savedCharactersMenuButtons = function (pinia?.state.value.user.savedCharacters) => {
+            return [
+                ...pinia?.state.value.user.savedCharacters.map(
+                    character => {
+                        return { 
+                            'label': character.characterName, 'type': 'character', 'action': function () { } 
+                        }
+                    }
+                )
+            ]
+        }*/
+        const savedCharactersMenuButtons = []
+
+        const fileMenu = {
+                label: 'file',
+                items: [ 
+                    newCharacterMenuAction, 
+                    saveCharacterMenuAction, 
+                    savedCharactersSubMenuHeading, 
+                    ...savedCharactersMenuButtons
+                ],
+            }
         const resetScoresMenuAction: MenuAction = { 'label': 'scores', 'action': function() { console.log('resetScores') } }
         const resetTotalPointsMenuAction: MenuAction = { 'label': 'total points', 'action': function() { console.log('resetTotalPoints') } }
         const resetCharacterNameMenuAction: MenuAction = { 'label': 'character name', 'action': function() { console.log('resetCharacterName') } }
@@ -55,6 +84,18 @@ export default defineComponent({
             props,
         }
     },
+    watch: {
+        "pinia.state.value.user.savedCharacters": {
+            // sync the user's open character with the app's openCharacter
+            deep: true,
+            handler: function (after) {
+                /* this.user.$patch((state) => {
+                state.openCharacter = this.pinia?.state.value.character */
+                /*this.*/
+                console.log(after)
+            }    
+        },
+    },     
     mounted() {
         //console.log(this.menus.$state);
     }

@@ -9,8 +9,8 @@ import { getActivePinia, MutationType } from "pinia";
 export default defineComponent({
   setup() {
       const user = useUserStore();
-      const pinia = getActivePinia()
-    
+      const pinia = getActivePinia()    
+
     return { user, pinia }
   },
   components: {
@@ -24,11 +24,13 @@ export default defineComponent({
       deep: true,
       handler: function () {
         this.user.$patch((state) => {
-          state.openCharacter = this.pinia.state.value.character
+          state.openCharacter = this.pinia?.state.value.character
         })
       }
     },
+    /* pinia.state, (state) => { localStorage.setItem('my-toh-skill-builder', JSON.stringify(state)) } */    
   },  
+  
   mounted() {
   }
 })

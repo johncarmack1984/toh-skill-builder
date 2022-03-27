@@ -1,7 +1,7 @@
 import { defineStore, acceptHMRUpdate, type StateTree } from "pinia";
 
 export interface Skill {
-  id: number,
+  id: string,
   skillName: string,
   skillLevel: number  
 }
@@ -23,7 +23,7 @@ export interface Character {
 export const useCharacterStore = defineStore({
   id: "character",
   state: () => ({
-    id: Number,
+    id: String,
     characterName: String,
     totalPoints: Number,
     skills: [

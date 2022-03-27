@@ -33,13 +33,15 @@ export const useUserStore = defineStore({
     id: String,
     username: String,
     openCharacter: Object,
-    savedCharacters: [],
+    savedCharacters: [{'characterName': 'Bobby Jo'}],
     prefs: {
       localStorageSize: 0,
     },
   }) as StateTree,
   getters: {
+    getCharacter(id: string) {
 
+    }
   },
   actions: {
     saveCharacter(character: any) { this.state.savedCharacters.push(character) }
