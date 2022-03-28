@@ -30,21 +30,15 @@ interface UserLocalStorage {
 export const useUserStore = defineStore({
   id: "user",
   state: () => ({
-    id: String,
-    username: String,
-    openCharacter: Object,
-    savedCharacters: [{'characterName': 'Bobby Jo'}],
-    prefs: {
-      localStorageSize: 0,
-    },
+    openCharacter: useStorage('toh-open-character',{}),
+    savedCharacters: useStorage('toh-saved-characters',[]),
+
   }) as StateTree,
   getters: {
-    getCharacter(id: string) {
-
-    }
+ 
   },
   actions: {
-    saveCharacter(character: any) { this.state.savedCharacters.push(character) }
+
   },
 });
 

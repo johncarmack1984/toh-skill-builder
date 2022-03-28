@@ -22,7 +22,6 @@ export interface MenuBank {
     items: Array<Menu>; 
 }
 
-
 export default defineComponent({
     props: ['user'],
     components: {
@@ -35,24 +34,13 @@ export default defineComponent({
         /* this one works FYI */
         const saveCharacterMenuAction: MenuAction = { 
             'label': 'Save Character', 'action': function() { 
-                pinia?.state.value.user.savedCharacters.push(pinia?.state.value.user.openCharacter) 
+                pinia?.state.value.user.savedCharacters.push(pinia?.state.value.user.openCharacter) // <-- trying to separate this from its original value
                 /*pinia?.state.value.user.savedCharacters.forEach(character => { console.log(character.characterName) });*/
             } 
         } 
         /*const saveCharacterMenuAction: MenuAction = { 'label': 'Save Character', 'action': function() { pinia?.state.value.user.$patch((state) => { state.value.user.savedCharacters.push(state.value.user.openCharacter) } ) } } */
         const savedCharactersSubMenuHeading: MenuAction = { 'label': 'Saved characters...', 'action': undefined  }
-        /*const savedCharactersMenuButtons = function (pinia?.state.value.user.savedCharacters) => {
-            return [
-                ...pinia?.state.value.user.savedCharacters.map(
-                    character => {
-                        return { 
-                            'label': character.characterName, 'type': 'character', 'action': function () { } 
-                        }
-                    }
-                )
-            ]
-        }*/
-        const savedCharactersMenuButtons = []
+        var savedCharactersMenuButtons = []
 
         const fileMenu = {
                 label: 'file',
@@ -98,6 +86,19 @@ export default defineComponent({
     },     
     mounted() {
         //console.log(this.menus.$state);
+    },
+    commputed() {
+        
+        var savedCharactersMenuButtons = [...pinia?.state.value.user.savedCharacters.map(
+            character => {
+                return { 
+                    'label': character.characterName, 'type': 'character', 'action': function () { } 
+                }
+            }
+        )]
+            
+        
+        /* this.menus = this.menus */
     }
 })
 </script>

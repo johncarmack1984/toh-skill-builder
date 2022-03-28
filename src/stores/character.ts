@@ -23,9 +23,8 @@ export interface Character {
 export const useCharacterStore = defineStore({
   id: "character",
   state: () => ({
-    id: String,
-    characterName: String,
-    totalPoints: Number,
+    characterName: '',
+    totalPoints: 20,
     skills: [
       {"id": 1, "skillName": "Physique / Resist", "skillLevel": 0 },
       {"id": 2, "skillName": "Willpower", "skillLevel": 0 },
@@ -48,8 +47,9 @@ export const useCharacterStore = defineStore({
       {"id": 19, "skillName": "Resources", "skillLevel": 0 },
       {"id": 20, "skillName": "Contacts", "skillLevel": 0 },
       {"id": 21, "skillName": "Nature", "skillLevel": 0 },
-      {"id": 21, "skillName": "Medicine", "skillLevel": 0 },
-    ]
+      {"id": 21, "skillName": "Medicine", "skillLevel": 0 }, 
+    ],
+    id: Math.random().toString(36).slice(2),
   }) as StateTree,
   getters: {
     totalUsedPoints(state) {
@@ -62,7 +62,7 @@ export const useCharacterStore = defineStore({
       return state.totalPoints - totalUsedPoints }
   },
   actions: {
-
+    generateId() { return ; }
   },
 });
 

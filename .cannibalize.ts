@@ -21,7 +21,6 @@ export const createCharacter: Function name:(params:type) {
 isDefaultCharacter(character: Character) {
   console.log('isDefaultCharacter?')
   /* return JSON.stringify(this.$data.character) === JSON.stringify(this.$options.data().character) */
-}
 
   /* saveCharacter () { 
       // if character is unnamed, give name "Unnamed (x)"
