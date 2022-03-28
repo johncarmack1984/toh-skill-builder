@@ -3,8 +3,10 @@ import { useUserStore } from './stores/user';
 import { getActivePinia, MutationType } from "pinia";
 import MenuBar from './components/Menus/MenuBar.vue';
 import Footer from './components/Footer.vue';
-
 const user = useUserStore(); 
+
+
+
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 import { defineStore, acceptHMRUpdate, type StateTree } from "pinia";
-
+import { useUserStore } from './user';
 
 export const useCharacterStore = defineStore({
   id: "character",
@@ -43,6 +43,10 @@ export const useCharacterStore = defineStore({
       return state.totalPoints - totalUsedPoints }
   },
   actions: {
+    syncWithUser(state) {
+      const user = useUserStore();
+      user.syncCharacter(state);
+    }
   },
 });
 

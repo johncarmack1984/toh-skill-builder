@@ -1,5 +1,6 @@
 import { defineStore, acceptHMRUpdate, type StateTree } from "pinia";
 import { useStorage } from '@vueuse/core';
+import { useCharacterStore } from './character'
 
 const oldLocalStorageNames = [ 
   'skills',
@@ -19,7 +20,13 @@ export const useUserStore = defineStore({
  
   },
   actions: {
-
+    syncCharacter(state) {
+      const characterStore = useCharacterStore()
+      characterStore.$subscribe((mutation, state) => {
+        this.$patch({ openCharacter: state })
+      })
+    },
+    saveCharacter() { console.log('character.saveCharacter' )}
   },
 });
 

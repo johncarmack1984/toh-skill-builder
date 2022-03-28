@@ -7,9 +7,10 @@ import { computed } from 'vue'
 const props = defineProps(['user'])
 const pinia = getActivePinia()
 
+
 const fileMenu = {
         label: 'file',
-        items: [ { 'label': 'button', 'action': () => { console.log('action')}},  ],
+        items: [ { 'label': 'save character', 'action': () => { console.log(pinia) }},  ],
     }
 
 const resetMenu = {

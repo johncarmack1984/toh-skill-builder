@@ -4,6 +4,8 @@ import SkillBox from '../components/SkillBox.vue';
 import SkillPyramid from '../components/SkillPyramid.vue';
 import { useCharacterStore } from '../stores/character';
 const character = useCharacterStore()
+
+character.$subscribe((mutation, state) => { character.syncWithUser(state) })
 </script>
 
 <template>
