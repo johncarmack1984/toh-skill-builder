@@ -1,14 +1,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-import type { Skill } from '../stores/character';
 
 export default defineComponent({
     props: ['skills'],
     methods: {
-        purpSquares() { return this.skills.filter(function (skill: Skill) {return skill.skillLevel == 4}).length },
-        greenSquares() { return this.skills.filter(function (skill: Skill) {return skill.skillLevel == 3}).length },
-        yellowSquares() { return this.skills.filter(function (skill: Skill) {return skill.skillLevel == 2}).length },
-        redSquares() { return this.skills.filter(function (skill: Skill) {return skill.skillLevel == 1}).length },    
+        purpSquares() { return this.skills.filter(function (skill: any) {return skill.skillLevel == 4}).length },
+        greenSquares() { return this.skills.filter(function (skill: any) {return skill.skillLevel == 3}).length },
+        yellowSquares() { return this.skills.filter(function (skill: any) {return skill.skillLevel == 2}).length },
+        redSquares() { return this.skills.filter(function (skill: any) {return skill.skillLevel == 1}).length },    
     },
     setup() {
         

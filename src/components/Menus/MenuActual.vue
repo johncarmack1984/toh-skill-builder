@@ -1,15 +1,9 @@
 <template>   
     <div class="z-50 text-left relative" v-clickOutside="hideMenu">
-
-
-        <MenuBarButton 
-        
-            :label="menu.label" 
-        
-        
+        <MenuBarButton         
+            :label="menu.label"         
             @button-event="toggleShowMenu()" 
         />    
-
         <transition
             enter-active-class="duration-100 ease-out"
             enter-from-class="transform opacity-0 -translate-y-6"
@@ -21,23 +15,15 @@
         <ul 
             class="flex flex-col absolute top-11 left-2
             border-[1px] p-2 bg-slate-50 rounded-sm min-w-fit"
-
-
             v-if="showMenuValue"
-
         >
-            <li 
-            
-                v-for="(item, index) in menu.items" 
-                
-                
+            <li             
+                v-for="(item, index) in menu.items"               
                 :key="index">
                 <MenuActualButton :item="item" @hide-menu="hideMenu" />
             </li>
-        </ul>
-        
+        </ul>        
         </transition>
-
     </div>
 </template>
 

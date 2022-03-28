@@ -5,6 +5,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'sans': ['Avenir', 'Helvetica', 'Arial', 'sans-serif']
+      },
       colors: {
         'red': '#D42011',
         'yellow': '#FED73B',

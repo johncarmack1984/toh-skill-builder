@@ -1,18 +1,7 @@
-<script lang="ts">
+<script setup lang="ts">
 import { defineComponent } from 'vue'
-
-export default defineComponent({
-    props: ['item'],
-    emits: ['hideMenu'],
-    setup() {
-        
-    },
-    data() {
-        return {
-            characterButtonStyle: 'align-self-end'
-        }
-    }
-})
+const props = defineProps(['item'])
+const emits = defineEmit(['hideMenu'])
 </script>
 
 <template>
@@ -23,8 +12,7 @@ export default defineComponent({
             text-[16px] font-bold bg-blue-dark hover:bg-blue-light transition-colors 
             rounded-full px-[16px] py-[4px] m-[2px] text-white focus:ring-2 ring-blue-500
             whitespace-nowrap
-        "  
-        :class="item.type == 'character' ? characterButtonStyle: ''"
+        " 
     >
             
         {{ item.label }}

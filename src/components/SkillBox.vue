@@ -3,9 +3,6 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
     props: ['skill','remainingPoints'],
-    setup(props) {
-      return { props }
-    },
     data() {
         return {
             averageClass: 'border-red',
@@ -14,8 +11,6 @@ export default defineComponent({
             greatClass: 'border-purple',            
         }
     },
-    mounted() {
-    }
 })
 </script>
 

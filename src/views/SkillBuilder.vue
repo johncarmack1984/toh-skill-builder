@@ -1,20 +1,9 @@
 <script setup lang="ts">
-import { getActivePinia } from 'pinia';
 import SkillCharacterData from '../components/SkillCharacterData.vue';
 import SkillBox from '../components/SkillBox.vue';
 import SkillPyramid from '../components/SkillPyramid.vue';
 import { useCharacterStore } from '../stores/character';
-import Footer from '../components/Footer.vue'
 const character = useCharacterStore()
-const pinia = getActivePinia()
-character.$subscribe((mutation, state) => {
-    //console.log (character)
-    //console.log(pinia.state.value.character)
- })
-
-
-
-
 </script>
 
 <template>
