@@ -1,3 +1,32 @@
+<script lang="ts">
+import { defineComponent } from "vue";
+import MenuBarButton from './MenuBarButton.vue'
+import MenuActualButton from "./MenuActualButton.vue";
+
+export default defineComponent({
+    props: ['menu','savedCharacters'],
+    data() {
+        return {
+            showMenuValue: false,
+        }
+    },
+    components: {
+        MenuBarButton,
+        MenuActualButton
+    },
+    setup() {
+
+    },      
+    methods: {
+        toggleShowMenu() { this.showMenuValue = !this.showMenuValue; },
+        hideMenu() {  this.showMenuValue = false; },
+    },
+    mounted() {
+        console.log(this.menu.items)
+    },
+})
+</script>
+
 <template>   
     <div class="z-50 text-left relative" v-clickOutside="hideMenu">
         <MenuBarButton         
@@ -26,31 +55,3 @@
         </transition>
     </div>
 </template>
-
-<script lang="ts">
-import { defineComponent } from "vue";
-import MenuBarButton from './MenuBarButton.vue'
-import MenuActualButton from "./MenuActualButton.vue";
-
-export default defineComponent({
-    props: ['menu','savedCharacters'],
-    data() {
-        return {
-            showMenuValue: false,
-        }
-    },
-    components: {
-        MenuBarButton,
-        MenuActualButton
-    },
-    setup() {
-
-    },      
-    methods: {
-        toggleShowMenu() { this.showMenuValue = !this.showMenuValue; },
-        hideMenu() {  this.showMenuValue = false; },
-    },
-    mounted() {
-    },
-})
-</script>

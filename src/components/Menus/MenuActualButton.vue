@@ -1,7 +1,10 @@
-<script setup lang="ts">
+<script lang="ts">
 import { defineComponent } from 'vue'
-const props = defineProps(['item'])
-const emits = defineEmit(['hideMenu'])
+
+export default defineComponent({
+    props: ['item'],
+    emits: ['hideMenu'],
+})
 </script>
 
 <template>

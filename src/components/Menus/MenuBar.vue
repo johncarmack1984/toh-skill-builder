@@ -9,19 +9,27 @@ const pinia = getActivePinia()
 
 const fileMenu = {
         label: 'file',
-        items: [{ 'label': 'button', 'action': () => { console.log('action')}}  ],
+        items: [ { 'label': 'button', 'action': () => { console.log('action')}},  ],
     }
 
 const resetMenu = {
     label: 'reset',
     items: [ { 'label': 'button', 'action': () => { console.log('action')}} ]
 }        
-const menus = [ fileMenu, resetMenu ];
+const menus = [ fileMenu, resetMenu ]    
 
+</script>
+<script lang="ts">
+export default defineComponent({
+
+    components: {
+        MenuActual
+    },
+})
 </script>
 
 <template>
     <div class="z-50 text-left pb-1 relative flex flex-row">
-        <MenuActual v-for="(menu, index) in menus" :key="index" :menu="menu" />
+          <MenuActual v-for="(menu, index) in menus" :key="index" :menu="menu" />
     </div>
 </template>
