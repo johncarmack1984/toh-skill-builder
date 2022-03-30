@@ -1,15 +1,4 @@
-//character.$subscribe()
-//mutate savedCharacters: where? menus? App root? Skillbuilder?
-//user.$patch({state} => {
-//  state.savedCharacters.push(openCharacter)
-//  state.hasChanged = true
-//})
 
-
-
-import type { Character } from './src/stores/character';
-
-// character actions 
 
 /* createCharacter(character) { this.savedCharacters.push(character); console.log("character " + this.character.name + " added to savedCharacters") }, */
 
