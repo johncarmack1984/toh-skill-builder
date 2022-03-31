@@ -1,12 +1,3 @@
-
-
-/* createCharacter(character) { this.savedCharacters.push(character); console.log("character " + this.character.name + " added to savedCharacters") }, */
-
-export const createCharacter: Function name:(params:type) {  
-}(character: Character, savedCharacters) { 
-  savedCharacters.push(character)
-}
-
 isDefaultCharacter(character: Character) {
   console.log('isDefaultCharacter?')
   /* return JSON.stringify(this.$data.character) === JSON.stringify(this.$options.data().character) */

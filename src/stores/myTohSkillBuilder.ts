@@ -51,14 +51,19 @@ export const myTohSkillBuilderStore = defineStore({
   },
   actions: {
     saveCharacter() {
-      this.$patch((state) => { state.savedCharacters.push(
-          JSON.parse(JSON.stringify(state.character))
-        )
-      })
+      this.$patch((state) => {
+        state.savedCharacters.push(JSON.parse(JSON.stringify(state.character)));
+      });
     },
-    openCharacter() {},
-    updateCharacter() {},
-    deleteCharacter() {},
+    openCharacter() {
+      console.log("delete character");
+    },
+    updateCharacter() {
+      console.log("delete character");
+    },
+    deleteCharacter() {
+      console.log("delete character");
+    },
   },
 });
 
@@ -72,5 +77,7 @@ const oldLocalStorageNames = [
 */
 
 if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(myTohSkillBuilderStore, import.meta.hot));
+  import.meta.hot.accept(
+    acceptHMRUpdate(myTohSkillBuilderStore, import.meta.hot)
+  );
 }

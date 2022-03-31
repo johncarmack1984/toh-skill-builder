@@ -1,6 +1,8 @@
+import type { DirectiveBinding, RendererElement } from "vue";
+
 export default {
-  mounted: (el: any, binding: any, vnode: any) => {
-    el.clickOutsideEvent = function (event: any) {
+  mounted: (el: RendererElement, binding: DirectiveBinding) => {
+    el.clickOutsideEvent = function (event: Event) {
       if (!(el === event.target || el.contains(event.target))) {
         binding.value(event, el);
       }
@@ -8,7 +10,7 @@ export default {
     document.body.addEventListener("click", el.clickOutsideEvent);
   },
   unmounted(el: {
-    clickOutsideEvent: (this: HTMLElement, ev: MouseEvent) => any;
+    clickOutsideEvent: (this: HTMLElement, ev: MouseEvent) => Event;
   }) {
     document.body.removeEventListener("click", el.clickOutsideEvent);
   },

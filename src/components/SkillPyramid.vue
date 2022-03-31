@@ -4,24 +4,32 @@ import { myTohSkillBuilderStore } from "../stores/myTohSkillBuilder";
 const myTohSkillBuilder = myTohSkillBuilderStore();
 const skills = myTohSkillBuilder.character.skills;
 
-function purpSquares() { return skills.filter(function (skill: any) { return skill.skillLevel == 4;
-  }).length
-};
+interface Skill {
+  id: string;
+  skillName: string;
+  skillLevel: number;
+}
+
+function purpSquares() {
+  return skills.filter(function (skill: Skill) {
+    return skill.skillLevel == 4;
+  }).length;
+}
 function greenSquares() {
-  return skills.filter(function (skill: any) {
+  return skills.filter(function (skill: Skill) {
     return skill.skillLevel == 3;
-  }).length
-};
+  }).length;
+}
 function yellowSquares() {
-  return skills.filter(function (skill: any) {
+  return skills.filter(function (skill: Skill) {
     return skill.skillLevel == 2;
-  }).length
-};
+  }).length;
+}
 function redSquares() {
-  return skills.filter(function (skill: any) {
+  return skills.filter(function (skill: Skill) {
     return skill.skillLevel == 1;
-  }).length
-};
+  }).length;
+}
 </script>
 <template>
   <div class="flex md:flex-row flex-wrap justify-between">
@@ -58,26 +66,37 @@ function redSquares() {
 
     <!-- Squares -->
 
-    <div class="z-50 pt-1 text-xl md:text-xl grow items-baseline">
-      <ul class="flex flex-row flex-nowrap leading-none items-baseline">
+    <div
+      class="z-50 pt-1 text-xl md:text-xl grow items-baseline"
+      data-testid="skill-pyramid"
+    >
+      <ul
+        class="flex flex-row flex-nowrap leading-none items-baseline"
+        data-testid="purp-squares"
+      >
         &nbsp;
-        <li v-for="n in purpSquares()" :key="n" data-test="purp-squares">🟪</li>
+        <li v-for="n in purpSquares()" :key="n">🟪</li>
       </ul>
-      <ul class="flex flex-row flex-nowrap leading-none items-baseline">
+      <ul
+        class="flex flex-row flex-nowrap leading-none items-baseline"
+        data-testid="green-squares"
+      >
         &nbsp;
-        <li v-for="n in greenSquares()" :key="n" data-test="green-squares">
-          🟩
-        </li>
+        <li v-for="n in greenSquares()" :key="n">🟩</li>
       </ul>
-      <ul class="flex flex-row flex-nowrap leading-none items-baseline">
+      <ul
+        class="flex flex-row flex-nowrap leading-none items-baseline"
+        data-testid="yellow-squares"
+      >
         &nbsp;
-        <li v-for="n in yellowSquares()" :key="n" data-test="yellow-squares">
-          🟨
-        </li>
+        <li v-for="n in yellowSquares()" :key="n">🟨</li>
       </ul>
-      <ul class="flex flex-row flex-nowrap leading-none items-baseline">
+      <ul
+        class="flex flex-row flex-nowrap leading-none items-baseline"
+        data-testid="red-squares"
+      >
         &nbsp;
-        <li v-for="n in redSquares()" :key="n" data-test="red-squares">🟥</li>
+        <li v-for="n in redSquares()" :key="n">🟥</li>
       </ul>
     </div>
   </div>

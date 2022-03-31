@@ -23,7 +23,6 @@ export default defineComponent({
       this.showMenuValue = false;
     },
   },
-  mounted() {},
 });
 </script>
 

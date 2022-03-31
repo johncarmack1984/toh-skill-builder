@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { myTohSkillBuilderStore } from "./stores/myTohSkillBuilder";
 import MenuBar from "./components/Menus/MenuBar.vue";
 import TheFooter from "./components/TheFooter.vue";
-import { watch, ref } from "vue";
 </script>
 
 <template>
