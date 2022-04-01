@@ -4,8 +4,9 @@ import SkillPyramid from "@/components/SkillPyramid.vue";
 import { expect } from "chai";
 
 describe("SkillPyramid", () => {
-  it("renders a visual representation of skill levels selected", () => {
-    const { wrapper, myTohSkillBuilder } = factory(SkillPyramid);
+  it("renders a visual representation of skill levels selected", async () => {
+    // instantiate component and state
+    const { wrapper, myTohSkillBuilder } = await factory(SkillPyramid, {});
 
     expect(myTohSkillBuilder.character.skills[0].skillLevel).toBe(0);
 
