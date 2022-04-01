@@ -1,32 +1,11 @@
-import { mount } from "@vue/test-utils";
+import { describe, it } from "vitest";
+import { factory } from "./index";
 import SkillPyramid from "@/components/SkillPyramid.vue";
-import { myTohSkillBuilderStore } from "@/stores/myTohSkillBuilder";
-import { describe, it, fn } from "vitest";
-import { createTestingPinia } from "@pinia/testing";
-import type { TestingOptions } from "./index";
 import { expect } from "chai";
 
 describe("SkillPyramid", () => {
-  function factory(options?: TestingOptions) {
-    const wrapper = mount(SkillPyramid, {
-      global: {
-        plugins: [
-          createTestingPinia({
-            // https://github.com/vuejs/pinia/discussions/1096
-            createSpy: fn,
-          }),
-        ],
-      },
-      ...options,
-    });
-
-    const myTohSkillBuilder = myTohSkillBuilderStore();
-
-    return { wrapper, myTohSkillBuilder };
-  }
-
   it("renders a visual representation of skill levels selected", () => {
-    const { wrapper, myTohSkillBuilder } = factory();
+    const { wrapper, myTohSkillBuilder } = factory(SkillPyramid);
 
     expect(myTohSkillBuilder.character.skills[0].skillLevel).toBe(0);
 
