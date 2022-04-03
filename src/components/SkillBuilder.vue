@@ -123,7 +123,13 @@ export default {
       this.savedCharacters.splice(deleteIndex, 1) 
     },
     resetCharacterName () { this.$data.character.name = "" },
-    resetSkillNames () { this.$data.character.skills.forEach( (skill,index) => skill.name = this.$options.data().character.skills[index].name) },
+    resetSkillNames () { 
+      this.$data.character.skills.forEach( (skill,index) => skill.name = this.$options.data().character.skills[index].name) ;
+      if (this.$data.character.skills.length < this.$options.data().character.skills.length) {        
+        let index = this.character.skills.length;      
+        this.character.skills.push(...this.$options.data().character.skills.slice(index));
+      }
+    },
     resetScores () { this.$data.character.skills.forEach( (skill,index) => skill.value = 0) },
     resetTotal() { this.character.totalPoints = this.$options.data().character.totalPoints },
     resetAll () { 
