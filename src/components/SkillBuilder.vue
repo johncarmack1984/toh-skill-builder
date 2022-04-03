@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 /**import SkillBox from './SkillBox.vue'*/
 
 const clickOutside = {
@@ -50,9 +50,7 @@ export default {
           {"name": "Medicine", "value": 0 },
         ],
       },
-      savedCharacters: [
-        
-      ],
+      savedCharacters: [],
       menus: [],
       averageClass: 'border-red',
       fairClass: 'border-yellow',
