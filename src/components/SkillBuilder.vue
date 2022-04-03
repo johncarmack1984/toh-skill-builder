@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 /**import SkillBox from './SkillBox.vue'*/
 
 const clickOutside = {
@@ -29,14 +29,14 @@ export default {
           {"name": "Physique / Resist", "value": 0 },
           {"name": "Willpower", "value": 0 },
           {"name": "Fight", "value": 0 },
-          {"name": "Shoot", "value": 0 },
+          {"name": "Agility", "value": 0 },
           {"name": "Strength", "value": 0 },
           {"name": "Acrobatics / Dodge", "value": 0 },
           {"name": "Flying", "value": 0 },
-          {"name": "Bile / Demonics", "value": 0 },
+          {"name": "Mana", "value": 0 },
           {"name": "Craft", "value": 0 },
           {"name": "Stealth", "value": 0 },
-          {"name": "Notice / Perception", "value": 0 },
+          {"name": "Notice", "value": 0 },
           {"name": "Persuasion", "value": 0 },
           {"name": "Deception", "value": 0 },
           {"name": "Intimidation", "value": 0 },
@@ -77,27 +77,13 @@ export default {
         // if character is unnamed, give name "Unnamed (x)"
         if (this.isVariableUnset(this.character.name)) { 
           var unnamedArray = this.savedCharacters.filter(function (character) { return character.name.includes("Unnamed ")})
-          
-          /**getMax number {
-          console.log("attempted to find max unnamed file...")
-          const getMax = (a, b) => Math.max(a,b)
-          const stripName 
-          unnamedArray.map( (character) => character.name = character.name.replace(/\D/g,''))
-          console.log(JSON.stringify(unnamedArray.filter( (character) { return character.name.replace(/\D/g,'') } ))
-          var unnamedFileIndex = unnamedArray2.reduce(getMax) 
-          console.log(JSON.stringify(unnamedFileIndex)
-          console.log("the function completed,?")
-          }*/
 
           var unnamedIndex = unnamedArray.length
           this.character.name = "Unnamed " + unnamedIndex
         }
 
         console.log(this.character.name + " saving")
-        
-        // set totalPoints if unset
-        //if (this.isVariableUnset(this.character.totalPoints)) { this.character.totalPoints = this.totalUsedPoints }
-        // if character doesn't have an identifier, generate one and add it to definition
+
         if (this.isVariableUnset(this.character.id)) {
           this.character.id = Math.random().toString(36).slice(2);
           console.log("id generated " + this.character.id)
@@ -149,32 +135,9 @@ export default {
     },    
   },
   mounted() {
-    /** remove old skills & replace with new character.skills */
-    //if (this.character.skills = JSON.parse(localStorage.getItem("skills"))) { localStorage.removeItem("skills") } 
-    /** if exists, sync browser with localStorage */
-    //if (this.character.totalPoints = JSON.parse(localStorage.getItem("total"))) { localStorage.removeItem("total") }
-    //if this.isVariableUnset(this.character.totalPoints))
+
     this.character = JSON.parse(localStorage.getItem("character")) || this.character
     this.savedCharacters = JSON.parse(localStorage.getItem("savedCharacters")) || this.savedCharacters
-/**  menus object
- *      this.menus = [
-        {
-          "name": "file...",
-          "show": false,
-          "options": [
-            {"name": "save", "function": this.fileSave() },
-          ],
-        },
-        {
-          "name": "reset...",
-          "show": false,
-          "options": [
-            {"name": "scores", "function": this.resetSkillNames() },
-            {"name": "name", "function": this.resetScores() },
-            {"name": "all", "function": this.resetAll() },
-          ],
-        },
-    ] */
     
   },
   watch: {
@@ -257,7 +220,8 @@ export default {
                 <span class="text-xs flex-shrink mx-4 text-gray-400">Saved Characters...</span>
             </div>
             <li
-              v-for="character in savedCharacters"
+              v-for="(character, index) in savedCharacters"
+              :key="index"
               class="flex flex-nowrap items-stretch justify-end"
             >
               <button 
