@@ -4,6 +4,7 @@ Build away.
 
 Release notes:
 
+- 4/03 - code cleanup, 
 - 3/13 - save characters
 - 3/12 - character name, reset menu reformat, style fixes
 - 2/25 - sticky top, style fixes
