@@ -1,15 +1,15 @@
-const defaultBrettSkillNames = [
+export const defaultBrettSkillNames = [
     "Physique / Resist", 
     "Willpower",
     "Fight",
-    "Shoot",
+    "Blast",
     "Strength",
     "Acrobatics / Dodge", 
     "Flying", 
-    "Bile / Demonics",
+    "Mana",
     "Craft", 
     "Stealth",
-    "Notice / Perception",
+    "Notice",
     "Persuasion", 
     "Deception", 
     "Intimidation",
@@ -21,16 +21,11 @@ const defaultBrettSkillNames = [
     "Contacts", 
     "Nature", 
     "Medicine", 
+    "Agility",
 ]
-
-const defaultBrettSkillList = []
-
-for (const [index, skillName] of defaultBrettSkillNames.entries()) {
-    defaultBrettSkillList.push( { id: index, skillName, skillLevel: 0 } )
-}
 
 export const defaultBrettOwlHouseCharacter = { 
     characterName: "",
     totalPoints: 20,
-    skills: defaultBrettSkillList,
+    skills: defaultBrettSkillNames,
 }

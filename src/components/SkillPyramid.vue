@@ -2,7 +2,6 @@
 import { myTohSkillBuilderStore } from "../stores/myTohSkillBuilder";
 
 const myTohSkillBuilder = myTohSkillBuilderStore();
-const skills = myTohSkillBuilder.character.skills;
 
 interface Skill {
   id: string;
@@ -11,22 +10,22 @@ interface Skill {
 }
 
 function purpSquares() {
-  return skills.filter(function (skill: Skill) {
+  return myTohSkillBuilder.character.skills.filter(function (skill: Skill) {
     return skill.skillLevel == 4;
   }).length;
 }
 function greenSquares() {
-  return skills.filter(function (skill: Skill) {
+  return myTohSkillBuilder.character.skills.filter(function (skill: Skill) {
     return skill.skillLevel == 3;
   }).length;
 }
 function yellowSquares() {
-  return skills.filter(function (skill: Skill) {
+  return myTohSkillBuilder.character.skills.filter(function (skill: Skill) {
     return skill.skillLevel == 2;
   }).length;
 }
 function redSquares() {
-  return skills.filter(function (skill: Skill) {
+  return myTohSkillBuilder.character.skills.filter(function (skill: Skill) {
     return skill.skillLevel == 1;
   }).length;
 }

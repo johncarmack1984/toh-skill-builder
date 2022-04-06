@@ -1,12 +1,53 @@
 <script setup lang="ts">
 import MenuActual from "./MenuActual.vue";
 import { myTohSkillBuilderStore } from "@/stores/myTohSkillBuilder";
+import { ref, onMounted,computed, watch } from "vue";
 
 const myTohSkillBuilder = myTohSkillBuilderStore();
+/*
+myTohSkillBuilder.savedCharacters.map(character => console.log(character));
+*/
+let menus: { label: string; items: any[]; }[] = [];
+let savedCharactersMenu = ref([]);
+//,...myTohSkillBuilder.savedCharacters
 
-console.log();
+let savedCharacters = ['bill','tom'];
+onMounted({
+  savedCharacters: ['bill','ted','george']
+});
+/*
+myTohSkillBuilder.$subscribe((mutation, state) => {
+  console.log(mutation.type),
+  console.log(mutation.storeId)
+  console.log(mutation)
+  //console.log(state.savedCharacters.map((character,index) => { JSON.stringify(character) }));
+})
+*/
+/*
+watch(myTohSkillBuilder.savedCharacters, async (newSavedCharacters, oldSavedCharacters) => {
+  newSavedCharacters.map((character, index) => { console.log(character.characterName) })
+})
+*/
+savedCharactersMenu = savedCharacters.map((character,index) => { 
+  return(
+    { label: character, type: "button", action: () => { console.log(character) } }
+  )
+});
 
-const menus = [
+const savedCharactersMenuComputed = computed({
+  get() {
+    return savedCharacters
+  },
+  set(newValue) {
+    savedCharacters.map((character,index) => { 
+      return(
+        { label: character, type: "button", action: () => { /*console.log(character)*/ } }
+      )
+    })
+  }
+});
+
+menus = [
   {
     label: "file",
     items: [
@@ -22,6 +63,7 @@ const menus = [
         type: "button",
         action: () => {
           myTohSkillBuilder.saveCharacter();
+          /*console.log(JSON.stringify(myTohSkillBuilder.savedCharacters));*/
         },
       },
       {
@@ -29,24 +71,36 @@ const menus = [
         type: "subheading",
         action: undefined,
       },
-      {
-        label: "Saved Character Name",
-        type: "button",
-        action: () => {
-          console.log("saved character name");
-        },
-      },
+      ...savedCharactersMenu
     ],
   },
   {
     label: "reset",
     items: [
       {
+        label: "scores",
+        type: "button",
+        action: () => { myTohSkillBuilder.resetScores(); },
+      },
+      {
+        label: "total points",
+        type: "button",
+        action: () => { myTohSkillBuilder.resetTotalPoints(); },
+      },
+      {
+        label: "character name",
+        type: "button",
+        action: () => { myTohSkillBuilder.resetCharacterName(); },
+      },
+      {
+        label: "skill names",
+        type: "button",
+        action: () => { myTohSkillBuilder.resetSkillNames(); },
+      },
+      {
         label: "all",
         type: "button",
-        action: () => {
-          console.log("resetAll");
-        },
+        action: () => { myTohSkillBuilder.resetAll(); },
       },
     ],
   },

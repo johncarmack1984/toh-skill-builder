@@ -27,5 +27,26 @@ describe("SkillPyramid", () => {
     expect(wrapper.vm.greenSquares()).toBe(1);
     expect(wrapper.vm.yellowSquares()).toBe(1);
     expect(wrapper.vm.purpSquares()).toBe(1);
+
+    await myTohSkillBuilder.newCharacter();
+
+/*
+    myTohSkillBuilder.$patch((state) => {
+      state.character.skills[0].skillLevel = 0;
+      state.character.skills[1].skillLevel = 0;
+      state.character.skills[2].skillLevel = 0;
+      state.character.skills[3].skillLevel = 0;
+    });
+*/
+    /*expect(myTohSkillBuilder.totalUsedPoints).toBe(0);        */
+    /*expect(wrapper.vm.redSquares()).toBe(0);
+    /*expect(wrapper.vm.greenSquares()).toBe(0);
+    expect(wrapper.vm.yellowSquares()).toBe(0);
+    expect(wrapper.vm.purpSquares()).toBe(0);*/
+
   });
+
+  it("renders a clean interface when character is reset to default", async () => {
+    
+  })
 });

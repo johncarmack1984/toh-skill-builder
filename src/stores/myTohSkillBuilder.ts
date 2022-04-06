@@ -1,4 +1,4 @@
-import { defaultBrettOwlHouseCharacter } from "@/characterTemplates/brettOwlhouseDefault";
+import { defaultCharacter } from "@/characterTemplates/TheDefaultCharacterTemplate";
 import { defineStore, acceptHMRUpdate, type StateTree } from "pinia";
 
 //
@@ -8,15 +8,17 @@ import { defineStore, acceptHMRUpdate, type StateTree } from "pinia";
 //
 //
 
+
 export const myTohSkillBuilderStore = defineStore({
 
   id: "myTohSkillBuilder",
 
   
   state: () =>
+
     ({
       character: { 
-        ...defaultBrettOwlHouseCharacter,
+        ...cleanCopy(defaultCharacter),
         id: Math.random().toString(36).slice(2),
       },
       savedCharacters: [],
@@ -24,6 +26,7 @@ export const myTohSkillBuilderStore = defineStore({
 
 
   getters: {
+
     totalUsedPoints(state) {
       return state.character.skills
         .filter((skill: { skillLevel: number }) => skill.skillLevel > 0)
@@ -32,6 +35,8 @@ export const myTohSkillBuilderStore = defineStore({
           0
         );
     },
+
+
     remainingPoints(state) {
       const totalUsedPoints: number = this.totalUsedPoints;
       return state.character.totalPoints - totalUsedPoints;
@@ -46,34 +51,120 @@ export const myTohSkillBuilderStore = defineStore({
       );
     },
 
-    
-  },
- 
-  
+    getCharacterIndex(state) {
+      const characterId: string = this.character.id;
+      if (this.findCharacterById) {
+        return (
+          this.savedCharacters.findIndex(character => {
+            return character.id === this.character.id;
+          })
+        );
+      }
+      else return false;
+    },
+
+    isVariableUnset (variable: any) { 
+      return ( variable === '' || typeof variable === 'undefined' || variable === null ) 
+    },
+
+  },  
+
+
   actions: {
+
+    //create 
+
     generateCharacterId() { return Math.random().toString(36).slice(2) },
+    generateCharacterName() {
+      var unnamedArray = this.savedCharacters.filter(function (character: object) { 
+        return character.name.includes("Unnamed ")})
+
+      var unnamedIndex = unnamedArray.length
+      this.character.name = "Unnamed " + unnamedIndex
+    },
+
     saveCharacter() {
+      // if this character is not in savedCharacters
       if (!this.findCharacterById) {
         return this.$patch((state) => {
-          state.savedCharacters.push(JSON.parse(JSON.stringify(state.character)));
-          state.character = {
-            ...defaultBrettOwlHouseCharacter,
-            id: this.generateCharacterId(),
-          };
+          // add character to savedCharacters
+          state.savedCharacters.push(cleanCopy(state.character));
         });
       } else {
         return this.updateCharacter()
       }
     },
+
+    newCharacter() {
+      this.saveCharacter();
+      this.$patch((state) => {
+        // set open character to default
+        state.character = {...cleanCopy(defaultCharacter), id: this.generateCharacterId(), };
+      });
+    },
+
+    //read 
+
     openCharacter() {
       console.log("open character");
     },
+
+
+
+    //update
+
     updateCharacter() {
-      console.log(JSON.stringify(this));
+      this.$patch((state) => {
+        state.savedCharacters[this.getCharacterIndex] = cleanCopy(state.character);
+      });
     },
-    deleteCharacter() {
-      console.log("delete character");
+
+
+    resetScores() { 
+      this.$patch((state) => { 
+        this.character.skills.forEach((skill, index) => { 
+          state.character.skills[index].skillLevel = 0 });
+      });
     },
+
+    resetTotalPoints() {       
+      this.$patch((state) => {
+        this.character.totalPoints = defaultCharacter.totalPoints;
+      });
+
+    },    
+
+    resetCharacterName() {
+      this.$patch((state) => {
+        this.character.characterName = defaultCharacter.characterName;
+      });
+     },   
+
+    resetSkillNames() {
+      console.log("this one needs thinking through (skillNames)")
+      this.$patch((state) => {
+        // this one needs thingking through
+        /* this.character.totalPoints = defaultCharacter.totalPoints; */
+      });      
+     },    
+
+    resetAll() {
+      this.resetScores();
+      this.resetTotalPoints();
+      this.resetCharacterName();
+      this.resetSkillNames();
+     }, 
+
+     //delete
+
+    deleteCharacter(id) {
+      /*
+      this.$patch((state) => {
+        state.savedCharacters.splice(state.getCharacterIndex,1)
+      }); */
+      console.log("delete character not yet implemented");
+    },
+    
   },
 });
 
@@ -86,8 +177,15 @@ const oldLocalStorageNames = [
   ];
 */
 
+function cleanCopy (character) { 
+
+  return JSON.parse(JSON.stringify(character)) 
+
+};
+
 if (import.meta.hot) {
   import.meta.hot.accept(
     acceptHMRUpdate(myTohSkillBuilderStore, import.meta.hot)
   );
 }
+
