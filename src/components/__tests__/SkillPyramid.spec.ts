@@ -30,7 +30,7 @@ describe("SkillPyramid", () => {
 
     await myTohSkillBuilder.newCharacter();
 
-/*
+    /*
     myTohSkillBuilder.$patch((state) => {
       state.character.skills[0].skillLevel = 0;
       state.character.skills[1].skillLevel = 0;
@@ -43,10 +43,7 @@ describe("SkillPyramid", () => {
     /*expect(wrapper.vm.greenSquares()).toBe(0);
     expect(wrapper.vm.yellowSquares()).toBe(0);
     expect(wrapper.vm.purpSquares()).toBe(0);*/
-
   });
 
-  it("renders a clean interface when character is reset to default", async () => {
-    
-  })
+  /* it("renders a clean interface when character is reset to default", async () => {}); */
 });

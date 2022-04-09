@@ -3,6 +3,7 @@ import { mount } from "@vue/test-utils";
 import { createTestingPinia } from "@pinia/testing";
 import type { TestingOptions } from "./index";
 import { myTohSkillBuilderStore } from "@/stores/myTohSkillBuilder";
+import type { DefineComponent } from "vue";
 
 /**
  * @module @pinia/testing
