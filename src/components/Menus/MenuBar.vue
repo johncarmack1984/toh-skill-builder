@@ -1,11 +1,6 @@
 <template>
   <div class="z-50 text-left pb-1 relative flex flex-row">
-    <MenuActual
-      v-for="(menu, index) in menus"
-      :key="index"
-      :menu="menu"
-      :data-testid="'menu-openbutton-' + (index + 1)"
-    />
+    <MenuActual v-for="(menu, index) in menus" :key="index" :menu="menu" />
   </div>
 </template>
 
@@ -14,21 +9,6 @@ import MenuActual from "./MenuActual.vue";
 import { myTohSkillBuilderStore } from "@/stores/myTohSkillBuilder";
 import { computed } from "vue";
 const myTohSkillBuilder = myTohSkillBuilderStore();
-
-const savedCharactersMenu = computed(() => {
-  return myTohSkillBuilder.savedCharacters.map((character) => {
-    return {
-      label: character.characterName,
-      type: "character",
-      open: () => {
-        myTohSkillBuilder.openCharacter(character.id);
-      },
-      delete: () => {
-        myTohSkillBuilder.deleteCharacter(character.id);
-      },
-    };
-  });
-});
 
 const menus = computed(() => {
   return [
@@ -50,11 +30,22 @@ const menus = computed(() => {
           },
         },
         {
-          label: "Saved characters...",
+          label: "saved characters...",
           type: "subheading",
           action: undefined,
         },
-        ...savedCharactersMenu.value,
+        ...myTohSkillBuilder.savedCharacters.map((character) => {
+          return {
+            label: character.characterName,
+            type: "character",
+            open: () => {
+              myTohSkillBuilder.openCharacter(character.id);
+            },
+            delete: () => {
+              myTohSkillBuilder.deleteCharacter(character.id);
+            },
+          };
+        }),
       ],
     },
     {

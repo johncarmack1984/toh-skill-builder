@@ -1,16 +1,13 @@
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent } from "vue";
 import MenuBarButton from "./MenuBarButton.vue";
 import MenuActualButton from "./MenuActualButton.vue";
 
 export default defineComponent({
   props: ["menu"],
-  setup(props) {
-    let showMenuValue = ref(false);
-    props = ref(props);
+  data() {
     return {
-      showMenuValue,
-      props,
+      showMenuValue: false,
     };
   },
   components: {
@@ -18,6 +15,9 @@ export default defineComponent({
     MenuActualButton,
   },
   methods: {
+    toggleShowMenu() {
+      this.showMenuValue = !this.showMenuValue;
+    },
     hideMenu() {
       this.showMenuValue = false;
     },
@@ -27,11 +27,7 @@ export default defineComponent({
 
 <template>
   <div class="z-50 text-left relative" v-clickOutside="hideMenu">
-    <MenuBarButton
-      :label="menu.label"
-      @button-event="showMenuValue = !showMenuValue"
-      :data-testid="`menu-open-button-${menu.label}`"
-    />
+    <MenuBarButton :label="menu.label" @button-event="toggleShowMenu()" />
     <transition
       enter-active-class="duration-100 ease-out"
       enter-from-class="transform opacity-0 -translate-y-6"
@@ -43,13 +39,8 @@ export default defineComponent({
       <ul
         class="flex flex-col absolute top-11 left-2 border-[1px] p-2 bg-slate-50 rounded-sm min-w-fit"
         v-if="showMenuValue"
-        :data-testid="`menu-actual-${menu.label}`"
       >
-        <li
-          v-for="(item, index) in menu.items"
-          :key="index"
-          :data-testid="`menu-option-li-${index}`"
-        >
+        <li v-for="(item, index) in menu.items" :key="index">
           <MenuActualButton :item="item" @hide-menu="hideMenu" />
         </li>
       </ul>
