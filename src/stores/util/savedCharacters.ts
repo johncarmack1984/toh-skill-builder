@@ -1,4 +1,3 @@
-import type { character00, skill00, skills00 } from "env";
 import character from "./character";
 
 export default {

@@ -1,7 +1,8 @@
-import { vi, describe, it, expect, beforeEach, beforeAll } from "vitest";
+import { describe, it, expect, beforeEach, beforeAll } from "vitest";
 import { migrationSetup } from "../migration-setup";
-import type { skill00, skills00 } from "env";
 import skills from "../skills";
+import character from "../character";
+import savedCharacters from "../savedCharacters";
 import storage from "mock-local-storage";
 
 describe("migrationSetup", () => {
@@ -17,32 +18,12 @@ describe("migrationSetup", () => {
     expect(localStorage.skills).toBe(
       JSON.stringify(skills._62186e88225ab700089a360f)
     );
-    //console.log(localStorage.total);
-    //console.log(localStorage.character);
-    //console.log(localStorage.savedCharacters);
-  });
-
-  it("s localStorage items mimic the shape of old TOHSB deployments", async () => {
-    expect(true).toBe(true);
+    expect(parseInt(localStorage.total)).toBe(20);
+    expect(JSON.parse(localStorage.character)).toEqual(
+      character._4e2b9197daa2aeccb4caf39ac052b96fe1f1f49d
+    );
+    expect(JSON.parse(localStorage.savedCharacters)).toEqual(
+      savedCharacters._4e2b9197daa2aeccb4caf39ac052b96fe1f1f49d
+    );
   });
 });
-
-/*
-
-Unfinished tests:
-
-  it("mocks type skills00", () => {
-    migrationSetup();
-  });
-  it("mocks type total00", () => {
-    migrationSetup();
-  });
-  it("mocks type character00", () => {
-    migrationSetup();
-  });
-  it("mocks type savedCharacters00", () => {
-    migrationSetup();
-  });
-
-
-*/

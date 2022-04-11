@@ -39,7 +39,12 @@ export const myTohSkillBuilderStore = defineStore({
   },
 
   actions: {
+    //
+    //
     //create
+    //
+    //
+
     saveCharacter() {
       // if this character is not in savedCharacters
       if (isVariableUnset(this.character.characterName)) {
@@ -87,7 +92,12 @@ export const myTohSkillBuilderStore = defineStore({
           1)
       );
     },
+
+    //
+    //
     //read
+    //
+    //
 
     openCharacter(id: string) {
       this.saveCharacter();
@@ -100,17 +110,17 @@ export const myTohSkillBuilderStore = defineStore({
       });
     },
 
+    //
+    //
     //update
+    //
+    //
 
     migrateCharacter(character: character, { open = false } = {}) {
-      // this works; you're just using the console to check migrations
-      // until you're done writing them
-      const migrated = JSON.parse(
-        JSON.stringify({
-          ...character,
-          id: Math.random().toString(36).slice(2),
-        }).replace(/\\/g, "")
-      );
+      const migrated = cleanCopy({
+        ...character,
+        id: Math.random().toString(36).slice(2),
+      });
       this.$patch((state) => {
         if (open === true) {
           state.character = migrated;
@@ -119,15 +129,6 @@ export const myTohSkillBuilderStore = defineStore({
         }
       });
       return true;
-      /*
-      console.log(
-        `store.migrateCharacter(\n\n${JSON.stringify({
-          ...character,
-          id: Math.random().toString(36).slice(2),
-        }).replace(/\\/g, "")}\n\n);`
-      );
-      return true;
-      */
     },
     updateCharacter() {
       this.$patch((state) => {
@@ -174,7 +175,11 @@ export const myTohSkillBuilderStore = defineStore({
       this.resetSkillNames();
     },
 
+    //
+    //
     //delete
+    //
+    //
 
     deleteCharacter(id: string) {
       this.$patch((state) => {
@@ -200,5 +205,5 @@ function isVariableUnset(variable: unknown) {
 }
 
 function cleanCopy(character) {
-  return JSON.parse(JSON.stringify(character));
+  return JSON.parse(JSON.stringify(character).replace(/\\/g, ""));
 }

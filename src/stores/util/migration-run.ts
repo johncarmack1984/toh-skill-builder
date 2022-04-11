@@ -1,4 +1,4 @@
-import type { character, skill, skills00, character00 } from "env";
+import type { skills00, character00 } from "env";
 
 export const migrationRun = (state) => {
   let skills = JSON.parse(localStorage.getItem("skills")) || null;

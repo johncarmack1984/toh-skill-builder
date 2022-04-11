@@ -266,3 +266,11 @@ describe("myTohSkillBuilder", () => {
     expect(myTohSkillBuilder.character.id).toBe(testId);
   });
 });
+
+/*
+
+Unwritten test
+
+migrateCharacter()
+
+*/
