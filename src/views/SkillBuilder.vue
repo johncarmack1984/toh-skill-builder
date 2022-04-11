@@ -2,12 +2,15 @@
 import SkillCharacterData from "../components/SkillCharacterData.vue";
 import SkillPyramid from "../components/SkillPyramid.vue";
 import { myTohSkillBuilderStore } from "../stores/myTohSkillBuilder";
+import { migrationRun } from "@/stores/util/migration-run";
 
 const myTohSkillBuilder = myTohSkillBuilderStore();
 const averageClass = "border-red";
 const fairClass = "border-yellow";
 const goodClass = "border-green";
 const greatClass = "border-purple";
+
+migrationRun(myTohSkillBuilder);
 </script>
 
 <template>

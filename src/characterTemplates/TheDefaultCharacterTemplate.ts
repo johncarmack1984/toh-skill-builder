@@ -1,4 +1,5 @@
 import { defaultBrettSkillNames } from "./brettOwlHouseDefault";
+import type { skill, character } from "env";
 
 const defaultSkillNames = defaultBrettSkillNames;
 
@@ -13,16 +14,3 @@ export const defaultCharacter = {
   totalPoints: 20,
   skills: defaultSkillList,
 } as character;
-
-export type skill = {
-  id: number;
-  skillName: string;
-  skillLevel: number;
-};
-
-export type character = {
-  characterName: string;
-  totalPoints: number;
-  skills: array<skill>;
-  id: string;
-};

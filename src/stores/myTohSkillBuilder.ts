@@ -1,6 +1,7 @@
 import { defaultCharacter } from "@/characterTemplates/TheDefaultCharacterTemplate";
 import { defineStore, acceptHMRUpdate, type StateTree } from "pinia";
 import { useStorage } from "@vueuse/core";
+import type { character } from "env";
 
 //
 //
@@ -72,17 +73,14 @@ export const myTohSkillBuilderStore = defineStore({
         "Unnamed " +
         (this.savedCharacters
           // get just characters named "*Unnamed*"
-          // eslint-disable-next-line prettier/prettier
           .filter((character: { characterName: string | string[] }) =>
             character.characterName.includes("Unnamed")
           )
           // get just the integers
-          // eslint-disable-next-line prettier/prettier
           .flatMap((character: { characterName: string }) =>
             parseInt(character.characterName.replace(/\D/g, ""))
           )
           // return the largest number
-          // eslint-disable-next-line prettier/prettier
           .reduce((cur: number, prev: number) => {
             return cur > prev ? cur : prev;
           }, 0) +
@@ -95,13 +93,42 @@ export const myTohSkillBuilderStore = defineStore({
       this.saveCharacter();
       this.$patch((state) => {
         state.character = cleanCopy(
-          this.savedCharacters.find((character) => character.id === id)
+          this.savedCharacters.find(
+            (character: { id: string }) => character.id === id
+          )
         );
       });
     },
 
     //update
 
+    migrateCharacter(character: character, { open = false } = {}) {
+      // this works; you're just using the console to check migrations
+      // until you're done writing them
+      const migrated = JSON.parse(
+        JSON.stringify({
+          ...character,
+          id: Math.random().toString(36).slice(2),
+        }).replace(/\\/g, "")
+      );
+      this.$patch((state) => {
+        if (open === true) {
+          state.character = migrated;
+        } else {
+          state.savedCharacters.push(migrated);
+        }
+      });
+      return true;
+      /*
+      console.log(
+        `store.migrateCharacter(\n\n${JSON.stringify({
+          ...character,
+          id: Math.random().toString(36).slice(2),
+        }).replace(/\\/g, "")}\n\n);`
+      );
+      return true;
+      */
+    },
     updateCharacter() {
       this.$patch((state) => {
         state.savedCharacters[
@@ -160,14 +187,11 @@ export const myTohSkillBuilderStore = defineStore({
   },
 });
 
-/* when you write mutations for old store forms: 
-const oldLocalStorageNames = [
-    "skills",
-    "total",
-    "character",
-    "savedCharacters",
-  ];
-*/
+if (import.meta.hot) {
+  import.meta.hot.accept(
+    acceptHMRUpdate(myTohSkillBuilderStore, import.meta.hot)
+  );
+}
 
 function isVariableUnset(variable: unknown) {
   return (
@@ -177,10 +201,4 @@ function isVariableUnset(variable: unknown) {
 
 function cleanCopy(character) {
   return JSON.parse(JSON.stringify(character));
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(
-    acceptHMRUpdate(myTohSkillBuilderStore, import.meta.hot)
-  );
 }
