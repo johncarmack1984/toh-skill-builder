@@ -103,7 +103,7 @@ export const myTohSkillBuilderStore = defineStore({
       this.saveCharacter();
       this.$patch((state) => {
         state.character = cleanCopy(
-          this.savedCharacters.find(
+          state.savedCharacters.find(
             (character: { id: string }) => character.id === id
           )
         );
@@ -142,7 +142,7 @@ export const myTohSkillBuilderStore = defineStore({
 
     resetScores() {
       this.$patch((state) => {
-        for (const [index] of this.character.skills.entries()) {
+        for (const [index] of state.character.skills.entries()) {
           state.character.skills[index].skillLevel = 0;
         }
       });
@@ -184,7 +184,7 @@ export const myTohSkillBuilderStore = defineStore({
     deleteCharacter(id: string) {
       this.$patch((state) => {
         state.savedCharacters.splice(
-          this.savedCharacters.findIndex((character) => character.id === id),
+          state.savedCharacters.findIndex((character) => character.id === id),
           1
         );
       });

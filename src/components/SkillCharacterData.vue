@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { myTohSkillBuilderStore } from "../stores/myTohSkillBuilder";
-const myTohSkillBuilder = myTohSkillBuilderStore();
+const store = myTohSkillBuilderStore();
 </script>
 
 <template>
@@ -11,7 +11,7 @@ const myTohSkillBuilder = myTohSkillBuilderStore();
           type="text"
           placeholder="Character name..."
           data-test="characterName"
-          v-model="myTohSkillBuilder.character.characterName"
+          v-model="store.character.characterName"
           class="text-left w-full text-2xl md:text-3xl px-1 sm:px-2 py-1 border-[1px] border-slate-400 rounded-sm"
         />
       </div>
@@ -20,15 +20,12 @@ const myTohSkillBuilder = myTohSkillBuilderStore();
           class="text-2xl md:text-3xl whitespace-nowrap"
           data-test="remainingPoints"
         >
-          {{ myTohSkillBuilder.remainingPoints }} /&nbsp;
+          {{ store.remainingPoints }} /&nbsp;
 
           <input
             type="number"
-            v-model="myTohSkillBuilder.character.totalPoints"
-            :min="
-              myTohSkillBuilder.character.totalPoints -
-              myTohSkillBuilder.remainingPoints
-            "
+            v-model="store.character.totalPoints"
+            :min="store.character.totalPoints - store.remainingPoints"
             pattern="[0-9]*"
             inputmode="numeric"
             class="w-12 md:w-16 pl-1 py-1 border-[1px] border-slate-400 rounded"

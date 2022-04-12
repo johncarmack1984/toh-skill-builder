@@ -6,12 +6,9 @@ import { expect } from "chai";
 describe("SkillCharacterData", () => {
   it("shows the character's name in a text input field", async () => {
     // instantiate the component & state
-    const { wrapper, myTohSkillBuilder } = await factory(
-      SkillCharacterData,
-      {}
-    );
+    const { wrapper, store } = await factory(SkillCharacterData, {});
     // test initial state
-    expect(myTohSkillBuilder.character.characterName).toBe("");
+    expect(store.character.characterName).toBe("");
     // find the character name field
     const characterNameInputField = wrapper.find("input[type=text]");
     // test initial state
@@ -19,30 +16,24 @@ describe("SkillCharacterData", () => {
     // set field value
     await characterNameInputField.setValue("Test Character");
     // test new value in state
-    expect(myTohSkillBuilder.character.characterName).toBe("Test Character");
+    expect(store.character.characterName).toBe("Test Character");
     // test new value in field
     expect(characterNameInputField.element.value).toBe("Test Character");
   });
 
   it("renders the remaining points & allows user to set total points", async () => {
     // instantiate the component & state
-    const { wrapper, myTohSkillBuilder } = await factory(
-      SkillCharacterData,
-      {}
-    );
+    const { wrapper, store } = await factory(SkillCharacterData, {});
 
     // test initial state
     //
     //--// remaining points
-    expect(myTohSkillBuilder.remainingPoints)
-      .toBe(
-        myTohSkillBuilder.character.totalPoints -
-          myTohSkillBuilder.totalUsedPoints
-      )
+    expect(store.remainingPoints)
+      .toBe(store.character.totalPoints - store.totalUsedPoints)
       .toBe(20);
     //
     //--// total points
-    expect(myTohSkillBuilder.character.totalPoints).toBe(20);
+    expect(store.character.totalPoints).toBe(20);
 
     // find render
     //
@@ -57,9 +48,7 @@ describe("SkillCharacterData", () => {
     // test render
     //
     //--// remaining points
-    expect(remainingPointsRender.text()).toBe(
-      myTohSkillBuilder.remainingPoints + " /"
-    );
+    expect(remainingPointsRender.text()).toBe(store.remainingPoints + " /");
     //
     //--// total points
     expect(totalPointsField.element.value).toBe("20");
@@ -75,14 +64,11 @@ describe("SkillCharacterData", () => {
     //--// in state
     //
     //--//--// total points
-    expect(myTohSkillBuilder.character.totalPoints).toBe(15);
+    expect(store.character.totalPoints).toBe(15);
     //
     //--//--// remaining points
-    expect(myTohSkillBuilder.remainingPoints)
-      .toBe(
-        myTohSkillBuilder.character.totalPoints -
-          myTohSkillBuilder.totalUsedPoints
-      )
+    expect(store.remainingPoints)
+      .toBe(store.character.totalPoints - store.totalUsedPoints)
       .toBe(15);
     //
     //--// in render
@@ -94,7 +80,7 @@ describe("SkillCharacterData", () => {
 
     // set new value in skill state
 
-    await myTohSkillBuilder.$patch((state) => {
+    await store.$patch((state) => {
       state.character.skills[0].skillLevel = 1;
       state.character.skills[1].skillLevel = 2;
       state.character.skills[2].skillLevel = 3;
@@ -102,7 +88,7 @@ describe("SkillCharacterData", () => {
     });
 
     // test new value in state
-    expect(myTohSkillBuilder.character.totalPoints).toBe(15);
+    expect(store.character.totalPoints).toBe(15);
 
     // test new remainning points value in render
     expect(remainingPointsRender.text()).toBe(5 + " /");

@@ -7,6 +7,12 @@ export type skill = {
   skillLevel: number;
 };
 
+interface Skill {
+  id: string;
+  skillName: string;
+  skillLevel: number;
+}
+
 export type character = {
   characterName: string;
   totalPoints: number;
@@ -20,10 +26,6 @@ export type skill00 = {
 };
 
 export type skills00 = skill00[];
-
-export function isSkills00(array: unknown): array is skills00 {
-  return true;
-}
 
 export type character00 = {
   id: string;

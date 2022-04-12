@@ -1,4 +1,4 @@
-import { fn } from "vitest";
+import { vi } from "vitest";
 import { mount } from "@vue/test-utils";
 import { createTestingPinia } from "@pinia/testing";
 import type { TestingOptions } from "./index";
@@ -21,14 +21,14 @@ export function factory(component: DefineComponent, options?: TestingOptions) {
       plugins: [
         createTestingPinia({
           // https://github.com/vuejs/pinia/discussions/1096
-          createSpy: fn,
+          createSpy: vi.fn,
         }),
       ],
     },
     ...options,
   });
 
-  const myTohSkillBuilder = myTohSkillBuilderStore();
+  const store = myTohSkillBuilderStore();
 
-  return { wrapper, myTohSkillBuilder };
+  return { wrapper, store };
 }

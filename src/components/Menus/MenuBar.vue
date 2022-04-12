@@ -8,7 +8,7 @@
 import MenuActual from "./MenuActual.vue";
 import { myTohSkillBuilderStore } from "@/stores/myTohSkillBuilder";
 import { computed } from "vue";
-const myTohSkillBuilder = myTohSkillBuilderStore();
+const store = myTohSkillBuilderStore();
 
 const menus = computed(() => {
   return [
@@ -19,14 +19,14 @@ const menus = computed(() => {
           label: "new character",
           type: "button",
           action: () => {
-            myTohSkillBuilder.newCharacter();
+            store.newCharacter();
           },
         },
         {
           label: "save character",
           type: "button",
           action: () => {
-            myTohSkillBuilder.saveCharacter();
+            store.saveCharacter();
           },
         },
         {
@@ -34,15 +34,15 @@ const menus = computed(() => {
           type: "subheading",
           action: undefined,
         },
-        ...myTohSkillBuilder.savedCharacters.map((character) => {
+        ...store.savedCharacters.map((character) => {
           return {
             label: character.characterName,
             type: "character",
             open: () => {
-              myTohSkillBuilder.openCharacter(character.id);
+              store.openCharacter(character.id);
             },
             delete: () => {
-              myTohSkillBuilder.deleteCharacter(character.id);
+              store.deleteCharacter(character.id);
             },
           };
         }),
@@ -55,35 +55,35 @@ const menus = computed(() => {
           label: "scores",
           type: "button",
           action: () => {
-            myTohSkillBuilder.resetScores();
+            store.resetScores();
           },
         },
         {
           label: "total points",
           type: "button",
           action: () => {
-            myTohSkillBuilder.resetTotalPoints();
+            store.resetTotalPoints();
           },
         },
         {
           label: "character name",
           type: "button",
           action: () => {
-            myTohSkillBuilder.resetCharacterName();
+            store.resetCharacterName();
           },
         },
         {
           label: "skill names",
           type: "button",
           action: () => {
-            myTohSkillBuilder.resetSkillNames();
+            store.resetSkillNames();
           },
         },
         {
           label: "all",
           type: "button",
           action: () => {
-            myTohSkillBuilder.resetAll();
+            store.resetAll();
           },
         },
       ],
