@@ -1,27 +1,16 @@
-<script lang="ts">
-import { defineComponent, ref } from "vue";
+<script setup lang="ts">
+import { ref } from "vue";
 import MenuBarButton from "./MenuBarButton.vue";
 import MenuActualButton from "./MenuActualButton.vue";
 
-export default defineComponent({
-  props: ["menu"],
-  setup(props) {
-    let showMenuValue = ref(false);
-    props = ref(props);
-    return {
-      showMenuValue,
-      props,
-    };
-  },
-  components: {
-    MenuBarButton,
-    MenuActualButton,
-  },
-  methods: {
-    hideMenu() {
-      this.showMenuValue = false;
-    },
-  },
+let showMenu = ref(false);
+
+function hideMenu() {
+  showMenu.value = false;
+}
+
+defineProps({
+  menu: Object,
 });
 </script>
 
@@ -29,7 +18,7 @@ export default defineComponent({
   <div class="z-50 text-left relative" v-clickOutside="hideMenu">
     <MenuBarButton
       :label="menu.label"
-      @button-event="showMenuValue = !showMenuValue"
+      @button-event="showMenu = !showMenu"
       :data-testid="`menu-open-button-${menu.label}`"
     />
     <transition
@@ -42,7 +31,7 @@ export default defineComponent({
     >
       <ul
         class="flex flex-col absolute top-11 left-2 border-[1px] p-2 bg-slate-50 rounded-sm min-w-fit"
-        v-if="showMenuValue"
+        v-if="showMenu"
         :data-testid="`menu-actual-${menu.label}`"
       >
         <li

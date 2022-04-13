@@ -1,13 +1,7 @@
-<template>
-  <div class="z-50 text-left pb-1 relative flex flex-row">
-    <MenuActual v-for="(menu, index) in menus" :key="index" :menu="menu" />
-  </div>
-</template>
-
 <script setup lang="ts">
-import MenuActual from "./MenuActual.vue";
 import { myTohSkillBuilderStore } from "@/stores/myTohSkillBuilder";
 import { computed } from "vue";
+import MenuActual from "./MenuActual.vue";
 const store = myTohSkillBuilderStore();
 
 const menus = computed(() => {
@@ -91,3 +85,14 @@ const menus = computed(() => {
   ];
 });
 </script>
+
+<template>
+  <div class="z-50 text-left pb-1 relative flex flex-row">
+    <MenuActual
+      v-for="(menu, index) in menus"
+      :key="index"
+      :menu="menu"
+      :data-testid="`menu-actual-component-${index}`"
+    />
+  </div>
+</template>

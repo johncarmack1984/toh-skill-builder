@@ -1,18 +1,32 @@
 import { describe, it } from "vitest";
-import { factory } from "../../__tests__/index";
+import { factory } from "@/__tests__/index";
+import { flushPromises } from "@vue/test-utils";
 import MenuBar from "@/components/Menus/MenuBar.vue";
 import { expect } from "vitest";
-import type { DefineComponent } from "vue";
+import { defineComponent, type DefineComponent } from "vue";
 
 describe("MenuBar", () => {
-  it("renders the menu open buttons", () => {
+  it("renders the menu open buttons", async () => {
     // instantiate component and state
     const { wrapper } = factory(MenuBar as DefineComponent, {
-      shallow: true,
+      shallow: false,
     });
 
-    expect(wrapper.vm.menus.length).toBe(
-      wrapper.findAll("menu-actual-stub").length
-    );
+    /*for (const [index, menu] of wrapper.vm.menus.entries()) {
+      //expect(wrapper.find(`'data-testid="menu-actual-component-${index}`)).toBeTypeOf(defineComponent)
+      console.log(
+        wrapper.find(`[data-testid="menu-actual-component-${index}"]`).html()
+      );
+      await wrapper
+        .find(`[data-testid="menu-actual-component-${index}"]`)
+        .trigger("click");
+      await flushPromises();
+      console.log(
+        wrapper.find(`[data-testid="menu-actual-component-${index}"]`).html()
+      );
+      //console.log(menu)
+    }*/
+
+    expect(wrapper.vm.menus.length).toBe(2);
   });
 });

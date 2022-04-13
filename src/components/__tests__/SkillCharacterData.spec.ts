@@ -1,7 +1,6 @@
-import { describe, it } from "vitest";
-import { factory } from "./index";
+import { describe, expect, it } from "vitest";
+import { factory } from "@/__tests__/index";
 import SkillCharacterData from "@/components/SkillCharacterData.vue";
-import { expect } from "chai";
 
 describe("SkillCharacterData", () => {
   it("shows the character's name in a text input field", async () => {

@@ -1,7 +1,9 @@
 import type { skills00, character00 } from "env";
+import { cleanCopy } from "../myTohSkillBuilder";
 
 export const migrationRun = (state) => {
   let skills = JSON.parse(localStorage.getItem("skills")) || null;
+  let characterName;
   let migrated;
   // mold to fit new shape
   if (skills !== null) {
@@ -11,7 +13,7 @@ export const migrationRun = (state) => {
       totalPoints: 20,
       skills,
     };
-    state.migrateCharacter(migrated);
+    state.migrateCharacter(migrated, { open: false });
     localStorage.removeItem("skills");
     skills = null;
   }
@@ -21,7 +23,7 @@ export const migrationRun = (state) => {
   }
   const character: character00 =
     JSON.parse(localStorage.getItem("character")) || null;
-  let characterName;
+
   if (character !== null) {
     skills = formatSkills00(character.skills);
     characterName = character.name || state.generateCharacterName();
@@ -30,14 +32,15 @@ export const migrationRun = (state) => {
       skills,
       totalPoints,
     };
-    state.migrateCharacter(migrated);
+    //console.log(migrated);
+    state.migrateCharacter(migrated, { open: true });
     localStorage.removeItem("character");
   }
   const savedCharacters =
     JSON.parse(localStorage.getItem("savedCharacters")) || null;
   if (savedCharacters !== null) {
     for (const character of savedCharacters) {
-      characterName = character.characterName || state.generateCharacterName();
+      characterName = character.name || state.generateCharacterName();
       skills = skills = formatSkills00(character.skills);
       totalPoints = character.totalPoints || 20;
       migrated = {
@@ -45,7 +48,7 @@ export const migrationRun = (state) => {
         skills,
         totalPoints,
       };
-      state.migrateCharacter(migrated, { open: true });
+      state.migrateCharacter(migrated, { open: false });
     }
     localStorage.removeItem("savedCharacters");
   }
@@ -53,7 +56,7 @@ export const migrationRun = (state) => {
   totalPoints = null;
 };
 
-const formatSkills00 = (skills: skills00) => {
+const formatSkills00 = (skills) => {
   for (const [index, skill] of skills.entries()) {
     skills[index] = {
       id: index,

@@ -1,4 +1,4 @@
-import { describe, it, beforeEach, beforeAll } from "vitest";
+import { describe, it, beforeEach, beforeAll, expect } from "vitest";
 import { migrationSetup } from "../migration-setup";
 import { migrationRun } from "../migration-run";
 import storage from "mock-local-storage";
@@ -11,31 +11,20 @@ describe("migrationSetup", () => {
   });
   beforeEach(() => {
     setActivePinia(createPinia());
-    const myTohSkillBuilder = myTohSkillBuilderStore();
-    myTohSkillBuilder.$reset();
+    const store = myTohSkillBuilderStore();
+    store.$reset();
     localStorage.clear();
   });
 
   it("converts type skills00 to type tohSkillBuilder", async () => {
-    const myTohSkillBuilder = await myTohSkillBuilderStore();
+    const store = await myTohSkillBuilderStore();
+
     migrationSetup();
-    migrationRun(myTohSkillBuilder);
+    migrationRun(store);
+
+    expect(store.character.characterName).toBe("Sample Character 00");
+    expect(store.savedCharacters.length).toBe(5);
+    expect(store.savedCharacters[0].characterName).toBe("Unnamed 1");
+    expect(store.savedCharacters[1].characterName).toBe("Sample Character 00");
   });
 });
-
-/*
-
-Unfinished tests:
-
-  it("converts type total00 to type tohSkillBuilder", () => {
-    migrationSetup();
-  });
-  it("converts type character00 to type tohSkillBuilder", () => {
-    migrationSetup();
-  });
-  it("converts type savedCharacters00 to type tohSkillBuilder", () => {
-    migrationSetup();
-  });
-
-
-*/

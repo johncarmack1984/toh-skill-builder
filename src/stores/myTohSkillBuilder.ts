@@ -204,6 +204,6 @@ function isVariableUnset(variable: unknown) {
   );
 }
 
-function cleanCopy(character) {
+export function cleanCopy(character) {
   return JSON.parse(JSON.stringify(character).replace(/\\/g, ""));
 }

@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { flushPromises } from "@vue/test-utils";
-import { factory } from "./index";
+import { factory } from "@/__tests__/index";
 import SkillPyramid from "@/components/SkillPyramid.vue";
 
 describe("SkillPyramid", () => {

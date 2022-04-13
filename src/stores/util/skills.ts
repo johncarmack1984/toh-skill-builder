@@ -6,23 +6,23 @@ export default {
   _62186e88225ab700089a360f: [
     {
       name: "Physique / Resist",
-      value: 0,
+      value: 1,
     },
     {
       name: "Willpower",
-      value: 0,
+      value: 1,
     },
     {
       name: "Fight",
-      value: 0,
+      value: 1,
     },
     {
       name: "Shoot",
-      value: 0,
+      value: 1,
     },
     {
       name: "Strength",
-      value: 0,
+      value: 1,
     },
     {
       name: "Acrobatics / Dodge",
