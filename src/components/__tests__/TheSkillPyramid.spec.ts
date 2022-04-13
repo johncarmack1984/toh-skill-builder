@@ -1,12 +1,12 @@
 import { describe, it, expect } from "vitest";
 import { flushPromises } from "@vue/test-utils";
 import { factory } from "@/__tests__/index";
-import SkillPyramid from "@/components/SkillPyramid.vue";
+import TheSkillPyramid from "@/components/TheSkillPyramid.vue";
 
-describe("SkillPyramid", () => {
+describe("TheSkillPyramid", () => {
   it("renders a visual representation of skill levels selected", async () => {
     // instantiate component and state
-    const { wrapper, store } = factory(SkillPyramid, {});
+    const { wrapper, store } = factory(TheSkillPyramid, {});
 
     for (const [index, row] of wrapper.vm.squares.entries()) {
       expect(row).toBe(0);
@@ -39,7 +39,7 @@ describe("SkillPyramid", () => {
   });
 
   it("renders a clean interface when character is reset to default", async () => {
-    const { wrapper, store } = factory(SkillPyramid, {});
+    const { wrapper, store } = factory(TheSkillPyramid, {});
 
     store.$patch((state) => {
       for (const index in wrapper.vm.squares) {

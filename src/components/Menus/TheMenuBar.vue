@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { tohSkillBuilderStore } from "@/stores/tohSkillBuilder";
 import { computed } from "vue";
-import TheMenu from "./TheMenu.vue";
+import Menu from "./Menu.vue";
 const store = tohSkillBuilderStore();
 
 const menus = computed(() => {
@@ -88,7 +88,7 @@ const menus = computed(() => {
 
 <template>
   <div class="z-50 text-left pb-1 relative flex flex-row">
-    <TheMenu
+    <Menu
       v-for="(menu, index) in menus"
       :key="index"
       :menu="menu"

@@ -1,14 +1,14 @@
 import { describe, it } from "vitest";
 import { factory } from "@/__tests__/index";
 import { flushPromises } from "@vue/test-utils";
-import MenuBar from "@/components/Menus/MenuBar.vue";
+import TheMenuBar from "@/components/Menus/TheMenuBar.vue";
 import { expect } from "vitest";
 import { defineComponent, type DefineComponent } from "vue";
 
-describe("MenuBar", () => {
+describe("TheMenuBar", () => {
   it("renders the menu open buttons", async () => {
     // instantiate component and state
-    const { wrapper } = factory(MenuBar as DefineComponent, {
+    const { wrapper } = factory(TheMenuBar as DefineComponent, {
       shallow: false,
     });
 

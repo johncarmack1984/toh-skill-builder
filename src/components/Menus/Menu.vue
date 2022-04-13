@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import MenuBarButton from "./MenuBarButton.vue";
-import MenuActualButton from "./MenuActualButton.vue";
+import MenuButton from "./MenuButton.vue";
 
 let showMenu = ref(false);
 
@@ -10,7 +10,10 @@ function hideMenu() {
 }
 
 defineProps({
-  menu: Object,
+  menu: {
+    type: Object,
+    required: true,
+  },
 });
 </script>
 
@@ -39,7 +42,7 @@ defineProps({
           :key="index"
           :data-testid="`menu-option-li-${index}`"
         >
-          <MenuActualButton :item="item" @hide-menu="hideMenu" />
+          <MenuButton :item="item" @hide-menu="hideMenu" />
         </li>
       </ul>
     </transition>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import SkillCharacterData from "../components/SkillCharacterData.vue";
-import SkillPyramid from "../components/SkillPyramid.vue";
+import TheCharacter from "../components/TheCharacter.vue";
+import TheSkillPyramid from "../components/TheSkillPyramid.vue";
 import { tohSkillBuilderStore } from "../stores/tohSkillBuilder";
 import { migrationRun } from "@/stores/util/migration-run";
 
@@ -17,8 +17,8 @@ migrationRun(store);
   <div
     class="z-40 sticky top-[-2px] bg-slate-100 border-b-[3px] border-dotted border-slate-500"
   >
-    <SkillCharacterData />
-    <SkillPyramid />
+    <TheCharacter />
+    <TheSkillPyramid />
   </div>
   <div class="z-0 md:flex pt-2">
     <ul class="z-0 flex flex-wrap justify-around">

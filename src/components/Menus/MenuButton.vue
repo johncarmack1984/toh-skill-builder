@@ -2,7 +2,12 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  props: ["item"],
+  props: {
+    item: {
+      type: Object,
+      required: true,
+    },
+  },
   emits: ["hideMenu"],
 });
 </script>

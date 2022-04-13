@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { factory } from "@/__tests__/index";
-import SkillCharacterData from "@/components/SkillCharacterData.vue";
+import TheCharacter from "@/components/TheCharacter.vue";
 
-describe("SkillCharacterData", () => {
+describe("TheCharacter", () => {
   it("shows the character's name in a text input field", async () => {
     // instantiate the component & state
-    const { wrapper, store } = await factory(SkillCharacterData, {});
+    const { wrapper, store } = await factory(TheCharacter, {});
     // test initial state
     expect(store.character.name).toBe("");
     // find the character name field
@@ -22,7 +22,7 @@ describe("SkillCharacterData", () => {
 
   it("renders the remaining points & allows user to set total points", async () => {
     // instantiate the component & state
-    const { wrapper, store } = await factory(SkillCharacterData, {});
+    const { wrapper, store } = await factory(TheCharacter, {});
 
     // test initial state
     //
