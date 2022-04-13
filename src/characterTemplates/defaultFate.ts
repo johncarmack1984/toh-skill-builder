@@ -1,4 +1,4 @@
-export const defaultFateSkillNames = [
+export const defaultFatenames = [
   "Academics",
   "Athletics",
   "Burglary",
@@ -21,7 +21,7 @@ export const defaultFateSkillNames = [
 ];
 
 export const defaultFateCharacter = {
-  characterName: "",
+  name: "",
   totalPoints: 20,
-  skills: defaultFateSkillNames,
+  skills: defaultFatenames,
 };

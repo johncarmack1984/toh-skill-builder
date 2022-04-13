@@ -1,4 +1,4 @@
-export const defaultBrettSkillNames = [
+export const defaultBrettnames = [
   "Physique / Resist",
   "Willpower",
   "Fight",
@@ -25,7 +25,7 @@ export const defaultBrettSkillNames = [
 ];
 
 export const defaultBrettOwlHouseCharacter = {
-  characterName: "",
+  name: "",
   totalPoints: 20,
-  skills: defaultBrettSkillNames,
+  skills: defaultBrettnames,
 };

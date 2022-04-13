@@ -4,6 +4,7 @@ Build away.
 
 Release notes:
 
+- 4/12 - refactor to components, introduce tests
 - 4/08 - skill names update
 - 4/03 - code cleanup,
 - 3/13 - save characters

@@ -7,17 +7,17 @@ describe("SkillCharacterData", () => {
     // instantiate the component & state
     const { wrapper, store } = await factory(SkillCharacterData, {});
     // test initial state
-    expect(store.character.characterName).toBe("");
+    expect(store.character.name).toBe("");
     // find the character name field
-    const characterNameInputField = wrapper.find("input[type=text]");
+    const nameInputField = wrapper.find("input[type=text]");
     // test initial state
-    expect(characterNameInputField.element.value).toBe("");
+    expect(nameInputField.element.value).toBe("");
     // set field value
-    await characterNameInputField.setValue("Test Character");
+    await nameInputField.setValue("Test Character");
     // test new value in state
-    expect(store.character.characterName).toBe("Test Character");
+    expect(store.character.name).toBe("Test Character");
     // test new value in field
-    expect(characterNameInputField.element.value).toBe("Test Character");
+    expect(nameInputField.element.value).toBe("Test Character");
   });
 
   it("renders the remaining points & allows user to set total points", async () => {

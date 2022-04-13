@@ -59,7 +59,7 @@ migrationRun(store);
           +
         </button>
         <textarea
-          v-model="skill.skillName"
+          v-model="skill.name"
           class="z-10 text-[16px] w-full text-center break-words resize-none mt-[-2px] font-bold text-blue-dark bg-slate-50 rounded leading-5 pt-[1px]"
         ></textarea>
       </li>

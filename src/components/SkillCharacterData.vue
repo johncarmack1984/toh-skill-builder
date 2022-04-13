@@ -10,8 +10,8 @@ const store = myTohSkillBuilderStore();
         <input
           type="text"
           placeholder="Character name..."
-          data-test="characterName"
-          v-model="store.character.characterName"
+          data-test="name"
+          v-model="store.character.name"
           class="text-left w-full text-2xl md:text-3xl px-1 sm:px-2 py-1 border-[1px] border-slate-400 rounded-sm"
         />
       </div>

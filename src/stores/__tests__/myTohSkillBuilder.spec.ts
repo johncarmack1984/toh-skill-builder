@@ -105,14 +105,14 @@ describe("myTohSkillBuilder", () => {
     const store = myTohSkillBuilderStore();
 
     store.$patch((state) => {
-      state.character.characterName = "Test Character";
+      state.character.name = "Test Character";
     });
 
-    expect(store.character.characterName).toBe("Test Character");
+    expect(store.character.name).toBe("Test Character");
 
-    store.resetCharacterName();
+    store.resetname();
 
-    expect(store.character.characterName).toBe("");
+    expect(store.character.name).toBe("");
   });
 
   it("resets skill names", () => {
@@ -120,18 +120,18 @@ describe("myTohSkillBuilder", () => {
 
     store.$patch((state) => {
       for (const skill of state.character.skills) {
-        skill.skillName = "Test Skill Name";
+        skill.name = "Test Skill Name";
       }
     });
 
     for (const skill of store.character.skills) {
-      expect(skill.skillName).toBe("Test Skill Name");
+      expect(skill.name).toBe("Test Skill Name");
     }
 
-    store.resetSkillNames();
+    store.resetnames();
 
     for (const [index, skill] of store.character.skills.entries()) {
-      expect(skill.skillName).toBe(defaultCharacter.skills[index].skillName);
+      expect(skill.name).toBe(defaultCharacter.skills[index].name);
     }
   });
 
@@ -144,9 +144,9 @@ describe("myTohSkillBuilder", () => {
       state.character.skills[2].skillLevel = 3;
       state.character.skills[3].skillLevel = 4;
       state.character.totalPoints = 25;
-      state.character.characterName = "Test Character";
+      state.character.name = "Test Character";
       for (const skill of state.character.skills) {
-        skill.skillName = "Test Skill Name";
+        skill.name = "Test Skill Name";
       }
     });
 
@@ -155,10 +155,10 @@ describe("myTohSkillBuilder", () => {
     expect(store.character.totalPoints).toBe(25);
 
     for (const skill of store.character.skills) {
-      expect(skill.skillName).toBe("Test Skill Name");
+      expect(skill.name).toBe("Test Skill Name");
     }
 
-    expect(store.character.characterName).toBe("Test Character");
+    expect(store.character.name).toBe("Test Character");
 
     store.resetAll();
 
@@ -166,10 +166,10 @@ describe("myTohSkillBuilder", () => {
 
     expect(store.character.totalPoints).toBe(20);
 
-    expect(store.character.characterName).toBe("");
+    expect(store.character.name).toBe("");
 
     for (const [index, skill] of store.character.skills.entries()) {
-      expect(skill.skillName).toBe(defaultCharacter.skills[index].skillName);
+      expect(skill.name).toBe(defaultCharacter.skills[index].name);
     }
   });
 
@@ -191,14 +191,14 @@ describe("myTohSkillBuilder", () => {
     store.saveCharacter();
 
     store.$patch((state) => {
-      state.character.characterName = "Test Character";
+      state.character.name = "Test Character";
     });
 
-    expect(store.savedCharacters[0].characterName).toBe("Unnamed 1");
+    expect(store.savedCharacters[0].name).toBe("Unnamed 1");
 
     store.saveCharacter();
 
-    expect(store.savedCharacters[0].characterName).toBe("Test Character");
+    expect(store.savedCharacters[0].name).toBe("Test Character");
   });
 
   it('creates an "Untitled (x)" name based on largest [Untitled x] in savedCharacters', () => {
@@ -206,7 +206,7 @@ describe("myTohSkillBuilder", () => {
 
     store.saveCharacter();
 
-    expect(store.savedCharacters[0].characterName).toBe("Unnamed 1");
+    expect(store.savedCharacters[0].name).toBe("Unnamed 1");
   });
 
   it("deletes a character from savedCharacters", () => {

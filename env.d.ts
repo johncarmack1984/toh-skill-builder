@@ -3,18 +3,18 @@ declare module "mock-local-storage";
 
 export type skill = {
   id: number;
-  skillName: string;
+  name: string;
   skillLevel: number;
 };
 
 interface Skill {
   id: string;
-  skillName: string;
+  name: string;
   skillLevel: number;
 }
 
 export type character = {
-  characterName: string;
+  name: string;
   totalPoints: number;
   skills: array<skill>;
   id: string;

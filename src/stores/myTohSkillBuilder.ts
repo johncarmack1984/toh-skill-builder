@@ -47,8 +47,8 @@ export const myTohSkillBuilderStore = defineStore({
 
     saveCharacter() {
       // if this character is not in savedCharacters
-      if (isVariableUnset(this.character.characterName)) {
-        this.character.characterName = this.generateCharacterName();
+      if (isVariableUnset(this.character.name)) {
+        this.character.name = this.generatename();
       }
       if (
         this.savedCharacters.find(
@@ -73,17 +73,17 @@ export const myTohSkillBuilderStore = defineStore({
         };
       });
     },
-    generateCharacterName() {
+    generatename() {
       return (
         "Unnamed " +
         (this.savedCharacters
           // get just characters named "*Unnamed*"
-          .filter((character: { characterName: string | string[] }) =>
-            character.characterName.includes("Unnamed")
+          .filter((character: { name: string | string[] }) =>
+            character.name.includes("Unnamed")
           )
           // get just the integers
-          .flatMap((character: { characterName: string }) =>
-            parseInt(character.characterName.replace(/\D/g, ""))
+          .flatMap((character: { name: string }) =>
+            parseInt(character.name.replace(/\D/g, ""))
           )
           // return the largest number
           .reduce((cur: number, prev: number) => {
@@ -154,16 +154,16 @@ export const myTohSkillBuilderStore = defineStore({
       });
     },
 
-    resetCharacterName() {
+    resetname() {
       this.$patch((state) => {
-        state.character.characterName = defaultCharacter.characterName;
+        state.character.name = defaultCharacter.name;
       });
     },
 
-    resetSkillNames() {
+    resetnames() {
       this.$patch((state) => {
         for (const [index, skill] of state.character.skills.entries()) {
-          skill.skillName = defaultCharacter.skills[index].skillName;
+          skill.name = defaultCharacter.skills[index].name;
         }
       });
     },
@@ -171,8 +171,8 @@ export const myTohSkillBuilderStore = defineStore({
     resetAll() {
       this.resetScores();
       this.resetTotalPoints();
-      this.resetCharacterName();
-      this.resetSkillNames();
+      this.resetname();
+      this.resetnames();
     },
 
     //

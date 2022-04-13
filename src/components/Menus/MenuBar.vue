@@ -30,7 +30,7 @@ const menus = computed(() => {
         },
         ...store.savedCharacters.map((character) => {
           return {
-            label: character.characterName,
+            label: character.name,
             type: "character",
             open: () => {
               store.openCharacter(character.id);
@@ -63,14 +63,14 @@ const menus = computed(() => {
           label: "character name",
           type: "button",
           action: () => {
-            store.resetCharacterName();
+            store.resetname();
           },
         },
         {
           label: "skill names",
           type: "button",
           action: () => {
-            store.resetSkillNames();
+            store.resetnames();
           },
         },
         {

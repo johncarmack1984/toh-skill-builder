@@ -3,13 +3,13 @@ import { cleanCopy } from "../myTohSkillBuilder";
 
 export const migrationRun = (state) => {
   let skills = JSON.parse(localStorage.getItem("skills")) || null;
-  let characterName;
+  let name;
   let migrated;
   // mold to fit new shape
   if (skills !== null) {
     skills = formatSkills00(skills);
     migrated = {
-      characterName: state.generateCharacterName(),
+      name: state.generatename(),
       totalPoints: 20,
       skills,
     };
@@ -26,9 +26,9 @@ export const migrationRun = (state) => {
 
   if (character !== null) {
     skills = formatSkills00(character.skills);
-    characterName = character.name || state.generateCharacterName();
+    name = character.name || state.generatename();
     migrated = {
-      characterName,
+      name,
       skills,
       totalPoints,
     };
@@ -40,11 +40,11 @@ export const migrationRun = (state) => {
     JSON.parse(localStorage.getItem("savedCharacters")) || null;
   if (savedCharacters !== null) {
     for (const character of savedCharacters) {
-      characterName = character.name || state.generateCharacterName();
+      name = character.name || state.generatename();
       skills = skills = formatSkills00(character.skills);
       totalPoints = character.totalPoints || 20;
       migrated = {
-        characterName,
+        name,
         skills,
         totalPoints,
       };
@@ -60,14 +60,14 @@ const formatSkills00 = (skills) => {
   for (const [index, skill] of skills.entries()) {
     skills[index] = {
       id: index,
-      skillName: skill.name,
+      name: skill.name,
       skillLevel: skill.value,
     };
   }
   if (skills[skills.length - 1].id <= 22) {
     skills.push({
       id: 22,
-      skillName: "Agility",
+      name: "Agility",
       skillLevel: 0,
     });
   }

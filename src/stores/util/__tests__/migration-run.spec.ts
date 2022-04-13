@@ -22,9 +22,9 @@ describe("migrationSetup", () => {
     migrationSetup();
     migrationRun(store);
 
-    expect(store.character.characterName).toBe("Sample Character 00");
+    expect(store.character.name).toBe("Sample Character 00");
     expect(store.savedCharacters.length).toBe(5);
-    expect(store.savedCharacters[0].characterName).toBe("Unnamed 1");
-    expect(store.savedCharacters[1].characterName).toBe("Sample Character 00");
+    expect(store.savedCharacters[0].name).toBe("Unnamed 1");
+    expect(store.savedCharacters[1].name).toBe("Sample Character 00");
   });
 });
