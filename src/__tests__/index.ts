@@ -2,7 +2,7 @@ import { vi } from "vitest";
 import { mount } from "@vue/test-utils";
 import { createTestingPinia } from "@pinia/testing";
 import type { TestingOptions } from "./index";
-import { myTohSkillBuilderStore } from "@/stores/myTohSkillBuilder";
+import { tohSkillBuilderStore } from "@/stores/tohSkillBuilder";
 import type { DefineComponent } from "vue";
 import clickOutside from "@/directives/clickOutside";
 
@@ -28,7 +28,7 @@ export function factory(component: DefineComponent, options?: TestingOptions) {
     ...options,
   });
 
-  const store = myTohSkillBuilderStore();
+  const store = tohSkillBuilderStore();
 
   return { wrapper, store };
 }

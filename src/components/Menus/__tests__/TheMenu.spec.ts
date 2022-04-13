@@ -2,7 +2,7 @@
 import { flushPromises } from "@vue/test-utils";
 import { vi, describe, expect, it } from "vitest";
 import { factory } from "@/__tests__/index";
-import MenuActual from "@/components/Menus/MenuActual.vue";
+import TheMenu from "@/components/Menus/TheMenu.vue";
 import type { DefineComponent } from "vue";
 
 const sampleMenu = {
@@ -27,10 +27,10 @@ const sampleMenu = {
   ],
 };
 
-describe("MenuActual", async () => {
+describe("TheMenu", async () => {
   it("renders only the open button at initialization", async () => {
     // instantiate component and state
-    const { wrapper } = factory(MenuActual as unknown as DefineComponent, {
+    const { wrapper } = factory(TheMenu as unknown as DefineComponent, {
       shallow: false,
       props: {
         menu: sampleMenu,
@@ -42,7 +42,7 @@ describe("MenuActual", async () => {
 
   it("renders menu visible when open button is clicked", async () => {
     // instantiate component and state
-    const { wrapper } = factory(MenuActual as unknown as DefineComponent, {
+    const { wrapper } = factory(TheMenu as unknown as DefineComponent, {
       shallow: false,
       props: {
         menu: sampleMenu,
@@ -67,7 +67,7 @@ describe("MenuActual", async () => {
 
   it("closes the menu when hideMenu is called", async () => {
     // instantiate component and state
-    const { wrapper } = factory(MenuActual as unknown as DefineComponent, {
+    const { wrapper } = factory(TheMenu as unknown as DefineComponent, {
       shallow: false,
       props: {
         menu: sampleMenu,

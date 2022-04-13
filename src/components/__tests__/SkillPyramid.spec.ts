@@ -19,7 +19,7 @@ describe("SkillPyramid", () => {
     }
     store.$patch((state) => {
       for (const index in wrapper.vm.squares) {
-        state.character.skills[index].skillLevel = parseInt(index) + 1;
+        state.character.skills[index].value = parseInt(index) + 1;
       }
     });
 
@@ -43,14 +43,14 @@ describe("SkillPyramid", () => {
 
     store.$patch((state) => {
       for (const index in wrapper.vm.squares) {
-        state.character.skills[index].skillLevel = parseInt(index) + 1;
+        state.character.skills[index].value = parseInt(index) + 1;
       }
     });
 
     //store.resetScores(); // doesn't test for some reason? it's just this anyway:
     store.$patch((state) => {
       for (const [index] of state.character.skills.entries()) {
-        state.character.skills[index].skillLevel = 0;
+        state.character.skills[index].value = 0;
       }
     });
 

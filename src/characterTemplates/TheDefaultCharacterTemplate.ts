@@ -6,7 +6,7 @@ const defaultnames = defaultBrettnames;
 const defaultSkillList = [];
 
 for (const [index, name] of defaultnames.entries()) {
-  defaultSkillList.push({ id: index, name, skillLevel: 0 } as skill);
+  defaultSkillList.push({ id: index, name, value: 0 } as skill);
 }
 
 export const defaultCharacter = {

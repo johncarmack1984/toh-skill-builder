@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { skill } from "env";
 import { computed } from "vue";
-import { myTohSkillBuilderStore } from "@/stores/myTohSkillBuilder";
+import { tohSkillBuilderStore } from "@/stores/tohSkillBuilder";
 
-const store = myTohSkillBuilderStore();
+const store = tohSkillBuilderStore();
 
 const legend = [
   { level: 4, label: "Great", symbol: "🟪" },
@@ -15,7 +15,7 @@ const legend = [
 const squares = computed(() => {
   return legend.map((level) => {
     return store.character.skills.filter((skill: skill) => {
-      return skill.skillLevel == level.level;
+      return skill.value == level.level;
     }).length;
   });
 });

@@ -80,10 +80,10 @@ describe("SkillCharacterData", () => {
     // set new value in skill state
 
     await store.$patch((state) => {
-      state.character.skills[0].skillLevel = 1;
-      state.character.skills[1].skillLevel = 2;
-      state.character.skills[2].skillLevel = 3;
-      state.character.skills[3].skillLevel = 4;
+      state.character.skills[0].value = 1;
+      state.character.skills[1].value = 2;
+      state.character.skills[2].value = 3;
+      state.character.skills[3].value = 4;
     });
 
     // test new value in state

@@ -3,7 +3,7 @@ import { migrationSetup } from "../migration-setup";
 import { migrationRun } from "../migration-run";
 import storage from "mock-local-storage";
 import { setActivePinia, createPinia } from "pinia";
-import { myTohSkillBuilderStore } from "@/stores/myTohSkillBuilder";
+import { tohSkillBuilderStore } from "@/stores/tohSkillBuilder";
 
 describe("migrationSetup", () => {
   beforeAll(() => {
@@ -11,13 +11,13 @@ describe("migrationSetup", () => {
   });
   beforeEach(() => {
     setActivePinia(createPinia());
-    const store = myTohSkillBuilderStore();
+    const store = tohSkillBuilderStore();
     store.$reset();
     localStorage.clear();
   });
 
   it("converts type skills00 to type tohSkillBuilder", async () => {
-    const store = await myTohSkillBuilderStore();
+    const store = await tohSkillBuilderStore();
 
     migrationSetup();
     migrationRun(store);

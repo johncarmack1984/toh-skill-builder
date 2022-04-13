@@ -10,8 +10,8 @@ import type { character } from "env";
 //
 //
 
-export const myTohSkillBuilderStore = defineStore({
-  id: "myTohSkillBuilder",
+export const tohSkillBuilderStore = defineStore({
+  id: "tohSkillBuilder",
 
   state: () =>
     useStorage("toh-skill-builder", {
@@ -25,11 +25,8 @@ export const myTohSkillBuilderStore = defineStore({
   getters: {
     totalUsedPoints(state) {
       return state.character.skills
-        .filter((skill: { skillLevel: number }) => skill.skillLevel > 0)
-        .reduce(
-          (prev: number, cur: { skillLevel: number }) => prev + cur.skillLevel,
-          0
-        );
+        .filter((skill: { value: number }) => skill.value > 0)
+        .reduce((prev: number, cur: { value: number }) => prev + cur.value, 0);
     },
 
     remainingPoints(state) {
@@ -143,7 +140,7 @@ export const myTohSkillBuilderStore = defineStore({
     resetScores() {
       this.$patch((state) => {
         for (const [index] of state.character.skills.entries()) {
-          state.character.skills[index].skillLevel = 0;
+          state.character.skills[index].value = 0;
         }
       });
     },
@@ -194,7 +191,7 @@ export const myTohSkillBuilderStore = defineStore({
 
 if (import.meta.hot) {
   import.meta.hot.accept(
-    acceptHMRUpdate(myTohSkillBuilderStore, import.meta.hot)
+    acceptHMRUpdate(tohSkillBuilderStore, import.meta.hot)
   );
 }
 

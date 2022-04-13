@@ -1,5 +1,5 @@
 import type { skills00, character00 } from "env";
-import { cleanCopy } from "../myTohSkillBuilder";
+import { cleanCopy } from "../tohSkillBuilder";
 
 export const migrationRun = (state) => {
   let skills = JSON.parse(localStorage.getItem("skills")) || null;
@@ -61,14 +61,14 @@ const formatSkills00 = (skills) => {
     skills[index] = {
       id: index,
       name: skill.name,
-      skillLevel: skill.value,
+      value: skill.value,
     };
   }
   if (skills[skills.length - 1].id <= 22) {
     skills.push({
       id: 22,
       name: "Agility",
-      skillLevel: 0,
+      value: 0,
     });
   }
   return skills;

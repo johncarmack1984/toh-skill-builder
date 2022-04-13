@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { myTohSkillBuilderStore } from "../stores/myTohSkillBuilder";
-const store = myTohSkillBuilderStore();
+import { tohSkillBuilderStore } from "../stores/tohSkillBuilder";
+const store = tohSkillBuilderStore();
 </script>
 
 <template>
