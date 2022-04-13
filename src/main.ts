@@ -10,5 +10,7 @@ const app = createApp(App);
 app.use(createPinia());
 
 app.directive("clickOutside", clickOutside);
+
 app.use(router);
+
 app.mount("#app");

@@ -4,13 +4,13 @@ import SkillPyramid from "../components/SkillPyramid.vue";
 import { myTohSkillBuilderStore } from "../stores/myTohSkillBuilder";
 import { migrationRun } from "@/stores/util/migration-run";
 
-const myTohSkillBuilder = myTohSkillBuilderStore();
+const store = myTohSkillBuilderStore();
 const averageClass = "border-red";
 const fairClass = "border-yellow";
 const goodClass = "border-green";
 const greatClass = "border-purple";
 
-migrationRun(myTohSkillBuilder);
+migrationRun(store);
 </script>
 
 <template>
@@ -23,7 +23,7 @@ migrationRun(myTohSkillBuilder);
   <div class="z-0 md:flex pt-2">
     <ul class="z-0 flex flex-wrap justify-around">
       <li
-        v-for="(skill, index) in myTohSkillBuilder.character.skills"
+        v-for="(skill, index) in store.character.skills"
         :key="index"
         :skill="skill"
         class="z-0 w-1/3 rounded-sm bg-slate-200 m-1 p-[7px] max-w-[120px] h-[125px] border-[3px] overflow-hidden"
@@ -53,9 +53,7 @@ migrationRun(myTohSkillBuilder);
         </button>
         <button
           @click="skill.skillLevel++"
-          :disabled="
-            skill.skillLevel > 3 || myTohSkillBuilder.remainingPoints <= 0
-          "
+          :disabled="skill.skillLevel > 3 || store.remainingPoints <= 0"
           class="z-30 text-[16px] font-black bg-blue-dark hover:bg-blue-light rounded-full px-[16px] sm:px-[16px] py-[8px] sm:py-[8px] mx-[2px] sm:mx-[2px] mb-[2px] mt-[-12px] text-white focus:ring-2 ring-blue-light disabled:bg-slate-300"
         >
           +
