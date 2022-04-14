@@ -14,12 +14,12 @@ export const migrationRun = (state) => {
       skills,
     };
     state.migrateCharacter(migrated, { open: false });
-    localStorage.removeItem("skills");
+    //localStorage.removeItem("skills");
     skills = null;
   }
   let totalPoints = JSON.parse(localStorage.getItem("total")) || null;
   if (totalPoints !== null) {
-    localStorage.removeItem("total");
+    //localStorage.removeItem("total");
   }
   const character: character00 =
     JSON.parse(localStorage.getItem("character")) || null;
@@ -34,7 +34,7 @@ export const migrationRun = (state) => {
     };
     //console.log(migrated);
     state.migrateCharacter(migrated, { open: true });
-    localStorage.removeItem("character");
+    //localStorage.removeItem("character");
   }
   const savedCharacters =
     JSON.parse(localStorage.getItem("savedCharacters")) || null;
@@ -50,7 +50,7 @@ export const migrationRun = (state) => {
       };
       state.migrateCharacter(migrated, { open: false });
     }
-    localStorage.removeItem("savedCharacters");
+    //localStorage.removeItem("savedCharacters");
   }
   skills = null;
   totalPoints = null;
