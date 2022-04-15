@@ -3,14 +3,22 @@ import TheCharacter from "../components/TheCharacter.vue";
 import TheSkillPyramid from "../components/TheSkillPyramid.vue";
 import { tohSkillBuilderStore } from "../stores/tohSkillBuilder";
 import { migrationRun } from "@/stores/util/migration-run";
+import _ from "lodash";
 
 const store = tohSkillBuilderStore();
+migrationRun(store);
+
 const averageClass = "border-red";
 const fairClass = "border-yellow";
 const goodClass = "border-green";
 const greatClass = "border-purple";
+//['red','orange','yellow','green','cyan','blue','purple']
 
-migrationRun(store);
+/*
+for (let i in _.range(0,256)) {
+  console.log(i);
+}
+*/
 </script>
 
 <template>
@@ -46,14 +54,14 @@ migrationRun(store);
         </div>
         <button
           @click="skill.value--"
-          :disabled="skill.value < 1"
+          :disabled="skill.value < -3"
           class="z-30 text-[16px] font-black bg-blue-dark hover:bg-blue-light rounded-full px-[16px] sm:px-[16px] py-[8px] sm:py-[8px] mx-[2px] sm:mx-[2px] mb-[2px] mt-[-12px] text-white focus:ring-2 ring-blue-light disabled:bg-slate-300"
         >
           -
         </button>
         <button
           @click="skill.value++"
-          :disabled="skill.value > 3 || store.remainingPoints <= 0"
+          :disabled="skill.value > 7 || store.remainingPoints <= 0"
           class="z-30 text-[16px] font-black bg-blue-dark hover:bg-blue-light rounded-full px-[16px] sm:px-[16px] py-[8px] sm:py-[8px] mx-[2px] sm:mx-[2px] mb-[2px] mt-[-12px] text-white focus:ring-2 ring-blue-light disabled:bg-slate-300"
         >
           +
