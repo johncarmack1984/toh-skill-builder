@@ -145,6 +145,12 @@ export const tohSkillBuilderStore = defineStore({
       });
     },
 
+    resetSkillOrder() {
+      this.$patch((state) => {
+        state.character.skills.sort((a, b) => a.id - b.id);
+      });
+    },
+
     resetTotalPoints() {
       this.$patch((state) => {
         state.character.totalPoints = defaultCharacter.totalPoints;
