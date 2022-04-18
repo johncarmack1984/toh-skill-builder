@@ -28,7 +28,7 @@ const dragOptions = computed(() => {
   return {
     animation: 200,
     group: "description",
-    disabled: false,
+    disabled: true,
     ghostClass: "ghost",
   };
 });
@@ -52,6 +52,7 @@ migrationRun(store);
         @end="drag = false"
         item-key="id"
         tag="transition-group"
+        handle=".handle"
         :component-data="{
           tag: 'ul',
           type: 'transition-group',
@@ -118,7 +119,7 @@ migrationRun(store);
   transition: transform 0s;
 }
 .ghost {
-  opacity: 0.5;
+  opacity: 0;
   background: #c8ebfb;
 }
 .list-group {
