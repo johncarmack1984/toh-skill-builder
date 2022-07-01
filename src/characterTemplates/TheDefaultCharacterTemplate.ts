@@ -14,3 +14,5 @@ export const defaultCharacter = {
   totalPoints: 20,
   skills: defaultSkillList,
 } as character;
+
+export const characterLegend = {};
