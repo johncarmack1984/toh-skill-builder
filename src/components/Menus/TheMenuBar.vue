@@ -46,13 +46,6 @@ const menus = computed(() => {
       label: "reset",
       items: [
         {
-          label: "skill order",
-          type: "button",
-          action: () => {
-            store.resetSkillOrder();
-          },
-        },
-        {
           label: "scores",
           type: "button",
           action: () => {
